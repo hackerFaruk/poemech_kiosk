@@ -11,13 +11,14 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
+// A page that includes language selection
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Selection Maker'),
+          title: const Text('Language Selection'),
         ),
         body: const Center(child: SelectionButtons()),
       ),
@@ -37,60 +38,95 @@ class _SelectionButtonsState extends State<SelectionButtons> {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
 
-    return Row(
+    return Column(
       children: [
+        const PageBanner(bannerImg: "images/langselect.png"),
         SizedBox(
-            width: screenSize.width * 0.4,
-            height: screenSize.width * 0.4,
-            child: ElevatedButton(
-                onPressed: () {
-                  print('object');
-                },
-                child: const Image(image: AssetImage('images/human.png')))),
-        SizedBox(
-            width: screenSize.width * 0.4,
-            height: screenSize.width * 0.4,
-            child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const DogPage()),
-                  );
-                },
-                child: const Hero(
-                    tag: 'dogpic',
-                    child: Image(image: AssetImage('images/dog.png'))))),
+          width: screenSize.width,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              SizedBox(
+                  width: screenSize.width * 0.3,
+                  height: screenSize.width * 0.3,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const GenderSelectionPage(
+                                    language: 'en',
+                                  )),
+                        );
+                      },
+                      child: const Hero(
+                        tag: 'flagPic_en',
+                        child: Image(image: AssetImage('images/flag_en.png')),
+                      ))),
+              SizedBox(
+                  width: screenSize.width * 0.3,
+                  height: screenSize.width * 0.3,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const GenderSelectionPage(
+                                    language: 'tr',
+                                  )),
+                        );
+                      },
+                      child: const Hero(
+                          tag: 'flagPic_tr',
+                          child:
+                              Image(image: AssetImage('images/flag_tr.png'))))),
+            ],
+          ),
+        ),
       ],
     );
   }
 }
 
-class DogPage extends StatefulWidget {
-  const DogPage({super.key});
+class PageBanner extends StatelessWidget {
+  final String bannerImg;
+  const PageBanner({super.key, required this.bannerImg});
 
   @override
-  State<DogPage> createState() => _DogPageState();
+  Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
+    return SizedBox(
+        width: screenSize.width,
+        height: 200,
+        child: Image(
+          image: AssetImage(bannerImg),
+        ));
+  }
 }
 
-class _DogPageState extends State<DogPage> {
+class GenderSelectionPage extends StatelessWidget {
+  final String language;
+  const GenderSelectionPage({super.key, required this.language});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: const BackButton(color: Colors.white),
-        title: const Text('Dog Washy washy'),
+        leading: const BackButton(
+          color: Colors.white,
+        ),
+        title: const Text('Gender Selection'),
       ),
-      body: Column(
-        children: [
-          const Hero(
-              tag: 'dogpic', child: Image(image: AssetImage('images/dog.png'))),
-          ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text('go back'))
-        ],
-      ),
+      body: Column(children: [
+        Hero(
+          tag: 'flagPic_$language',
+          child: PageBanner(
+              bannerImg: language == "en"
+                  ? 'images/flag_en.png'
+                  : 'images/flag_tr.png'),
+        )
+      ]),
     );
   }
 }
