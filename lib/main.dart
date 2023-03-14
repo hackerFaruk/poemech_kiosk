@@ -35,19 +35,21 @@ class SelectionButtons extends StatefulWidget {
 class _SelectionButtonsState extends State<SelectionButtons> {
   @override
   Widget build(BuildContext context) {
+    final ScreenSize = MediaQuery.of(context).size;
+
     return Row(
       children: [
         SizedBox(
-            width: 200,
-            height: 200,
+            width: ScreenSize.width * 0.4,
+            height: ScreenSize.width * 0.4,
             child: ElevatedButton(
                 onPressed: () {
                   print('object');
                 },
                 child: const Image(image: AssetImage('images/human.png')))),
         SizedBox(
-            width: 200,
-            height: 200,
+            width: ScreenSize.width * 0.4,
+            height: ScreenSize.width * 0.4,
             child: ElevatedButton(
                 onPressed: () {
                   Navigator.push(
