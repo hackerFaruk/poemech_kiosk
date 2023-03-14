@@ -90,6 +90,7 @@ class _SelectionButtonsState extends State<SelectionButtons> {
 
 class PageBanner extends StatelessWidget {
   final String bannerImg;
+
   const PageBanner({super.key, required this.bannerImg});
 
   @override
@@ -98,7 +99,7 @@ class PageBanner extends StatelessWidget {
 
     return SizedBox(
         width: screenSize.width,
-        height: 200,
+        height: 100,
         child: Image(
           image: AssetImage(bannerImg),
         ));
@@ -121,10 +122,15 @@ class GenderSelectionPage extends StatelessWidget {
       body: Column(children: [
         Hero(
           tag: 'flagPic_$language',
-          child: PageBanner(
-              bannerImg: language == "en"
-                  ? 'images/flag_en.png'
-                  : 'images/flag_tr.png'),
+          child: Container(
+            color: language == 'en'
+                ? const Color.fromARGB(255, 5, 40, 122)
+                : const Color.fromRGBO(227, 10, 23, 1),
+            child: PageBanner(
+                bannerImg: language == "en"
+                    ? 'images/flag_en.png'
+                    : 'images/flag_tr.png'),
+          ),
         )
       ]),
     );
