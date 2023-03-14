@@ -40,7 +40,9 @@ class _SelectionButtonsState extends State<SelectionButtons> {
 
     return Column(
       children: [
+        Container(height: 20),
         const PageBanner(bannerImg: "images/langselect.png"),
+        Container(height: 20),
         SizedBox(
           width: screenSize.width,
           child: Row(
@@ -106,12 +108,15 @@ class PageBanner extends StatelessWidget {
   }
 }
 
+// Gender Page----------------------------------------------------------
 class GenderSelectionPage extends StatelessWidget {
   final String language;
   const GenderSelectionPage({super.key, required this.language});
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: AppBar(
         leading: const BackButton(
@@ -131,8 +136,32 @@ class GenderSelectionPage extends StatelessWidget {
                     ? 'images/flag_en.png'
                     : 'images/flag_tr.png'),
           ),
+        ),
+        Container(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            SizedBox(
+                width: screenSize.width * 0.3,
+                height: screenSize.width * 0.3,
+                child: ElevatedButton(
+                    onPressed: () {
+                      print('object');
+                    },
+                    child:
+                        const Image(image: AssetImage('images/female.png')))),
+            SizedBox(
+                width: screenSize.width * 0.3,
+                height: screenSize.width * 0.3,
+                child: ElevatedButton(
+                    onPressed: () {
+                      print('object');
+                    },
+                    child: const Image(image: AssetImage('images/male.png'))))
+          ],
         )
       ]),
     );
   }
 }
+// Gender Page ^^^^^^^^^^^
