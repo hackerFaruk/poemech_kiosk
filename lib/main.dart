@@ -17,6 +17,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: const Color.fromARGB(255, 200, 203, 235),
         appBar: AppBar(
           title: const Text('Language Selection'),
         ),
