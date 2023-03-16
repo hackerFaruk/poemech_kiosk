@@ -51,33 +51,29 @@ class _SelectionButtonsState extends State<SelectionButtons> {
               SizedBox(
                   width: screenSize.width * 0.3,
                   height: screenSize.width * 0.3,
-                  child: ElevatedButton(
-                      onPressed: () {
+                  child: InkWell(
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const ProcessPage()),
                         );
                       },
-                      child: const Hero(
-                        tag: 'flagPic_en',
-                        child: Image(image: AssetImage('images/flag_en.png')),
-                      ))),
+                      child: const Image(
+                          image: AssetImage('images/flag_en.png')))),
               SizedBox(
                   width: screenSize.width * 0.3,
                   height: screenSize.width * 0.3,
-                  child: ElevatedButton(
-                      onPressed: () {
+                  child: InkWell(
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const ProcessPage()),
                         );
                       },
-                      child: const Hero(
-                          tag: 'flagPic_tr',
-                          child:
-                              Image(image: AssetImage('images/flag_tr.png'))))),
+                      child: const Image(
+                          image: AssetImage('images/flag_tr.png')))),
             ],
           ),
         ),
