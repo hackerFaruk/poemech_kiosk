@@ -180,26 +180,32 @@ class ProcessPage extends StatelessWidget {
           ),
           title: const Text('İşlem Seçin'),
         ),
-        body: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
-              SizedBox(
-                height: 30,
-              ),
-              ButtonsRow(icon1: 'images/spf15.png', icon2: 'images/spf30.png'),
-              SizedBox(
-                height: 30,
-              ),
-              ButtonsRow(
-                  icon1: 'images/spf50.png', icon2: 'images/spf50kid.png'),
-              SizedBox(
-                height: 30,
-              ),
-              ButtonsRow(icon1: 'images/shower.png', icon2: 'images/moist.png'),
-              SizedBox(
-                height: 30,
-              ),
-            ]),
+        body: SingleChildScrollView(
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const [
+                SizedBox(
+                  height: 30,
+                ),
+                ButtonsRow(
+                    icon1: 'images/spf15.png', icon2: 'images/spf30.png'),
+                SizedBox(
+                  height: 30,
+                ),
+                ButtonsRow(
+                    icon1: 'images/spf50.png', icon2: 'images/spf50kid.png'),
+                SizedBox(
+                  height: 30,
+                ),
+                ButtonsRow(
+                    icon1: 'images/shower.png', icon2: 'images/moist.png'),
+                SizedBox(
+                  height: 30,
+                ),
+                ButtonsRow(
+                    icon1: 'images/bronz.png', icon2: 'images/change.png')
+              ]),
+        ),
       ),
     );
   }
@@ -227,7 +233,8 @@ class ButtonsRow extends StatelessWidget {
             height: screenSize.width * 0.3,
             child: InkWell(
               onTap: () {
-                print(icon1);
+                // instead of printing use it ass command
+                print(clearString(icon1));
               },
               child: Image(
                 image: AssetImage(icon1),
@@ -239,7 +246,7 @@ class ButtonsRow extends StatelessWidget {
             height: screenSize.width * 0.3,
             child: InkWell(
               onTap: () {
-                print(icon2);
+                print(clearString(icon2));
               },
               child: Image(
                 image: AssetImage(icon2),
@@ -252,5 +259,11 @@ class ButtonsRow extends StatelessWidget {
   }
 }
 
-
 //Buttons Row  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+clearString(input) {
+  // input will be the button icon 'images/img.png' we need img part
+  // first get part after slash
+  String mem1 = input.replaceAll("images/", "");
+  return mem1.substring(0, mem1.indexOf('.'));
+}
