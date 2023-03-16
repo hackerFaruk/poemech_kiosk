@@ -239,7 +239,6 @@ class ButtonsRow extends StatelessWidget {
             child: InkWell(
               onTap: () {
                 // instead of printing use it ass command
-                print(clearString(icon1));
                 Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -259,7 +258,6 @@ class ButtonsRow extends StatelessWidget {
             height: screenSize.width * 0.3,
             child: InkWell(
               onTap: () {
-                print(clearString(icon2));
                 Navigator.push(
                     context,
                     MaterialPageRoute(
