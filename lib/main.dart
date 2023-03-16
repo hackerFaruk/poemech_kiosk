@@ -56,9 +56,7 @@ class _SelectionButtonsState extends State<SelectionButtons> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const GenderSelectionPage(
-                                    language: 'en',
-                                  )),
+                              builder: (context) => const ProcessPage()),
                         );
                       },
                       child: const Hero(
@@ -73,9 +71,7 @@ class _SelectionButtonsState extends State<SelectionButtons> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const GenderSelectionPage(
-                                    language: 'tr',
-                                  )),
+                              builder: (context) => const ProcessPage()),
                         );
                       },
                       child: const Hero(
@@ -173,26 +169,38 @@ class ProcessPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ScreenSize = MediaQuery.of(context).size;
+    final screenSize = MediaQuery.of(context).size;
 
-    return Container(
-      width: ScreenSize.width,
-      child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Container(
-              width: ScreenSize.width * 0.3,
-              height: ScreenSize.width * 0.3,
-              child: InkWell(
-                onTap: () {
-                  print('object');
-                },
-              ),
-            )
-          ],
+    return SizedBox(
+      width: screenSize.width,
+      child: Scaffold(
+        appBar: AppBar(
+          leading: const BackButton(
+            color: Colors.white,
+          ),
+          title: const Text('İşlem Seçin'),
         ),
-      ]),
+        body: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
+              SizedBox(
+                height: 30,
+              ),
+              ButtonsRow(icon1: 'images/spf15.png', icon2: 'images/spf30.png'),
+              SizedBox(
+                height: 30,
+              ),
+              ButtonsRow(
+                  icon1: 'images/spf50.png', icon2: 'images/spf50kid.png'),
+              SizedBox(
+                height: 30,
+              ),
+              ButtonsRow(icon1: 'images/shower.png', icon2: 'images/moist.png'),
+              SizedBox(
+                height: 30,
+              ),
+            ]),
+      ),
     );
   }
 }
@@ -209,20 +217,37 @@ class ButtonsRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ScreenSize = MediaQuery.of(context).size;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Container(
-          width: ScreenSize.width * 0.3,
-          height: ScreenSize.width * 0.3,
-          child: InkWell(
-            onTap: () {
-              print('object');
-            },
+    final screenSize = MediaQuery.of(context).size;
+    return Material(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          SizedBox(
+            width: screenSize.width * 0.3,
+            height: screenSize.width * 0.3,
+            child: InkWell(
+              onTap: () {
+                print(icon1);
+              },
+              child: Image(
+                image: AssetImage(icon1),
+              ),
+            ),
           ),
-        )
-      ],
+          SizedBox(
+            width: screenSize.width * 0.3,
+            height: screenSize.width * 0.3,
+            child: InkWell(
+              onTap: () {
+                print(icon2);
+              },
+              child: Image(
+                image: AssetImage(icon2),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
