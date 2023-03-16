@@ -173,10 +173,59 @@ class ProcessPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(child: const Text("as"));
+    final ScreenSize = MediaQuery.of(context).size;
+
+    return Container(
+      width: ScreenSize.width,
+      child: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Container(
+              width: ScreenSize.width * 0.3,
+              height: ScreenSize.width * 0.3,
+              child: InkWell(
+                onTap: () {
+                  print('object');
+                },
+              ),
+            )
+          ],
+        ),
+      ]),
+    );
+  }
+}
+
+// İşlem Seçim Sayfası ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+// Buttons Row _____________________________________________________
+
+class ButtonsRow extends StatelessWidget {
+  final String icon1;
+  final String icon2;
+
+  const ButtonsRow({super.key, required this.icon1, required this.icon2});
+
+  @override
+  Widget build(BuildContext context) {
+    final ScreenSize = MediaQuery.of(context).size;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Container(
+          width: ScreenSize.width * 0.3,
+          height: ScreenSize.width * 0.3,
+          child: InkWell(
+            onTap: () {
+              print('object');
+            },
+          ),
+        )
+      ],
+    );
   }
 }
 
 
-
-// İşlem Seçim Sayfası ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+//Buttons Row  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
