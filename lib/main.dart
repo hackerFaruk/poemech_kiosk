@@ -165,3 +165,18 @@ class GenderSelectionPage extends StatelessWidget {
   }
 }
 // Gender Page ^^^^^^^^^^^
+
+// İşlem seçim sayfası ____________________________________________________
+
+class ProcessPage extends StatelessWidget {
+  const ProcessPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+
+
+// İşlem Seçim Sayfası ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
