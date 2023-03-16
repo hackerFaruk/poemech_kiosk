@@ -56,7 +56,9 @@ class _SelectionButtonsState extends State<SelectionButtons> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ProcessPage()),
+                              builder: (context) => const ProcessPage(
+                                    lang: 'en',
+                                  )),
                         );
                       },
                       child: const Image(
@@ -69,7 +71,8 @@ class _SelectionButtonsState extends State<SelectionButtons> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ProcessPage()),
+                              builder: (context) =>
+                                  const ProcessPage(lang: 'tr')),
                         );
                       },
                       child: const Image(
@@ -160,14 +163,17 @@ class GenderSelectionPage extends StatelessWidget {
 }
 // Gender Page ^^^^^^^^^^^
 
-// İşlem seçim sayfası ____________________________________________________
+// İşlem seçim sayfası ___________ProcessPage_________________________________________
 
 class ProcessPage extends StatelessWidget {
-  const ProcessPage({super.key});
+  final String lang;
+  const ProcessPage({super.key, required this.lang});
 
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+    String selection =
+        lang == 'en' ? 'Please Select Application' : 'Lütfen İşlem Seçiniz';
 
     return SizedBox(
       width: screenSize.width,
@@ -176,7 +182,7 @@ class ProcessPage extends StatelessWidget {
           leading: const BackButton(
             color: Colors.white,
           ),
-          title: const Text('İşlem Seçin'),
+          title: Text(selection),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -209,7 +215,7 @@ class ProcessPage extends StatelessWidget {
   }
 }
 
-// İşlem Seçim Sayfası ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// İşlem Seçim Sayfası ^^^^^^^^^^^^^^^^ process page^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 // Buttons Row _____________________________________________________
 
