@@ -11,7 +11,7 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-// A page that includes language selection
+// A page that includes language selection________________________________________
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
@@ -81,6 +81,8 @@ class _SelectionButtonsState extends State<SelectionButtons> {
     );
   }
 }
+
+// Langugage selection page ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 class PageBanner extends StatelessWidget {
   final String bannerImg;
