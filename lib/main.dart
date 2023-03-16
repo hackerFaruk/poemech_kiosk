@@ -11,7 +11,7 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
-// A page that includes language selection________________________________________
+// A page that includes language selection__________________lang select______________________
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
@@ -86,7 +86,7 @@ class _SelectionButtonsState extends State<SelectionButtons> {
   }
 }
 
-// Langugage selection page ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// Langugage selection page ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^lang select^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 class PageBanner extends StatelessWidget {
   final String bannerImg;
@@ -164,7 +164,7 @@ class GenderSelectionPage extends StatelessWidget {
 }
 // Gender Page ^^^^^^^^^^^
 
-// İşlem seçim sayfası ___________ProcessPage_________________________________________
+// İşlem seçim sayfası ___________ProcessPage_______________selection__________________________
 
 class ProcessPage extends StatelessWidget {
   final String lang;
@@ -216,9 +216,9 @@ class ProcessPage extends StatelessWidget {
   }
 }
 
-// İşlem Seçim Sayfası ^^^^^^^^^^^^^^^^ process page^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+// İşlem Seçim Sayfası ^^^^^^^^^^^^^^^^ process page^^^^^^^^^^^^^^^^ selection^^^^^^^^^^^^^^^^^^^^^^
 
-// Buttons Row _____________________________________________________
+// Buttons Row _______________________________row of 2 buttons______________________
 
 class ButtonsRow extends StatelessWidget {
   final String icon1;
@@ -240,9 +240,17 @@ class ButtonsRow extends StatelessWidget {
               onTap: () {
                 // instead of printing use it ass command
                 print(clearString(icon1));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            StartProcessPage(application: icon1)));
               },
-              child: Image(
-                image: AssetImage(icon1),
+              child: Hero(
+                tag: icon1,
+                child: Image(
+                  image: AssetImage(icon1),
+                ),
               ),
             ),
           ),
@@ -252,9 +260,17 @@ class ButtonsRow extends StatelessWidget {
             child: InkWell(
               onTap: () {
                 print(clearString(icon2));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            StartProcessPage(application: icon2)));
               },
-              child: Image(
-                image: AssetImage(icon2),
+              child: Hero(
+                tag: icon2,
+                child: Image(
+                  image: AssetImage(icon2),
+                ),
               ),
             ),
           )
@@ -264,7 +280,7 @@ class ButtonsRow extends StatelessWidget {
   }
 }
 
-//Buttons Row  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+//Buttons Row  ^^^^^^^^^^^^^^^^^^^^^^^^row of 2 buttons^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 clearString(input) {
   // input will be the button icon 'images/img.png' we need img part
@@ -272,3 +288,36 @@ clearString(input) {
   String mem1 = input.replaceAll("images/", "");
   return mem1.substring(0, mem1.indexOf('.'));
 }
+
+// StartProcessPage ____________________
+
+class StartProcessPage extends StatelessWidget {
+  final String application;
+  const StartProcessPage({super.key, required this.application});
+
+  @override
+  Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(' Current Aplivitaion is '),
+        leading: const BackButton(
+          color: Colors.white,
+        ),
+      ),
+      body: Center(
+        child: SizedBox(
+          width: screenSize.width * 0.7,
+          height: screenSize.height * 0.7,
+          child: Hero(
+              tag: application,
+              child: Image(
+                image: AssetImage(application),
+              )),
+        ),
+      ),
+    );
+  }
+}
+
+//StartProcessPage^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
