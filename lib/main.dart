@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'globals.dart' as globals;
 
 void main() {
   runApp(const MainPage());
@@ -54,6 +55,7 @@ class _SelectionButtonsState extends State<SelectionButtons> {
                   height: screenSize.width * 0.3,
                   child: InkWell(
                       onTap: () {
+                        globals.lang = 'en';
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -69,6 +71,7 @@ class _SelectionButtonsState extends State<SelectionButtons> {
                   height: screenSize.width * 0.3,
                   child: InkWell(
                       onTap: () {
+                        globals.lang = 'tr';
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -392,7 +395,8 @@ class StartProcessPage extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: const Text(' Selected Application Is '),
+        title: Text(
+            globals.lang == 'en' ? 'Selected Application Is ' : 'Seçili İşlem'),
         leading: const BackButton(
           color: Colors.white,
         ),
