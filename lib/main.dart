@@ -280,6 +280,93 @@ class ButtonsRow extends StatelessWidget {
 
 //Buttons Row  ^^^^^^^^^^^^^^^^^^^^^^^^row of 2 buttons^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+// 3button row _________________________________________________-
+
+class ThreeButtonRow extends StatelessWidget {
+  final String icon1;
+  final String icon2;
+  final String icon3;
+
+  const ThreeButtonRow(
+      {super.key,
+      required this.icon1,
+      required this.icon2,
+      required this.icon3});
+
+  @override
+  Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
+    return Material(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          SizedBox(
+            width: screenSize.width * 0.25,
+            height: screenSize.width * 0.25,
+            child: InkWell(
+              onTap: () {
+                // instead of printing use it ass command
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            StartProcessPage(application: icon1)));
+              },
+              child: Hero(
+                tag: icon1,
+                child: Image(
+                  image: AssetImage(icon1),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: screenSize.width * 0.25,
+            height: screenSize.width * 0.25,
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            StartProcessPage(application: icon2)));
+              },
+              child: Hero(
+                tag: icon2,
+                child: Image(
+                  image: AssetImage(icon2),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            width: screenSize.width * 0.25,
+            height: screenSize.width * 0.25,
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            StartProcessPage(application: icon3)));
+              },
+              child: Hero(
+                tag: icon3,
+                child: Image(
+                  image: AssetImage(icon3),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+// 3button row ^^^^^^^^-^^^^^^^^-^^^^^^^^-^^^^^^^^-^^^^^^^^-^^^^^^^^-
+
 clearString(input) {
   // input will be the button icon 'images/img.png' we need img part
   // first get part after slash
