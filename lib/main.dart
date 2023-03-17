@@ -192,23 +192,30 @@ class ProcessPage extends StatelessWidget {
                 SizedBox(
                   height: 30,
                 ),
-                ButtonsRow(
-                    icon1: 'images/spf15.png', icon2: 'images/spf30.png'),
+                ThreeButtonRow(
+                  icon1: 'images/spf15.png',
+                  icon2: 'images/spf30.png',
+                  icon3: 'images/spf50.png',
+                ),
                 SizedBox(
                   height: 30,
                 ),
-                ButtonsRow(
-                    icon1: 'images/spf50.png', icon2: 'images/spf50kid.png'),
                 SizedBox(
                   height: 30,
                 ),
-                ButtonsRow(
-                    icon1: 'images/shower.png', icon2: 'images/moist.png'),
+                ThreeButtonRow(
+                  icon1: 'images/shower.png',
+                  icon2: 'images/moist.png',
+                  icon3: 'images/bronz.png',
+                ),
                 SizedBox(
                   height: 30,
                 ),
-                ButtonsRow(
-                    icon1: 'images/bronz.png', icon2: 'images/change.png')
+                ThreeButtonRow(
+                  icon1: 'images/change.png',
+                  icon2: 'images/human.png',
+                  icon3: 'images/dog.png',
+                )
               ]),
         ),
       ),
@@ -385,24 +392,62 @@ class StartProcessPage extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: const Text(' Current Aplivitaion is '),
+        title: const Text(' Selected Application Is '),
         leading: const BackButton(
           color: Colors.white,
         ),
       ),
-      body: Center(
-        child: SizedBox(
-          width: screenSize.width * 0.7,
-          height: screenSize.height * 0.7,
-          child: Hero(
-              tag: application,
-              child: Image(
-                image: AssetImage(application),
-              )),
-        ),
+      body: Column(
+        children: [
+          Center(
+            child: SizedBox(
+              width: screenSize.width * 0.7,
+              height: screenSize.height * 0.7,
+              child: Hero(
+                  tag: application,
+                  child: Image(
+                    image: AssetImage(application),
+                  )),
+            ),
+          ),
+          const OKCancelRow(),
+        ],
       ),
     );
   }
 }
 
 //StartProcessPage^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+class OKCancelRow extends StatelessWidget {
+  const OKCancelRow({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    return SizedBox(
+        width: screenSize.width,
+        height: 70,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: SizedBox(
+                  width: screenSize.width * 0.4,
+                  child: const Image(image: AssetImage('images/cancel.png'))),
+            ),
+            InkWell(
+              onTap: () {
+                print('at 441');
+              },
+              child: SizedBox(
+                  width: screenSize.width * 0.4,
+                  child: const Image(image: AssetImage('images/ok.png'))),
+            )
+          ],
+        ));
+  }
+}
