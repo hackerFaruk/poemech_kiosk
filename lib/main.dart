@@ -218,7 +218,7 @@ class ProcessPage extends StatelessWidget {
                 ThreeButtonRow(
                   icon1: 'images/change.png',
                   icon2: 'images/human.png',
-                  icon3: 'images/dog.png',
+                  icon3: 'images/dogbutton.png',
                 )
               ]),
         ),
