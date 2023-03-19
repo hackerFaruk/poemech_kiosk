@@ -424,6 +424,7 @@ class StartProcessPage extends StatelessWidget {
 
 //StartProcessPage^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+// ok cancel row _______________________________
 class OKCancelRow extends StatelessWidget {
   const OKCancelRow({super.key});
 
@@ -456,3 +457,38 @@ class OKCancelRow extends StatelessWidget {
         ));
   }
 }
+// ok cancel row ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+// fur control _--______________--------_-_--____-_________-___-
+
+class FurSlection extends StatelessWidget {
+  const FurSlection({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
+    return Column(
+      children: [
+        SizedBox(
+          height: screenSize.width * 0.3,
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+            SizedBox(
+                width: screenSize.width * 0.3,
+                child: const Image(image: AssetImage('images/denseFur.png'))),
+            SizedBox(
+                width: screenSize.width * 0.3,
+                child:
+                    const Image(image: AssetImage('images/standartFur.png'))),
+            SizedBox(
+                width: screenSize.width * 0.3,
+                child: const Image(image: AssetImage('images/thinFur.png'))),
+          ]),
+        )
+      ],
+    );
+  }
+}
+
+// fur cıntrıl ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
