@@ -406,8 +406,8 @@ class StartProcessPage extends StatelessWidget {
         children: [
           Center(
             child: SizedBox(
-              width: screenSize.width * 0.7,
-              height: screenSize.height * 0.7,
+              width: screenSize.width * 0.5,
+              height: screenSize.height * 0.5,
               child: Hero(
                   tag: application,
                   child: Image(
