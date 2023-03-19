@@ -470,25 +470,43 @@ class FurSlection extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
 
-    return Column(
-      children: [
-        SizedBox(
-          height: screenSize.width * 0.3,
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
-            SizedBox(
-                width: screenSize.width * 0.3,
-                child: const Image(image: AssetImage('images/denseFur.png'))),
-            SizedBox(
-                width: screenSize.width * 0.3,
-                child:
-                    const Image(image: AssetImage('images/standartFur.png'))),
-            SizedBox(
-                width: screenSize.width * 0.3,
-                child: const Image(image: AssetImage('images/thinFur.png'))),
-          ]),
-        )
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Column(
+            children: [
+              SizedBox(
+                height: screenSize.width * 0.3,
+                child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      SizedBox(
+                          width: screenSize.width * 0.3,
+                          child: const Image(
+                              image: AssetImage('images/denseFur.png'))),
+                      SizedBox(
+                          width: screenSize.width * 0.3,
+                          child: const Image(
+                              image: AssetImage('images/standartFur.png'))),
+                      SizedBox(
+                          width: screenSize.width * 0.3,
+                          child: const Image(
+                              image: AssetImage('images/thinFur.png'))),
+                    ]),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: SizedBox(
+                    height: 50,
+                    width: screenSize.width * 0.4,
+                    child: const Image(image: AssetImage('images/cancel.png'))),
+              ),
+            ],
+          )
+        ],
+      ),
     );
   }
 }
