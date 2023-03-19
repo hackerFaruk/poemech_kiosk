@@ -494,6 +494,9 @@ class FurSlection extends StatelessWidget {
                               image: AssetImage('images/thinFur.png'))),
                     ]),
               ),
+              const SizedBox(
+                height: 20,
+              ),
               InkWell(
                 onTap: () {
                   Navigator.pop(context);
@@ -524,7 +527,12 @@ class ConditionalControlRow extends StatelessWidget {
     if (application == 'images/dogbutton.png') {
       return const FurSlection();
     } else {
-      return const OKCancelRow();
+      return Column(children: const [
+        SizedBox(
+          height: 30,
+        ),
+        OKCancelRow()
+      ]);
     }
   }
 }
