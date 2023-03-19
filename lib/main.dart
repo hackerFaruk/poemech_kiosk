@@ -415,7 +415,9 @@ class StartProcessPage extends StatelessWidget {
                   )),
             ),
           ),
-          const OKCancelRow(),
+          ConditionalControlRow(
+            application: application,
+          ),
         ],
       ),
     );
@@ -492,3 +494,19 @@ class FurSlection extends StatelessWidget {
 }
 
 // fur cıntrıl ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+// Conditional COntrol row
+
+class ConditionalControlRow extends StatelessWidget {
+  final String application;
+  const ConditionalControlRow({super.key, required this.application});
+
+  @override
+  Widget build(BuildContext context) {
+    if (application == 'images/dogbutton.png') {
+      return const FurSlection();
+    } else {
+      return const OKCancelRow();
+    }
+  }
+}
