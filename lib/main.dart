@@ -1,5 +1,9 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(const MainPage());
@@ -82,11 +86,60 @@ class _SelectionButtonsState extends State<SelectionButtons> {
                       },
                       child: const Image(
                           image: AssetImage('images/flag_tr.png')))),
+
+              // faruk butonu
+              ElevatedButton(
+                  onPressed: () {
+                    loginbutton();
+                  },
+                  child: const Text('FARUKUM BEN FARUK0m '))
             ],
           ),
         ),
       ],
     );
+  }
+
+  Future<bool> loginbutton() async {
+    bool connection = true;
+    bool success = false;
+
+    var url = Uri.parse("https://poemech.com.tr/api/mail/emergencyButton");
+    var data = {
+      "id": "5",
+      "mail": "onuralparslan97@gmail.com",
+    };
+    var headers = {
+      HttpHeaders.contentTypeHeader: 'application/json',
+    };
+
+    var res;
+    try {
+      res = await http.post(url, body: data);
+      print('115');
+    } on Exception catch (e) {
+      //print(e.toString());
+      connection = false;
+
+      return success;
+    }
+    print(connection);
+    if (connection) {
+      print(res.body.done.toString());
+      if (jsonDecode(res.body.done) == false) {
+        print("RECEPPPPP");
+
+        return success;
+      } else if (jsonDecode(res.body.done) == true) {
+        success = true;
+
+        return success;
+      } else {
+        return success;
+      }
+    } else {
+      print(res.body.done);
+    }
   }
 }
 
