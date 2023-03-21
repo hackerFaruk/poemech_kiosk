@@ -104,35 +104,28 @@ class _SelectionButtonsState extends State<SelectionButtons> {
     bool connection = true;
     bool success = false;
 
-    var url = Uri.parse("https://poemech.com.tr/api/mail/emergencyButton");
-    var data = {
-      "id": "5",
-      "mail": "onuralparslan97@gmail.com",
-    };
-    var headers = {
-      HttpHeaders.contentTypeHeader: 'application/json',
-    };
+    var url = Uri.parse("https://poemech.com.tr:3001/api/mail/emergencyButton");
+    final body = json.encode({"id": "5", "mail": "info@onarfa.com"});
 
     var res;
     try {
-      res = await http.post(url, body: data);
-      print('115');
+      res = await http.post(url,
+          headers: {"Content-Type": "application/json"}, body: body);
     } on Exception catch (e) {
       //print(e.toString());
       connection = false;
 
       return success;
     }
-    print(connection);
     if (connection) {
-      print(res.body.done.toString());
-      if (jsonDecode(res.body.done) == false) {
-        print("RECEPPPPP");
-
+      final Map<String, dynamic> data = json.decode(res.body);
+      print(data['done']);
+      if (data['done'] == 'false') {
+        print("başaramadık abi");
         return success;
-      } else if (jsonDecode(res.body.done) == true) {
+      } else if (data['done'] == 'true') {
         success = true;
-
+        print("başardık");
         return success;
       } else {
         return success;
