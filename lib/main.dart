@@ -583,5 +583,76 @@ class ConditionalControlRow extends StatelessWidget {
   }
 }
 
-
 // Conditional control row ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+// Tekerlekli sandalye mode ______---------___________________________
+
+class WheelChairModePage extends StatefulWidget {
+  const WheelChairModePage({super.key});
+
+  @override
+  State<WheelChairModePage> createState() => _WheelChairModePageState();
+}
+
+class _WheelChairModePageState extends State<WheelChairModePage> {
+  int Button1State = 0; // set state ile değiştrieceksin
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+// tekerlekli sandalye modu  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+class GreyoutButtons extends StatelessWidget {
+  final int grayout;
+  final String icon;
+  const GreyoutButtons({super.key, required this.icon, required this.grayout});
+
+  @override
+  Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size.width;
+
+    if (grayout == 1) {
+      return SizedBox(
+          width: screenSize * 0.25,
+          height: screenSize * 0.25,
+          child: const ColorFiltered(
+            // dont know why it works but works
+            colorFilter: ColorFilter.matrix(<double>[
+              0.2126,
+              0.7152,
+              0.0722,
+              0,
+              0,
+              0.2126,
+              0.7152,
+              0.0722,
+              0,
+              0,
+              0.2126,
+              0.7152,
+              0.0722,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              0,
+            ]),
+            child: Image(image: AssetImage('images/denseFur.png')),
+          ));
+    } else {
+      return SizedBox(
+          width: screenSize * 0.25,
+          height: screenSize * 0.25,
+          child: const Image(
+            image: AssetImage('images/denseFur.png'),
+          ));
+    }
+  }
+}
+
+//stateful buttons will grey out or not
