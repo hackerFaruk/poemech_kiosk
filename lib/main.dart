@@ -606,6 +606,7 @@ class _WheelChairModePageState extends State<WheelChairModePage> {
 
 // tekerlekli sandalye modu  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+/// GrayOutable buttons -_______________________________________________________
 class GreyoutButtons extends StatelessWidget {
   final int grayout;
   final String icon;
@@ -656,4 +657,4 @@ class GreyoutButtons extends StatelessWidget {
   }
 }
 
-//stateful buttons will grey out or not
+//stateful buttons will grey out or not  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
