@@ -255,7 +255,7 @@ class ProcessPage extends StatelessWidget {
                 ),
                 ThreeButtonRow(
                   icon1: 'images/change.png',
-                  icon2: 'images/human.png',
+                  icon2: 'images/wheel.png',
                   icon3: 'images/dogbutton.png',
                 )
               ]),
@@ -565,7 +565,7 @@ class ConditionalControlRow extends StatelessWidget {
   Widget build(BuildContext context) {
     if (application == 'images/dogbutton.png') {
       return const FurSlection();
-    } else if (application == "images/human.png") {
+    } else if (application == "images/wheel.png") {
       return const WheelChairRow();
     } else {
       return Column(children: const [
