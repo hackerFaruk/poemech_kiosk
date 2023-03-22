@@ -119,13 +119,12 @@ class _SelectionButtonsState extends State<SelectionButtons> {
     }
     if (connection) {
       final Map<String, dynamic> data = json.decode(res.body);
-      print(data['done']);
+
       if (data['done'] == 'false') {
-        print("başaramadık abi");
         return success;
       } else if (data['done'] == 'true') {
         success = true;
-        print("başardık");
+
         return success;
       } else {
         return success;
@@ -194,7 +193,7 @@ class GenderSelectionPage extends StatelessWidget {
                 height: screenSize.width * 0.3,
                 child: ElevatedButton(
                     onPressed: () {
-                      print('object');
+                      null;
                     },
                     child:
                         const Image(image: AssetImage('images/female.png')))),
@@ -203,7 +202,7 @@ class GenderSelectionPage extends StatelessWidget {
                 height: screenSize.width * 0.3,
                 child: ElevatedButton(
                     onPressed: () {
-                      print('object');
+                      null;
                     },
                     child: const Image(image: AssetImage('images/male.png'))))
           ],
