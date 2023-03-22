@@ -639,9 +639,9 @@ class GreyoutButtons extends StatelessWidget {
       return SizedBox(
           width: screenSize * 0.25,
           height: screenSize * 0.25,
-          child: const ColorFiltered(
+          child: ColorFiltered(
             // dont know why it works but works
-            colorFilter: ColorFilter.matrix(<double>[
+            colorFilter: const ColorFilter.matrix(<double>[
               0.2126,
               0.7152,
               0.0722,
@@ -663,17 +663,18 @@ class GreyoutButtons extends StatelessWidget {
               1,
               0,
             ]),
-            child: Image(image: AssetImage('images/denseFur.png')),
+            child: Image(image: AssetImage(icon)),
           ));
     } else {
       return SizedBox(
           width: screenSize * 0.25,
           height: screenSize * 0.25,
-          child: const Image(
-            image: AssetImage('images/denseFur.png'),
+          child: Image(
+            image: AssetImage(icon),
           ));
     }
   }
 }
+
 
 //stateful buttons will grey out or not  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
