@@ -617,7 +617,15 @@ class _WheelChairRowState extends State<WheelChairRow> {
               });
             },
             child: GreyoutButtons(icon: "images/spf30.png", grayout: but2)),
-        GreyoutButtons(icon: "images/spf15.png", grayout: but3),
+        InkWell(
+            onTap: () {
+              setState(() {
+                but1 = 1;
+                but2 = 1;
+                but3 = 0;
+              });
+            },
+            child: GreyoutButtons(icon: "images/spf15.png", grayout: but3)),
       ],
     );
   }
@@ -665,8 +673,8 @@ class GreyoutButtons extends StatelessWidget {
             ]),
             child: Center(
                 child: SizedBox(
-                    width: screenSize * 0.2,
-                    height: screenSize * 0.2,
+                    width: screenSize * 0.23,
+                    height: screenSize * 0.23,
                     child: Image(image: AssetImage(icon)))),
           ));
     } else {
