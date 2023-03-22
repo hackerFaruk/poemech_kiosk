@@ -86,13 +86,6 @@ class _SelectionButtonsState extends State<SelectionButtons> {
                       },
                       child: const Image(
                           image: AssetImage('images/flag_tr.png')))),
-
-              // faruk butonu
-              ElevatedButton(
-                  onPressed: () {
-                    loginbutton();
-                  },
-                  child: const Text('FARUKUM BEN FARUK0m '))
             ],
           ),
         ),
@@ -572,6 +565,8 @@ class ConditionalControlRow extends StatelessWidget {
   Widget build(BuildContext context) {
     if (application == 'images/dogbutton.png') {
       return const FurSlection();
+    } else if (application == "images/human.png") {
+      return const WheelChairRow();
     } else {
       return Column(children: const [
         SizedBox(
@@ -585,22 +580,46 @@ class ConditionalControlRow extends StatelessWidget {
 
 // Conditional control row ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-// Tekerlekli sandalye mode ______---------___________________________
+// Tekerlekli sandalye mode _____________________________________________
 
-class WheelChairModePage extends StatefulWidget {
-  const WheelChairModePage({super.key});
+class WheelChairRow extends StatefulWidget {
+  const WheelChairRow({super.key});
 
   @override
-  State<WheelChairModePage> createState() => _WheelChairModePageState();
+  State<WheelChairRow> createState() => _WheelChairRowState();
 }
 
-class _WheelChairModePageState extends State<WheelChairModePage> {
-  /// state 0 normal 1 grayout
-  int Button1State = 0; // set state ile değiştrieceksin
+class _WheelChairRowState extends State<WheelChairRow> {
+  int but1 = 0;
+  int but2 = 0;
+  int but3 = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        InkWell(
+            onTap: () {
+              setState(() {
+                but1 = 0;
+                but2 = 1;
+                but3 = 1;
+              });
+            },
+            child: GreyoutButtons(icon: "images/spf50.png", grayout: but1)),
+        InkWell(
+            onTap: () {
+              setState(() {
+                but1 = 1;
+                but2 = 0;
+                but3 = 1;
+              });
+            },
+            child: GreyoutButtons(icon: "images/spf30.png", grayout: but2)),
+        GreyoutButtons(icon: "images/spf15.png", grayout: but3),
+      ],
+    );
   }
 }
 
