@@ -663,7 +663,11 @@ class GreyoutButtons extends StatelessWidget {
               1,
               0,
             ]),
-            child: Image(image: AssetImage(icon)),
+            child: Center(
+                child: SizedBox(
+                    width: screenSize * 0.2,
+                    height: screenSize * 0.2,
+                    child: Image(image: AssetImage(icon)))),
           ));
     } else {
       return SizedBox(
