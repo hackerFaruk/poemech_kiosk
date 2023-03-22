@@ -562,8 +562,9 @@ class FurSlection extends StatelessWidget {
 // fur cıntrıl ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 // Conditional COntrol row
-
+///üste yaz
 class ConditionalControlRow extends StatelessWidget {
+  /// dog buttonsa farklı
   final String application;
   const ConditionalControlRow({super.key, required this.application});
 
@@ -594,6 +595,7 @@ class WheelChairModePage extends StatefulWidget {
 }
 
 class _WheelChairModePageState extends State<WheelChairModePage> {
+  /// state 0 normal 1 grayout
   int Button1State = 0; // set state ile değiştrieceksin
 
   @override
