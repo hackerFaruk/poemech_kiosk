@@ -26,6 +26,7 @@ class _GrayableNineState extends State<GrayableNine> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
+            // thast the first button
             SizedBox(
               width: screnSize * 0.25,
               height: screnSize * 0.25,
@@ -37,8 +38,13 @@ class _GrayableNineState extends State<GrayableNine> {
                     butArr[0] = 0; // makes current button open
                   });
                 },
+                child: GreyoutButtons(
+                  grayout: butArr[0],
+                  icon: 'images/spf15.png',
+                ),
               ),
             )
+            // end of first button
           ],
         ),
         Row(
