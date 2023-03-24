@@ -192,8 +192,9 @@ class OKCancelRow extends StatelessWidget {
 
 class RadioButtons extends StatefulWidget {
   int iconNumber;
+  String iconImage;
 
-  RadioButtons({super.key, required this.iconNumber});
+  RadioButtons({super.key, required this.iconNumber, required this.iconImage});
 
   @override
   State<RadioButtons> createState() => _RadioButtonsState();
@@ -231,7 +232,7 @@ class _RadioButtonsState extends State<RadioButtons> {
         },
         child: GreyoutButtons(
           grayout: global.butArr[widget.iconNumber],
-          icon: 'images/spf15.png',
+          icon: widget.iconImage,
         ),
       ),
     );
