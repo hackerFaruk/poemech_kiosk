@@ -8,8 +8,14 @@ class GrayableNine extends StatefulWidget {
 }
 
 class _GrayableNineState extends State<GrayableNine> {
+  List<int> butArr = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+  /// 1 means grayout
+
   @override
   Widget build(BuildContext context) {
+    final screnSize = MediaQuery.of(context).size.width;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
@@ -24,7 +30,8 @@ class _GrayableNineState extends State<GrayableNine> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [],
-        )
+        ),
+        const OKCancelRow()
       ],
     );
   }
@@ -85,6 +92,39 @@ class GreyoutButtons extends StatelessWidget {
   }
 }
 
-
 //stateful buttons will grey out or not  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+// ok cancel row _______________________________
+class OKCancelRow extends StatelessWidget {
+  const OKCancelRow({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    return SizedBox(
+        width: screenSize.width,
+        height: 70,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            InkWell(
+              onTap: () {
+                print('clear selection in here');
+              },
+              child: SizedBox(
+                  width: screenSize.width * 0.4,
+                  child: const Image(image: AssetImage('images/cancel.png'))),
+            ),
+            InkWell(
+              onTap: () {
+                print('at move to selected page');
+              },
+              child: SizedBox(
+                  width: screenSize.width * 0.4,
+                  child: const Image(image: AssetImage('images/ok.png'))),
+            )
+          ],
+        ));
+  }
+}
+// ok cancel row ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
