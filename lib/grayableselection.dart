@@ -187,3 +187,56 @@ class OKCancelRow extends StatelessWidget {
   }
 }
 // ok cancel row ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/// supa cool button mechanism _____________________________________
+
+class RadioButtons extends StatefulWidget {
+  int iconNumber;
+
+  RadioButtons({super.key, required this.iconNumber});
+
+  @override
+  State<RadioButtons> createState() => _RadioButtonsState();
+}
+
+class _RadioButtonsState extends State<RadioButtons> {
+  @override
+  Widget build(BuildContext context) {
+    final screnSize = MediaQuery.of(context).size.width;
+
+    return // thast the first button
+        SizedBox(
+      width: screnSize * 0.25,
+      height: screnSize * 0.25,
+      child: InkWell(
+        onTap: () {
+          // eğer buton açıksa
+          if (global.butArr[widget.iconNumber] == 0) {
+            // let here be states
+            if (global.isButtonSelected[widget.iconNumber] == 0) {
+              // eğer button seçili değilse
+              global.isButtonSelected[widget.iconNumber] = 1;
+              global.selected = 'spf15';
+              setState(() {
+                global.butArr = global.allGray; // makes all gray
+                global.butArr[widget.iconNumber] =
+                    0; // makes current button open
+              });
+            } else if (global.isButtonSelected[widget.iconNumber] == 1) {
+              // eğer seçili buton tekrar tıklanırsa seçim sıfırmlanır
+              global.butArr = global.allOpen;
+              global.selected = '';
+            }
+          }
+        },
+        child: GreyoutButtons(
+          grayout: global.butArr[widget.iconNumber],
+          icon: 'images/spf15.png',
+        ),
+      ),
+    );
+    // end of first button
+  }
+}
+
+/// supa cool button mechanism ____^_____^____^____^____^_____^____^_____
