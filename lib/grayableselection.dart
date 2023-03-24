@@ -9,6 +9,8 @@ class GrayableNine extends StatefulWidget {
 
 class _GrayableNineState extends State<GrayableNine> {
   List<int> butArr = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+  List<int> allOpen = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+  List<int> allGray = [1, 1, 1, 1, 1, 1, 1, 1, 1];
 
   /// 1 means grayout
 
@@ -21,7 +23,17 @@ class _GrayableNineState extends State<GrayableNine> {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [],
+          children: [
+            SizedBox(
+              width: screnSize * 0.2,
+              height: screnSize * 0.2,
+              child: InkWell(
+                onTap: () {
+                  // let here be states
+                },
+              ),
+            )
+          ],
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
