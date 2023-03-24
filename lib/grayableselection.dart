@@ -27,13 +27,14 @@ class _GrayableNineState extends State<GrayableNine> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             SizedBox(
-              width: screnSize * 0.2,
-              height: screnSize * 0.2,
+              width: screnSize * 0.25,
+              height: screnSize * 0.25,
               child: InkWell(
                 onTap: () {
                   // let here be states
                   setState(() {
-                    butArr = allGray;
+                    butArr = allGray; // makes all gray
+                    butArr[0] = 0; // makes current button open
                   });
                 },
               ),
@@ -94,8 +95,8 @@ class GreyoutButtons extends StatelessWidget {
             ]),
             child: Center(
                 child: SizedBox(
-                    width: screenSize * 0.23,
-                    height: screenSize * 0.23,
+                    width: screenSize * 0.25,
+                    height: screenSize * 0.25,
                     child: Image(image: AssetImage(icon)))),
           ));
     } else {
