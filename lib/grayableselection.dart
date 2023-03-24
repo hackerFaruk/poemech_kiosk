@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class GrayableNine extends StatefulWidget {
@@ -9,8 +10,9 @@ class GrayableNine extends StatefulWidget {
 
 class _GrayableNineState extends State<GrayableNine> {
   List<int> butArr = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-  List<int> allOpen = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-  List<int> allGray = [1, 1, 1, 1, 1, 1, 1, 1, 1];
+  List<int> allOpen = List.unmodifiable([0, 0, 0, 0, 0, 0, 0, 0, 0]);
+  List<int> allGray = List.unmodifiable([1, 1, 1, 1, 1, 1, 1, 1, 1]);
+  // list.unmodifiable makes list immutable so you wont change those by accident
 
   /// 1 means grayout
 
@@ -30,6 +32,9 @@ class _GrayableNineState extends State<GrayableNine> {
               child: InkWell(
                 onTap: () {
                   // let here be states
+                  setState(() {
+                    butArr = allGray;
+                  });
                 },
               ),
             )
