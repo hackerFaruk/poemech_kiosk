@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
 import 'package:http/http.dart' as http;
+import 'grayableselection.dart' as grayable;
 
 void main() {
   runApp(const MainPage());
@@ -47,6 +48,9 @@ class _SelectionButtonsState extends State<SelectionButtons> {
 
     return Column(
       children: [
+        // For testting deletee this
+        grayable.GrayableNine(),
+        // for ttesting delete this
         Container(height: 20),
         const PageBanner(bannerImg: "images/langselect.png"),
         Container(height: 20),
@@ -693,6 +697,5 @@ class GreyoutButtons extends StatelessWidget {
     }
   }
 }
-
 
 //stateful buttons will grey out or not  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
