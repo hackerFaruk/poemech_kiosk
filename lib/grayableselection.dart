@@ -206,7 +206,8 @@ class _GrayableRowState extends State<GrayableRow> {
           shape: const CircleBorder(),
           child: InkWell(
             onTap: () {
-              null;
+              global.butArr = global.allGray;
+              setState(() {});
             },
             child: GreyoutButtons(
                 icon: 'images/spf30.png', grayout: global.butArr[2]),
