@@ -225,12 +225,17 @@ void selectionMaker(int iconNumber, String iconName) {
     global.isButtonSelected[iconNumber] = 1;
     // selected a işlemi ekler
     global.selected = "${global.selected + clearString(iconName)}:";
+    // diğerleri graylenir kendinin rengini düzeltir
+    global.butArr = global.allGray;
+    global.butArr[iconNumber] = 0;
   } else {
     // eğer buton önceden seçiliyse
     // tüm seçimleri sfırlar
     global.isButtonSelected = global.allOpen;
     // slected işlemi temizler
     global.selected = "";
+    // her iconun rengini düzeltir
+    global.butArr = global.allOpen;
   }
 }
 
