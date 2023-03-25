@@ -217,3 +217,26 @@ class _GrayableRowState extends State<GrayableRow> {
     );
   }
 }
+
+void selectionMaker(int iconNumber, String iconName) {
+  if (global.isButtonSelected[iconNumber] == 0) {
+    // eğer buttpn önceden seçili değilse
+    // seçili işsaretler
+    global.isButtonSelected[iconNumber] = 1;
+    // selected a işlemi ekler
+    global.selected = "${global.selected + clearString(iconName)}:";
+  } else {
+    // eğer buton önceden seçiliyse
+    // tüm seçimleri sfırlar
+    global.isButtonSelected = global.allOpen;
+    // slected işlemi temizler
+    global.selected = "";
+  }
+}
+
+clearString(input) {
+  // input will be the button icon 'images/img.png' we need img part
+  // first get part after slash
+  String mem1 = input.replaceAll("images/", "");
+  return mem1.substring(0, mem1.indexOf('.'));
+}
