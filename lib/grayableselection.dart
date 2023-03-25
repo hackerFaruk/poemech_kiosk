@@ -8,6 +8,8 @@ class GrayableNine extends StatefulWidget {
   const GrayableNine({super.key});
   @override
   State<GrayableNine> createState() => _GrayableNineState();
+
+  void initState() {}
 }
 
 class _GrayableNineState extends State<GrayableNine> {
@@ -162,6 +164,8 @@ class RadioButtons extends StatefulWidget {
 }
 
 class _RadioButtonsState extends State<RadioButtons> {
+  final GrayableNine graybale = new GrayableNine();
+
   @override
   Widget build(BuildContext context) {
     final screnSize = MediaQuery.of(context).size.width;
@@ -176,6 +180,7 @@ class _RadioButtonsState extends State<RadioButtons> {
                 ? global.allOpen
                 : global.allGray;
           });
+          graybale.initState();
         },
         child: GreyoutButtons(
           grayout: global.butArr[widget.iconNumber],
