@@ -52,7 +52,8 @@ class _SelectionButtonsState extends State<SelectionButtons> {
           child: GrayableNine(),
           onTap: () {
             setState(() {
-              //globals.butArr = globals.allOpen;
+              // boşa tıkla seçim sıfırla
+              globals.butArr = globals.allOpen;
             });
           },
         ),
