@@ -65,3 +65,57 @@ void grayAll() {
   but8 = 1;
   but9 = 1;
 }
+
+// set selected
+
+void setSelected(int selection) {
+  switch (selection) {
+    case 1:
+      {
+        isBut1Selected = 1;
+      }
+      break;
+
+    case 2:
+      {
+        isBut2Selected = 1;
+      }
+      break;
+
+    case 3:
+      {
+        isBut3Selected = 1;
+      }
+      break;
+    case 4:
+      {
+        isBut4Selected = 1;
+      }
+      break;
+    case 5:
+      {
+        isBut5Selected = 1;
+      }
+      break;
+    case 6:
+      {
+        isBut6Selected = 1;
+      }
+      break;
+    case 7:
+      {
+        isBut7Selected = 1;
+      }
+      break;
+    case 8:
+      {
+        isBut8Selected = 1;
+      }
+      break;
+    case 9:
+      {
+        isBut9Selected = 1;
+      }
+      break;
+  }
+}

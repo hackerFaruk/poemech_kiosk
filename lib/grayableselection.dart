@@ -222,7 +222,7 @@ void selectionMaker(int butNo, int isButNoSelected, String iconName) {
     print(global.isBut2Selected);
     // eğer buttpn önceden seçili değilse
     // seçili işsaretler
-    global.isBut2Selected = 1;
+    global.setSelected(2);
     // selected a işlemi ekler
     global.selected = "${global.selected + clearString(iconName)}:";
     // diğerleri graylenir kendinin rengini düzeltir
