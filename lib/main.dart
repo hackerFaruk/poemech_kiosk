@@ -49,8 +49,15 @@ class _SelectionButtonsState extends State<SelectionButtons> {
     return Column(
       children: [
         // For testting deletee this
-        grayable.GrayableNine(),
-        // for ttesting delete this
+        InkWell(
+          child: grayable.GrayableNine(),
+          onTap: () {
+            setState(() {
+              globals.butArr = globals.allOpen;
+            });
+          },
+        ),
+        // for ttesting delete
         Container(height: 20),
         const PageBanner(bannerImg: "images/langselect.png"),
         Container(height: 20),
