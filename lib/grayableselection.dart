@@ -192,25 +192,24 @@ class _GrayableRowState extends State<GrayableRow> {
           shape: const CircleBorder(),
           child: InkWell(
             onTap: () {
-              print(global.butArr);
               setState(() {
                 global.butArr = global.allGray;
               });
-              print(global.butArr);
             },
-            child: GreyoutButtons(
-                icon: 'images/spf15.png', grayout: global.butArr[0]),
+            child:
+                GreyoutButtons(icon: 'images/spf15.png', grayout: global.but1),
           ),
         ),
         Material(
           shape: const CircleBorder(),
           child: InkWell(
             onTap: () {
-              global.butArr = global.allGray;
+              selectionMaker(
+                  global.but2, global.isBut2Selected, 'images/spf30.png');
               setState(() {});
             },
-            child: GreyoutButtons(
-                icon: 'images/spf30.png', grayout: global.butArr[2]),
+            child:
+                GreyoutButtons(icon: 'images/spf30.png', grayout: global.but2),
           ),
         )
       ],
@@ -218,24 +217,24 @@ class _GrayableRowState extends State<GrayableRow> {
   }
 }
 
-void selectionMaker(int iconNumber, String iconName) {
-  if (global.isButtonSelected[iconNumber] == 0) {
+void selectionMaker(int butNo, int isButNoSelected, String iconName) {
+  if (isButNoSelected == 0) {
+    print(global.isBut2Selected);
     // eğer buttpn önceden seçili değilse
     // seçili işsaretler
-    global.isButtonSelected[iconNumber] = 1;
+    global.isBut2Selected = 1;
     // selected a işlemi ekler
     global.selected = "${global.selected + clearString(iconName)}:";
     // diğerleri graylenir kendinin rengini düzeltir
-    global.butArr = global.allGray;
-    global.butArr[iconNumber] = 0;
+    global.grayAll();
+    butNo = 0;
   } else {
+    print(global.isBut2Selected);
     // eğer buton önceden seçiliyse
-    // tüm seçimleri sfırlar
-    global.isButtonSelected = global.allOpen;
+    // tüm seçimleri sfırlar ve renk sıfırlar
+    global.revertAll();
     // slected işlemi temizler
     global.selected = "";
-    // her iconun rengini düzeltir
-    global.butArr = global.allOpen;
   }
 }
 
