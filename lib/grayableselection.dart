@@ -96,85 +96,6 @@ class OKCancelRow extends StatelessWidget {
 }
 // ok cancel row ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-/// supa cool button mechanism _____________________________________
-
-class RadioButtons extends StatefulWidget {
-  int iconNumber;
-  String iconImage;
-
-  RadioButtons({super.key, required this.iconNumber, required this.iconImage});
-
-  @override
-  State<RadioButtons> createState() => _RadioButtonsState();
-}
-
-class _RadioButtonsState extends State<RadioButtons> {
-  @override
-  Widget build(BuildContext context) {
-    final screnSize = MediaQuery.of(context).size.width;
-    return // thast the first button
-        SizedBox(
-      width: screnSize * 0.25,
-      height: screnSize * 0.25,
-      child: Material(
-        shape: const CircleBorder(),
-        child: InkWell(
-          onTap: () {
-            setState(() {
-              global.butArr = global.butArr[widget.iconNumber] == 1
-                  ? global.allOpen
-                  : global.allGray;
-            });
-          },
-          child: GreyoutButtons(
-            grayout: global.butArr[widget.iconNumber],
-            icon: widget.iconImage,
-          ),
-        ),
-      ),
-    );
-    // end of first button
-  }
-}
-
-/// supa cool button mechanism ____^_____^____^____^____^_____^____^_____
-///
-///
-///
-
-/*
-
-
-    print(global.butArr);
-          print(widget.iconNumber);
-          print(global.butArr[widget.iconNumber]);
-          // eğer buton açıksa
-          if (global.butArr[widget.iconNumber] == 0) {
-            // let here be states
-            if (global.isButtonSelected[widget.iconNumber] == 0) {
-              // eğer button seçili değilse
-              global.isButtonSelected[widget.iconNumber] = 1;
-              global.selected = 'spf15';
-              setState(() {
-                global.butArr = global.allGray; // makes all gray
-                global.butArr[widget.iconNumber] =
-                    0; // makes current button open
-              });
-            } else if (global.isButtonSelected[widget.iconNumber] == 1) {
-              // eğer seçili buton tekrar tıklanırsa seçim sıfırmlanır
-              global.butArr = global.allOpen;
-              global.selected = '';
-            }
-          } else {
-            setState(() {
-              global.butArr = global.allGray; // makes all gray
-              global.butArr[widget.iconNumber] = 0;
-            });
-          }
-
-
-*/
-
 class GrayableRow extends StatefulWidget {
   const GrayableRow({super.key});
 
@@ -219,7 +140,6 @@ class _GrayableRowState extends State<GrayableRow> {
 
 void selectionMaker(int butNo, int isButNoSelected, String iconName) {
   if (isButNoSelected == 0) {
-    print(global.isBut2Selected);
     // eğer buttpn önceden seçili değilse
     // seçili işsaretler
     global.setSelected(2);
@@ -229,7 +149,6 @@ void selectionMaker(int butNo, int isButNoSelected, String iconName) {
     global.grayAll();
     global.setSingleActive(2);
   } else {
-    print(global.isBut2Selected);
     // eğer buton önceden seçiliyse
     // tüm seçimleri sfırlar ve renk sıfırlar
     global.revertAll();
