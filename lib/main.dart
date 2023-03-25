@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
 import 'package:http/http.dart' as http;
+import 'grayableselection.dart' as grayable;
 
 void main() {
   runApp(const MainPage());
@@ -49,7 +50,7 @@ class _SelectionButtonsState extends State<SelectionButtons> {
       children: [
         // For testting deletee this
         InkWell(
-          child: GrayableNine(),
+          child: grayable.GrayableRow(),
           onTap: () {
             setState(() {
               // boşa tıkla seçim sıfırla

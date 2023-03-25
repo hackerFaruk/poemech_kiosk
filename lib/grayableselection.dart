@@ -138,14 +138,9 @@ class _RadioButtonsState extends State<RadioButtons> {
 }
 
 /// supa cool button mechanism ____^_____^____^____^____^_____^____^_____
-/// 
-/// 
-/// 
-
-
-
-
-
+///
+///
+///
 
 /*
 
@@ -179,3 +174,45 @@ class _RadioButtonsState extends State<RadioButtons> {
 
 
 */
+
+class GrayableRow extends StatefulWidget {
+  const GrayableRow({super.key});
+
+  @override
+  State<GrayableRow> createState() => _GrayableRowState();
+}
+
+class _GrayableRowState extends State<GrayableRow> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Material(
+          shape: const CircleBorder(),
+          child: InkWell(
+            onTap: () {
+              print(global.butArr);
+              setState(() {
+                global.butArr = global.allGray;
+              });
+              print(global.butArr);
+            },
+            child: GreyoutButtons(
+                icon: 'images/spf15.png', grayout: global.butArr[0]),
+          ),
+        ),
+        Material(
+          shape: const CircleBorder(),
+          child: InkWell(
+            onTap: () {
+              null;
+            },
+            child: GreyoutButtons(
+                icon: 'images/spf30.png', grayout: global.butArr[2]),
+          ),
+        )
+      ],
+    );
+  }
+}
