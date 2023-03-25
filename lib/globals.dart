@@ -119,3 +119,55 @@ void setSelected(int selection) {
       break;
   }
 }
+
+void setSingleActive(int selection) {
+  switch (selection) {
+    case 1:
+      {
+        but1 = 0;
+      }
+      break;
+
+    case 2:
+      {
+        but2 = 0;
+      }
+      break;
+
+    case 3:
+      {
+        but3 = 0;
+      }
+      break;
+    case 4:
+      {
+        but4 = 0;
+      }
+      break;
+    case 5:
+      {
+        but5 = 0;
+      }
+      break;
+    case 6:
+      {
+        but6 = 0;
+      }
+      break;
+    case 7:
+      {
+        but7 = 0;
+      }
+      break;
+    case 8:
+      {
+        but8 = 0;
+      }
+      break;
+    case 9:
+      {
+        but9 = 0;
+      }
+      break;
+  }
+}

@@ -227,7 +227,7 @@ void selectionMaker(int butNo, int isButNoSelected, String iconName) {
     global.selected = "${global.selected + clearString(iconName)}:";
     // diğerleri graylenir kendinin rengini düzeltir
     global.grayAll();
-    butNo = 0;
+    global.setSingleActive(2);
   } else {
     print(global.isBut2Selected);
     // eğer buton önceden seçiliyse

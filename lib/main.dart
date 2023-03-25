@@ -54,7 +54,7 @@ class _SelectionButtonsState extends State<SelectionButtons> {
           onTap: () {
             setState(() {
               // boşa tıkla seçim sıfırla
-              globals.butArr = globals.allOpen;
+              globals.revertAll();
             });
           },
         ),
