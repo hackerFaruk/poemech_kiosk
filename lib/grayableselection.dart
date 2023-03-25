@@ -116,17 +116,20 @@ class _RadioButtonsState extends State<RadioButtons> {
         SizedBox(
       width: screnSize * 0.25,
       height: screnSize * 0.25,
-      child: InkWell(
-        onTap: () {
-          setState(() {
-            global.butArr = global.butArr[widget.iconNumber] == 1
-                ? global.allOpen
-                : global.allGray;
-          });
-        },
-        child: GreyoutButtons(
-          grayout: global.butArr[widget.iconNumber],
-          icon: widget.iconImage,
+      child: Material(
+        shape: const CircleBorder(),
+        child: InkWell(
+          onTap: () {
+            setState(() {
+              global.butArr = global.butArr[widget.iconNumber] == 1
+                  ? global.allOpen
+                  : global.allGray;
+            });
+          },
+          child: GreyoutButtons(
+            grayout: global.butArr[widget.iconNumber],
+            icon: widget.iconImage,
+          ),
         ),
       ),
     );
