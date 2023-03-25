@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
 import 'package:http/http.dart' as http;
-import 'grayableselection.dart' as grayable;
 
 void main() {
   runApp(const MainPage());
@@ -50,10 +49,10 @@ class _SelectionButtonsState extends State<SelectionButtons> {
       children: [
         // For testting deletee this
         InkWell(
-          child: grayable.GrayableNine(),
+          child: GrayableNine(),
           onTap: () {
             setState(() {
-              globals.butArr = globals.allOpen;
+              //globals.butArr = globals.allOpen;
             });
           },
         ),
@@ -706,3 +705,102 @@ class GreyoutButtons extends StatelessWidget {
 }
 
 //stateful buttons will grey out or not  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+// Greyable selection______________________________________________________________
+
+class GrayableNine extends StatefulWidget {
+  const GrayableNine({super.key});
+  @override
+  State<GrayableNine> createState() => _GrayableNineState();
+
+  void initState() {}
+}
+
+class _GrayableNineState extends State<GrayableNine> {
+  List<int> butArr = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+  // list.unmodifiable makes list immutable so you wont change those by accident
+
+  /// 1 means grayout
+
+  @override
+  Widget build(BuildContext context) {
+    final screnSize = MediaQuery.of(context).size.width;
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            // thast the first button
+            RadioButtons(iconNumber: 3, iconImage: 'images/spf15.png'),
+            // end of first button
+
+            // thast the second button
+            RadioButtons(iconNumber: 1, iconImage: 'images/spf30.png'),
+
+            // end of second button
+
+            RadioButtons(iconNumber: 2, iconImage: 'images/spf50.png')
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [],
+        ),
+        const OKCancelRow()
+      ],
+    );
+  }
+}
+
+// Greyable selection ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+/// supa cool button mechanism _____________________________________
+
+class RadioButtons extends StatefulWidget {
+  int iconNumber;
+  String iconImage;
+
+  RadioButtons({super.key, required this.iconNumber, required this.iconImage});
+
+  @override
+  State<RadioButtons> createState() => _RadioButtonsState();
+}
+
+class _RadioButtonsState extends State<RadioButtons> {
+  @override
+  Widget build(BuildContext context) {
+    final screnSize = MediaQuery.of(context).size.width;
+    return // thast the first button
+        SizedBox(
+      width: screnSize * 0.25,
+      height: screnSize * 0.25,
+      child: Material(
+        //to make button a circle
+        shape: const CircleBorder(),
+        child: InkWell(
+          onTap: () {
+            setState(() {
+              globals.butArr = globals.butArr[widget.iconNumber] == 1
+                  ? globals.allOpen
+                  : globals.allGray;
+            });
+          },
+          child: GreyoutButtons(
+            grayout: globals.butArr[widget.iconNumber],
+            icon: widget.iconImage,
+          ),
+        ),
+      ),
+    );
+    // end of first button
+  }
+}
+
+/// supa cool button mechanism ____^_____^____^____^____^_____^____^_____
