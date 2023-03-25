@@ -4,57 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'globals.dart' as global;
 
-class GrayableNine extends StatefulWidget {
-  const GrayableNine({super.key});
-  @override
-  State<GrayableNine> createState() => _GrayableNineState();
-
-  void initState() {}
-}
-
-class _GrayableNineState extends State<GrayableNine> {
-  List<int> butArr = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-
-  // list.unmodifiable makes list immutable so you wont change those by accident
-
-  /// 1 means grayout
-
-  @override
-  Widget build(BuildContext context) {
-    final screnSize = MediaQuery.of(context).size.width;
-
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            // thast the first button
-            RadioButtons(iconNumber: 3, iconImage: 'images/spf15.png'),
-            // end of first button
-
-            // thast the second button
-            RadioButtons(iconNumber: 1, iconImage: 'images/spf30.png'),
-
-            // end of second button
-
-            RadioButtons(iconNumber: 2, iconImage: 'images/spf50.png')
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [],
-        ),
-        const OKCancelRow()
-      ],
-    );
-  }
-}
-
 /// GrayOutable buttons -_______________________________________________________
 class GreyoutButtons extends StatelessWidget {
   final int grayout;
