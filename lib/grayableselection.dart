@@ -113,9 +113,8 @@ class _GrayableRowState extends State<GrayableRow> {
           shape: const CircleBorder(),
           child: InkWell(
             onTap: () {
-              setState(() {
-                global.butArr = global.allGray;
-              });
+              selectionMaker(1, global.isBut1Selected, 'images/spf15.png');
+              setState(() {});
             },
             child:
                 GreyoutButtons(icon: 'images/spf15.png', grayout: global.but1),
@@ -125,8 +124,7 @@ class _GrayableRowState extends State<GrayableRow> {
           shape: const CircleBorder(),
           child: InkWell(
             onTap: () {
-              selectionMaker(
-                  global.but2, global.isBut2Selected, 'images/spf30.png');
+              selectionMaker(2, global.isBut2Selected, 'images/spf30.png');
               setState(() {});
             },
             child:
@@ -142,12 +140,12 @@ void selectionMaker(int butNo, int isButNoSelected, String iconName) {
   if (isButNoSelected == 0) {
     // eğer buttpn önceden seçili değilse
     // seçili işsaretler
-    global.setSelected(2);
+    global.setSelected(butNo);
     // selected a işlemi ekler
     global.selected = "${global.selected + clearString(iconName)}:";
     // diğerleri graylenir kendinin rengini düzeltir
     global.grayAll();
-    global.setSingleActive(2);
+    global.setSingleActive(butNo);
   } else {
     // eğer buton önceden seçiliyse
     // tüm seçimleri sfırlar ve renk sıfırlar
