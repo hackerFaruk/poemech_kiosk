@@ -258,6 +258,12 @@ void selectionMaker(int butNo, int isButNoSelected, String iconName) {
       // diğerleri graylenir kendinin rengini düzeltir
       global.grayAll();
       global.setSingleActive(butNo);
+
+      // özel durumlar için seçiçi açılışlar
+
+      if (butNo == 1) {
+        global.setSingleActive(4);
+      }
     } else {
       // eğer buton önceden seçiliyse
       // tüm seçimleri sfırlar ve renk sıfırlar
