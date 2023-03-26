@@ -181,7 +181,16 @@ class ProcessPage extends StatelessWidget {
                       onPressed: () {
                         print(globals.selected);
                       },
-                      child: const Text('pirnts selected global val'))
+                      child: const Text('pirnts selected global val')),
+                  ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const ProcessPage(lang: 'tr')));
+                      },
+                      child: const Text('Navigayon zamanı '))
                 ],
               ),
             )));
