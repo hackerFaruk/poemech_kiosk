@@ -209,15 +209,15 @@ class GenderSelectionPage extends StatelessWidget {
 
 // İşlem seçim sayfası ___________ProcessPage_______________selection__________________________
 
-class ProcessPage extends StatefulWidget {
+class ProcessPageOld extends StatefulWidget {
   final String lang;
-  const ProcessPage({super.key, required this.lang});
+  const ProcessPageOld({super.key, required this.lang});
 
   @override
-  State<ProcessPage> createState() => _ProcessPageState();
+  State<ProcessPageOld> createState() => _ProcessPageState();
 }
 
-class _ProcessPageState extends State<ProcessPage> {
+class _ProcessPageState extends State<ProcessPageOld> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -268,6 +268,21 @@ class _ProcessPageState extends State<ProcessPage> {
               ]),
         ),
       ),
+    );
+  }
+}
+
+class ProcessPage extends StatelessWidget {
+  final String lang;
+  const ProcessPage({super.key, required this.lang});
+
+  @override
+  Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    String selection =
+        lang == 'en' ? 'Please Select Application' : 'Lütfen İşlem Seçiniz';
+    return SizedBox(
+      width: screenSize.width,
     );
   }
 }
