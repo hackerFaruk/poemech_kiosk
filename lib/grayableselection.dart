@@ -78,7 +78,9 @@ class GreyoutButtons extends StatelessWidget {
 //stateful buttons will grey out or not  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 class GrayableRow extends StatefulWidget {
-  const GrayableRow({super.key});
+  // render trigger allows parent re render this
+  final bool renderTrigger;
+  const GrayableRow({super.key, required this.renderTrigger});
 
   @override
   State<GrayableRow> createState() => _GrayableRowState();
@@ -278,6 +280,7 @@ void selectionMaker(int butNo, int isButNoSelected, String iconName) {
       // diğerleri graylenir kendinin rengini düzeltir
       global.grayAll();
       global.setSingleActive(butNo);
+      global.firstButton = iconName;
       // özel durumlar için seçiçi açılışlar
       if (butNo == 1) {
         global.setSingleActive(4);

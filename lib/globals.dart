@@ -4,6 +4,8 @@ String lang = '';
 
 String selected = '';
 
+String firstButton = "";
+
 /// required for grayablenine widget
 List<int> butArr = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 List<int> isButtonSelected = [0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -55,6 +57,7 @@ void revertAll() {
   isBut9Selected = 0;
 
   selected = "";
+  firstButton = "";
 }
 
 /// This function sets all the buttons to gray.

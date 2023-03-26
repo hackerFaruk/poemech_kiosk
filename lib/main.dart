@@ -152,15 +152,25 @@ class PageBanner extends StatelessWidget {
 // İşlem seçim sayfası ___________ProcessPage_______________selection__________________________
 // process page _______________________________________________________________________________
 /// A stateless widget that is used to display the process page.
-class ProcessPage extends StatelessWidget {
+class ProcessPage extends StatefulWidget {
   final String lang;
   const ProcessPage({super.key, required this.lang});
 
   @override
+  State<ProcessPage> createState() => _ProcessPageState();
+}
+
+class _ProcessPageState extends State<ProcessPage> {
+  @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    String selection =
-        lang == 'en' ? 'Please Select Application' : 'Lütfen İşlem Seçiniz';
+    String selection = widget.lang == 'en'
+        ? 'Please Select Application'
+        : 'Lütfen İşlem Seçiniz';
+
+// change trigger to trigger re render of child
+    bool trigger = true;
+
     return SizedBox(
         width: screenSize.width,
         child: Scaffold(
@@ -173,24 +183,35 @@ class ProcessPage extends StatelessWidget {
             body: SingleChildScrollView(
               child: Column(
                 children: [
-                  const grayable.GrayableRow(),
+                  grayable.GrayableRow(renderTrigger: trigger),
                   const SizedBox(
                     height: 40,
                   ),
-                  ElevatedButton(
-                      onPressed: () {
-                        print(globals.selected);
-                      },
-                      child: const Text('pirnts selected global val')),
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const ProcessPage(lang: 'tr')));
-                      },
-                      child: const Text('Navigayon zamanı '))
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ElevatedButton(
+                          onPressed: () {
+                            globals.revertAll();
+                            // changin trigger re renders controls
+                            trigger = trigger == true ? false : true;
+                            setState(() {});
+
+                            ;
+                          },
+                          child: const Text('cancel selelction')),
+                      ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => StartProcessPage(
+                                          application: globals.firstButton,
+                                        )));
+                          },
+                          child: const Text('Navigayon zamanı ')),
+                    ],
+                  )
                 ],
               ),
             )));
@@ -478,5 +499,3 @@ class GreyoutButtons extends StatelessWidget {
 }
 
 //stateful buttons will grey out or not  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-
