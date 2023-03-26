@@ -292,7 +292,17 @@ class ProcessPage extends StatelessWidget {
             ),
             body: SingleChildScrollView(
               child: Column(
-                children: const [grayable.GrayableRow()],
+                children: [
+                  const grayable.GrayableRow(),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        print(globals.selected);
+                      },
+                      child: const Text('pirnts selected global val'))
+                ],
               ),
             )));
   }

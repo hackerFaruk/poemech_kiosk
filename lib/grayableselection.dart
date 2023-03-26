@@ -75,6 +75,8 @@ class _GrayableRowState extends State<GrayableRow> {
     return InkWell(
       hoverColor: Colors.transparent,
       onTap: () {
+        // boşa tıklayınca sıfırlama
+        global.selected = "";
         global.revertAll();
         setState(() {});
       },
