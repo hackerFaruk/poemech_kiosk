@@ -71,124 +71,139 @@ class GrayableRow extends StatefulWidget {
 class _GrayableRowState extends State<GrayableRow> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Material(
-              shape: const CircleBorder(),
-              child: InkWell(
-                onTap: () {
-                  selectionMaker(1, global.isBut1Selected, 'images/spf15.png');
-                  setState(() {});
-                },
-                child: GreyoutButtons(
-                    icon: 'images/spf15.png', grayout: global.but1),
+    return InkWell(
+      onTap: () {
+        global.revertAll();
+        setState(() {});
+      },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Material(
+                shape: const CircleBorder(),
+                child: InkWell(
+                  onTap: () {
+                    selectionMaker(
+                        1, global.isBut1Selected, 'images/spf15.png');
+                    setState(() {});
+                  },
+                  child: GreyoutButtons(
+                      icon: 'images/spf15.png', grayout: global.but1),
+                ),
               ),
-            ),
-            Material(
-              shape: const CircleBorder(),
-              child: InkWell(
-                onTap: () {
-                  selectionMaker(2, global.isBut2Selected, 'images/spf30.png');
-                  setState(() {});
-                },
-                child: GreyoutButtons(
-                    icon: 'images/spf30.png', grayout: global.but2),
+              Material(
+                shape: const CircleBorder(),
+                child: InkWell(
+                  onTap: () {
+                    selectionMaker(
+                        2, global.isBut2Selected, 'images/spf30.png');
+                    setState(() {});
+                  },
+                  child: GreyoutButtons(
+                      icon: 'images/spf30.png', grayout: global.but2),
+                ),
               ),
-            ),
-            Material(
-              shape: const CircleBorder(),
-              child: InkWell(
-                onTap: () {
-                  selectionMaker(3, global.isBut3Selected, 'images/spf50.png');
-                  setState(() {});
-                },
-                child: GreyoutButtons(
-                    icon: 'images/spf50.png', grayout: global.but3),
+              Material(
+                shape: const CircleBorder(),
+                child: InkWell(
+                  onTap: () {
+                    selectionMaker(
+                        3, global.isBut3Selected, 'images/spf50.png');
+                    setState(() {});
+                  },
+                  child: GreyoutButtons(
+                      icon: 'images/spf50.png', grayout: global.but3),
+                ),
+              )
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Material(
+                shape: const CircleBorder(),
+                child: InkWell(
+                  onTap: () {
+                    selectionMaker(
+                        4, global.isBut4Selected, 'images/shower.png');
+                    setState(() {});
+                  },
+                  child: GreyoutButtons(
+                      icon: 'images/shower.png', grayout: global.but4),
+                ),
               ),
-            )
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Material(
-              shape: const CircleBorder(),
-              child: InkWell(
-                onTap: () {
-                  selectionMaker(1, global.isBut1Selected, 'images/spf15.png');
-                  setState(() {});
-                },
-                child: GreyoutButtons(
-                    icon: 'images/spf15.png', grayout: global.but1),
+              Material(
+                shape: const CircleBorder(),
+                child: InkWell(
+                  onTap: () {
+                    selectionMaker(
+                        5, global.isBut5Selected, 'images/moist.png');
+                    setState(() {});
+                  },
+                  child: GreyoutButtons(
+                      icon: 'images/moist.png', grayout: global.but5),
+                ),
               ),
-            ),
-            Material(
-              shape: const CircleBorder(),
-              child: InkWell(
-                onTap: () {
-                  selectionMaker(2, global.isBut2Selected, 'images/spf30.png');
-                  setState(() {});
-                },
-                child: GreyoutButtons(
-                    icon: 'images/spf30.png', grayout: global.but2),
+              Material(
+                shape: const CircleBorder(),
+                child: InkWell(
+                  onTap: () {
+                    selectionMaker(
+                        6, global.isBut6Selected, 'images/bronz.png');
+                    setState(() {});
+                  },
+                  child: GreyoutButtons(
+                      icon: 'images/bronz.png', grayout: global.but6),
+                ),
+              )
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Material(
+                shape: const CircleBorder(),
+                child: InkWell(
+                  onTap: () {
+                    selectionMaker(
+                        7, global.isBut7Selected, 'images/change.png');
+                    setState(() {});
+                  },
+                  child: GreyoutButtons(
+                      icon: 'images/change.png', grayout: global.but7),
+                ),
               ),
-            ),
-            Material(
-              shape: const CircleBorder(),
-              child: InkWell(
-                onTap: () {
-                  selectionMaker(3, global.isBut3Selected, 'images/spf50.png');
-                  setState(() {});
-                },
-                child: GreyoutButtons(
-                    icon: 'images/spf50.png', grayout: global.but3),
+              Material(
+                shape: const CircleBorder(),
+                child: InkWell(
+                  onTap: () {
+                    selectionMaker(
+                        8, global.isBut8Selected, 'images/wheel.png');
+                    setState(() {});
+                  },
+                  child: GreyoutButtons(
+                      icon: 'images/wheel.png', grayout: global.but8),
+                ),
               ),
-            )
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Material(
-              shape: const CircleBorder(),
-              child: InkWell(
-                onTap: () {
-                  selectionMaker(1, global.isBut1Selected, 'images/spf15.png');
-                  setState(() {});
-                },
-                child: GreyoutButtons(
-                    icon: 'images/spf15.png', grayout: global.but1),
-              ),
-            ),
-            Material(
-              shape: const CircleBorder(),
-              child: InkWell(
-                onTap: () {
-                  selectionMaker(2, global.isBut2Selected, 'images/spf30.png');
-                  setState(() {});
-                },
-                child: GreyoutButtons(
-                    icon: 'images/spf30.png', grayout: global.but2),
-              ),
-            ),
-            Material(
-              shape: const CircleBorder(),
-              child: InkWell(
-                onTap: () {
-                  selectionMaker(3, global.isBut3Selected, 'images/spf50.png');
-                  setState(() {});
-                },
-                child: GreyoutButtons(
-                    icon: 'images/spf50.png', grayout: global.but3),
-              ),
-            )
-          ],
-        ),
-      ],
+              Material(
+                shape: const CircleBorder(),
+                child: InkWell(
+                  onTap: () {
+                    selectionMaker(
+                        9, global.isBut9Selected, 'images/dogbutton.png');
+                    setState(() {});
+                  },
+                  child: GreyoutButtons(
+                      icon: 'images/dogbutton.png', grayout: global.but9),
+                ),
+              )
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
