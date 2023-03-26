@@ -300,7 +300,7 @@ void selectionMaker(int butNo, int isButNoSelected, String iconName) {
 ///
 /// Returns:
 ///   The name of the image without the extension.
-learString(input) {
+clearString(input) {
   // input will be the button icon 'images/img.png' we need img part
   // first get part after slash
   String mem1 = input.replaceAll("images/", "");

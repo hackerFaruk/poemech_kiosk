@@ -284,6 +284,10 @@ int isButSelected(int selection) {
   }
 }
 
+/// If any of the nine buttons are selected, return true
+///
+/// Returns:
+///   A boolean value.
 bool isSecondSelection() {
   var sum = isBut1Selected +
       isBut2Selected +
