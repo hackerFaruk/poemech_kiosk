@@ -82,6 +82,9 @@ class _GrayableRowState extends State<GrayableRow> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
+              const SizedBox(
+                height: 30,
+              ),
               Material(
                 shape: const CircleBorder(),
                 child: InkWell(
@@ -94,6 +97,9 @@ class _GrayableRowState extends State<GrayableRow> {
                       icon: 'images/spf15.png', grayout: global.but1),
                 ),
               ),
+              const SizedBox(
+                height: 30,
+              ),
               Material(
                 shape: const CircleBorder(),
                 child: InkWell(
@@ -105,6 +111,9 @@ class _GrayableRowState extends State<GrayableRow> {
                   child: GreyoutButtons(
                       icon: 'images/spf30.png', grayout: global.but2),
                 ),
+              ),
+              const SizedBox(
+                height: 30,
               ),
               Material(
                 shape: const CircleBorder(),
