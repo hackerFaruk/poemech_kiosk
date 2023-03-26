@@ -246,6 +246,13 @@ class _GrayableRowState extends State<GrayableRow> {
   }
 }
 
+/// If the button is not gray, if there is no previous selection, select the button, if there is a
+/// previous selection, select the button, if the button is gray, do nothing
+///
+/// Args:
+///   butNo (int): The number of the button that is clicked.
+///   isButNoSelected (int): 0 if the button is not selected, 1 if it is.
+///   iconName (String): The name of the icon.
 void selectionMaker(int butNo, int isButNoSelected, String iconName) {
   if (global.isButActive(butNo) == 0) {
     if (global.isSecondSelection()) {
@@ -285,7 +292,15 @@ void selectionMaker(int butNo, int isButNoSelected, String iconName) {
   }
 }
 
-clearString(input) {
+/// It takes a string input, replaces all instances of 'images/' with nothing, then returns the
+/// substring of the result from the beginning to the first period
+///
+/// Args:
+///   input: the string to be cleared
+///
+/// Returns:
+///   The name of the image without the extension.
+learString(input) {
   // input will be the button icon 'images/img.png' we need img part
   // first get part after slash
   String mem1 = input.replaceAll("images/", "");
