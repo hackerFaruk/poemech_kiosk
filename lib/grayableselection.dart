@@ -130,6 +130,17 @@ class _GrayableRowState extends State<GrayableRow> {
             child:
                 GreyoutButtons(icon: 'images/spf30.png', grayout: global.but2),
           ),
+        ),
+        Material(
+          shape: const CircleBorder(),
+          child: InkWell(
+            onTap: () {
+              selectionMaker(3, global.isBut3Selected, 'images/spf50.png');
+              setState(() {});
+            },
+            child:
+                GreyoutButtons(icon: 'images/spf50.png', grayout: global.but3),
+          ),
         )
       ],
     );
@@ -137,21 +148,27 @@ class _GrayableRowState extends State<GrayableRow> {
 }
 
 void selectionMaker(int butNo, int isButNoSelected, String iconName) {
-  if (isButNoSelected == 0) {
-    // eğer buttpn önceden seçili değilse
-    // seçili işsaretler
-    global.setSelected(butNo);
-    // selected a işlemi ekler
-    global.selected = "${global.selected + clearString(iconName)}:";
-    // diğerleri graylenir kendinin rengini düzeltir
-    global.grayAll();
-    global.setSingleActive(butNo);
+  if (global.isButActive(butNo) == 0) {
+    // eğer button gri değilse
+    if (isButNoSelected == 0) {
+      // eğer buttpn önceden seçili değilse
+      // seçili işsaretler
+      global.setSelected(butNo);
+      // selected a işlemi ekler
+      global.selected = "${global.selected + clearString(iconName)}:";
+      // diğerleri graylenir kendinin rengini düzeltir
+      global.grayAll();
+      global.setSingleActive(butNo);
+    } else {
+      // eğer buton önceden seçiliyse
+      // tüm seçimleri sfırlar ve renk sıfırlar
+      global.revertAll();
+      // slected işlemi temizler
+      global.selected = "";
+    }
   } else {
-    // eğer buton önceden seçiliyse
-    // tüm seçimleri sfırlar ve renk sıfırlar
-    global.revertAll();
-    // slected işlemi temizler
-    global.selected = "";
+    // eğer button gri ise
+    null;
   }
 }
 

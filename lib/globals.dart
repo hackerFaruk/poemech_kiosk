@@ -171,3 +171,56 @@ void setSingleActive(int selection) {
       break;
   }
 }
+
+int isButActive(int selection) {
+  switch (selection) {
+    case 1:
+      {
+        return but1;
+      }
+
+    case 2:
+      {
+        return but2;
+      }
+
+    case 3:
+      {
+        return but3;
+      }
+
+    case 4:
+      {
+        return but4;
+      }
+
+    case 5:
+      {
+        return but5;
+      }
+
+    case 6:
+      {
+        return but6;
+      }
+
+    case 7:
+      {
+        return but7;
+      }
+
+    case 8:
+      {
+        return but8;
+      }
+
+    case 9:
+      {
+        return but9;
+      }
+    default:
+      {
+        return 1;
+      }
+  }
+}
