@@ -282,8 +282,19 @@ class ProcessPage extends StatelessWidget {
     String selection =
         lang == 'en' ? 'Please Select Application' : 'Lütfen İşlem Seçiniz';
     return SizedBox(
-      width: screenSize.width,
-    );
+        width: screenSize.width,
+        child: Scaffold(
+            appBar: AppBar(
+              leading: const BackButton(
+                color: Colors.white,
+              ),
+              title: Text(selection),
+            ),
+            body: SingleChildScrollView(
+              child: Column(
+                children: const [grayable.GrayableRow()],
+              ),
+            )));
   }
 }
 

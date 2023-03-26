@@ -71,7 +71,9 @@ class GrayableRow extends StatefulWidget {
 class _GrayableRowState extends State<GrayableRow> {
   @override
   Widget build(BuildContext context) {
+    double padding = 30;
     return InkWell(
+      hoverColor: Colors.transparent,
       onTap: () {
         global.revertAll();
         setState(() {});
@@ -79,12 +81,12 @@ class _GrayableRowState extends State<GrayableRow> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
+          SizedBox(
+            height: padding,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              const SizedBox(
-                height: 30,
-              ),
               Material(
                 shape: const CircleBorder(),
                 child: InkWell(
@@ -97,9 +99,6 @@ class _GrayableRowState extends State<GrayableRow> {
                       icon: 'images/spf15.png', grayout: global.but1),
                 ),
               ),
-              const SizedBox(
-                height: 30,
-              ),
               Material(
                 shape: const CircleBorder(),
                 child: InkWell(
@@ -111,9 +110,6 @@ class _GrayableRowState extends State<GrayableRow> {
                   child: GreyoutButtons(
                       icon: 'images/spf30.png', grayout: global.but2),
                 ),
-              ),
-              const SizedBox(
-                height: 30,
               ),
               Material(
                 shape: const CircleBorder(),
@@ -128,6 +124,9 @@ class _GrayableRowState extends State<GrayableRow> {
                 ),
               )
             ],
+          ),
+          SizedBox(
+            height: padding,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -170,6 +169,9 @@ class _GrayableRowState extends State<GrayableRow> {
               )
             ],
           ),
+          SizedBox(
+            height: padding,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -210,6 +212,9 @@ class _GrayableRowState extends State<GrayableRow> {
                 ),
               )
             ],
+          ),
+          SizedBox(
+            height: padding,
           ),
         ],
       ),
