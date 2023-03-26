@@ -52,6 +52,8 @@ void revertAll() {
   isBut7Selected = 0;
   isBut8Selected = 0;
   isBut9Selected = 0;
+
+  selected = "";
 }
 
 void grayAll() {
@@ -275,5 +277,23 @@ int isButSelected(int selection) {
       {
         return 1;
       }
+  }
+}
+
+bool isSecondSelection() {
+  var sum = isBut1Selected +
+      isBut2Selected +
+      isBut3Selected +
+      isBut4Selected +
+      isBut5Selected +
+      isBut6Selected +
+      isBut7Selected +
+      isBut8Selected +
+      isBut9Selected;
+
+  if (sum > 0) {
+    return true;
+  } else {
+    return false;
   }
 }

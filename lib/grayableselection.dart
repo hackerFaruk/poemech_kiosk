@@ -248,9 +248,22 @@ class _GrayableRowState extends State<GrayableRow> {
 
 void selectionMaker(int butNo, int isButNoSelected, String iconName) {
   if (global.isButActive(butNo) == 0) {
+    if (global.isSecondSelection()) {
+      // eğer önceden seçili buton varsa
+      if (isButNoSelected == 0) {
+        // seçileni işaratler
+        global.setSingleActive(butNo);
+        global.setSelected(butNo);
+        global.selected = "${global.selected + clearString(iconName)}:";
+      } else {
+        // eğer buton önceden seçiliyse
+        // tüm seçimleri sfırlar ve renk sıfırlar
+        global.revertAll();
+      }
+    }
     // eğer button gri değilse
-    if (isButNoSelected == 0) {
-      // eğer buttpn önceden seçili değilse
+    else if (isButNoSelected == 0) {
+      // eğer hiçbir button önceden seçili değilse
       // seçili işsaretler
       global.setSelected(butNo);
       // selected a işlemi ekler
@@ -258,18 +271,13 @@ void selectionMaker(int butNo, int isButNoSelected, String iconName) {
       // diğerleri graylenir kendinin rengini düzeltir
       global.grayAll();
       global.setSingleActive(butNo);
-
       // özel durumlar için seçiçi açılışlar
-
       if (butNo == 1) {
         global.setSingleActive(4);
       }
     } else {
-      // eğer buton önceden seçiliyse
       // tüm seçimleri sfırlar ve renk sıfırlar
       global.revertAll();
-      // slected işlemi temizler
-      global.selected = "";
     }
   } else {
     // eğer button gri ise
