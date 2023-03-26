@@ -8,7 +8,13 @@ import 'globals.dart' as global;
 class GreyoutButtons extends StatelessWidget {
   final int grayout;
   final String icon;
-  const GreyoutButtons({super.key, required this.icon, required this.grayout});
+  final int butNo;
+
+  const GreyoutButtons(
+      {super.key,
+      required this.icon,
+      required this.grayout,
+      required this.butNo});
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +53,16 @@ class GreyoutButtons extends StatelessWidget {
                     width: screenSize * 0.25,
                     height: screenSize * 0.25,
                     child: Image(image: AssetImage(icon)))),
+          ));
+    } else if (global.isButSelected(butNo) == 1) {
+      return Container(
+          width: screenSize * 0.25,
+          height: screenSize * 0.25,
+          decoration: BoxDecoration(
+              border: Border.all(width: 7.0, color: Colors.green),
+              borderRadius: BorderRadius.circular(60)),
+          child: Image(
+            image: AssetImage(icon),
           ));
     } else {
       return SizedBox(
@@ -98,7 +114,7 @@ class _GrayableRowState extends State<GrayableRow> {
                     setState(() {});
                   },
                   child: GreyoutButtons(
-                      icon: 'images/spf15.png', grayout: global.but1),
+                      butNo: 1, icon: 'images/spf15.png', grayout: global.but1),
                 ),
               ),
               Material(
@@ -110,7 +126,7 @@ class _GrayableRowState extends State<GrayableRow> {
                     setState(() {});
                   },
                   child: GreyoutButtons(
-                      icon: 'images/spf30.png', grayout: global.but2),
+                      butNo: 2, icon: 'images/spf30.png', grayout: global.but2),
                 ),
               ),
               Material(
@@ -122,7 +138,7 @@ class _GrayableRowState extends State<GrayableRow> {
                     setState(() {});
                   },
                   child: GreyoutButtons(
-                      icon: 'images/spf50.png', grayout: global.but3),
+                      butNo: 3, icon: 'images/spf50.png', grayout: global.but3),
                 ),
               )
             ],
@@ -142,7 +158,9 @@ class _GrayableRowState extends State<GrayableRow> {
                     setState(() {});
                   },
                   child: GreyoutButtons(
-                      icon: 'images/shower.png', grayout: global.but4),
+                      butNo: 4,
+                      icon: 'images/shower.png',
+                      grayout: global.but4),
                 ),
               ),
               Material(
@@ -154,7 +172,7 @@ class _GrayableRowState extends State<GrayableRow> {
                     setState(() {});
                   },
                   child: GreyoutButtons(
-                      icon: 'images/moist.png', grayout: global.but5),
+                      butNo: 5, icon: 'images/moist.png', grayout: global.but5),
                 ),
               ),
               Material(
@@ -166,7 +184,7 @@ class _GrayableRowState extends State<GrayableRow> {
                     setState(() {});
                   },
                   child: GreyoutButtons(
-                      icon: 'images/bronz.png', grayout: global.but6),
+                      butNo: 6, icon: 'images/bronz.png', grayout: global.but6),
                 ),
               )
             ],
@@ -186,7 +204,9 @@ class _GrayableRowState extends State<GrayableRow> {
                     setState(() {});
                   },
                   child: GreyoutButtons(
-                      icon: 'images/change.png', grayout: global.but7),
+                      butNo: 7,
+                      icon: 'images/change.png',
+                      grayout: global.but7),
                 ),
               ),
               Material(
@@ -198,7 +218,7 @@ class _GrayableRowState extends State<GrayableRow> {
                     setState(() {});
                   },
                   child: GreyoutButtons(
-                      icon: 'images/wheel.png', grayout: global.but8),
+                      butNo: 8, icon: 'images/wheel.png', grayout: global.but8),
                 ),
               ),
               Material(
@@ -210,7 +230,9 @@ class _GrayableRowState extends State<GrayableRow> {
                     setState(() {});
                   },
                   child: GreyoutButtons(
-                      icon: 'images/dogbutton.png', grayout: global.but9),
+                      butNo: 9,
+                      icon: 'images/dogbutton.png',
+                      grayout: global.but9),
                 ),
               )
             ],

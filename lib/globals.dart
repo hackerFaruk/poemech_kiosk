@@ -224,3 +224,56 @@ int isButActive(int selection) {
       }
   }
 }
+
+int isButSelected(int selection) {
+  switch (selection) {
+    case 1:
+      {
+        return isBut1Selected;
+      }
+
+    case 2:
+      {
+        return isBut2Selected;
+      }
+
+    case 3:
+      {
+        return isBut3Selected;
+      }
+
+    case 4:
+      {
+        return isBut4Selected;
+      }
+
+    case 5:
+      {
+        return isBut5Selected;
+      }
+
+    case 6:
+      {
+        return isBut6Selected;
+      }
+
+    case 7:
+      {
+        return isBut7Selected;
+      }
+
+    case 8:
+      {
+        return isBut8Selected;
+      }
+
+    case 9:
+      {
+        return isBut9Selected;
+      }
+    default:
+      {
+        return 1;
+      }
+  }
+}
