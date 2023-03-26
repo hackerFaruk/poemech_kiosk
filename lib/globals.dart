@@ -32,6 +32,7 @@ int isBut7Selected = 0;
 int isBut8Selected = 0;
 int isBut9Selected = 0;
 
+/// It resets all the variables to their original state
 void revertAll() {
   but1 = 0;
   but2 = 0;
@@ -56,6 +57,7 @@ void revertAll() {
   selected = "";
 }
 
+/// This function sets all the buttons to gray.
 void grayAll() {
   but1 = 1;
   but2 = 1;
@@ -68,8 +70,10 @@ void grayAll() {
   but9 = 1;
 }
 
-// set selected
-
+/// It takes an integer as an argument and sets the corresponding isButXSelected variable to 1
+///
+/// Args:
+///   selection (int): The button number that you want to select.
 void setSelected(int selection) {
   switch (selection) {
     case 1:
