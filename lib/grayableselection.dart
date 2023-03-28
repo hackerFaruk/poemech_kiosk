@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'globals.dart' as global;
+import 'main.dart' as main;
 
 /// GrayOutable buttons -_______________________________________________________
 class GreyoutButtons extends StatelessWidget {
@@ -217,9 +218,16 @@ class _GrayableRowState extends State<GrayableRow> {
                 shape: const CircleBorder(),
                 child: InkWell(
                   onTap: () {
-                    selectionMaker(
-                        8, global.isBut8Selected, 'images/wheel.png');
-                    setState(() {});
+                    //selectionMaker( 8, global.isBut8Selected, 'images/wheel.png');
+                    // setState(() {});
+                    global.selected = "wheel:";
+                    global.firstButton = 'images/wheel.png';
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => main.StartProcessPage(
+                                  application: global.firstButton,
+                                )));
                   },
                   child: GreyoutButtons(
                       butNo: 8, icon: 'images/wheel.png', grayout: global.but8),
@@ -229,9 +237,16 @@ class _GrayableRowState extends State<GrayableRow> {
                 shape: const CircleBorder(),
                 child: InkWell(
                   onTap: () {
-                    selectionMaker(
-                        9, global.isBut9Selected, 'images/dogbutton.png');
-                    setState(() {});
+                    //selectionMaker(9, global.isBut9Selected, 'images/dogbutton.png');
+                    //setState(() {});
+                    global.selected = "dogbutton:";
+                    global.firstButton = 'images/dogbutton.png';
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => main.StartProcessPage(
+                                  application: global.firstButton,
+                                )));
                   },
                   child: GreyoutButtons(
                       butNo: 9,
@@ -278,7 +293,7 @@ void selectionMaker(int butNo, int isButNoSelected, String iconName) {
       // seçili işsaretler
       global.setSelected(butNo);
       // selected a işlemi ekler
-      global.selected = "${global.selected + clearString(iconName)}:";
+      global.selected = "${clearString(iconName)}:";
       // diğerleri graylenir kendinin rengini düzeltir
       global.grayAll();
       global.setSingleActive(butNo);
