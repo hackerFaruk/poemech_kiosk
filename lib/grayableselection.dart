@@ -112,11 +112,11 @@ class _GrayableRowState extends State<GrayableRow> {
                 child: InkWell(
                   onTap: () {
                     selectionMaker(
-                        1, global.isBut1Selected, 'images/spf15.png');
+                        1, global.isBut1Selected, 'images/spf30.png');
                     setState(() {});
                   },
                   child: GreyoutButtons(
-                      butNo: 1, icon: 'images/spf15.png', grayout: global.but1),
+                      butNo: 1, icon: 'images/spf30.png', grayout: global.but1),
                 ),
               ),
               Material(
@@ -124,11 +124,11 @@ class _GrayableRowState extends State<GrayableRow> {
                 child: InkWell(
                   onTap: () {
                     selectionMaker(
-                        2, global.isBut2Selected, 'images/spf30.png');
+                        2, global.isBut2Selected, 'images/spf50.png');
                     setState(() {});
                   },
                   child: GreyoutButtons(
-                      butNo: 2, icon: 'images/spf30.png', grayout: global.but2),
+                      butNo: 2, icon: 'images/spf50.png', grayout: global.but2),
                 ),
               ),
               Material(
@@ -136,11 +136,13 @@ class _GrayableRowState extends State<GrayableRow> {
                 child: InkWell(
                   onTap: () {
                     selectionMaker(
-                        3, global.isBut3Selected, 'images/spf50.png');
+                        3, global.isBut3Selected, 'images/spf50kid.png');
                     setState(() {});
                   },
                   child: GreyoutButtons(
-                      butNo: 3, icon: 'images/spf50.png', grayout: global.but3),
+                      butNo: 3,
+                      icon: 'images/spf50kid.png',
+                      grayout: global.but3),
                 ),
               )
             ],
