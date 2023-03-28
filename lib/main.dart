@@ -310,9 +310,17 @@ class OKCancelRow extends StatelessWidget {
 
 // fur control _--______________--------_-_--____-_________-___-
 
-class FurSlection extends StatelessWidget {
+class FurSlection extends StatefulWidget {
   const FurSlection({super.key});
 
+  @override
+  State<FurSlection> createState() => _FurSlectionState();
+}
+
+class _FurSlectionState extends State<FurSlection> {
+  int but1 = 0;
+  int but2 = 0;
+  int but3 = 0;
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -325,21 +333,40 @@ class FurSlection extends StatelessWidget {
               SizedBox(
                 height: screenSize.width * 0.3,
                 child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      SizedBox(
-                          width: screenSize.width * 0.3,
-                          child: const Image(
-                              image: AssetImage('images/denseFur.png'))),
-                      SizedBox(
-                          width: screenSize.width * 0.3,
-                          child: const Image(
-                              image: AssetImage('images/standartFur.png'))),
-                      SizedBox(
-                          width: screenSize.width * 0.3,
-                          child: const Image(
-                              image: AssetImage('images/thinFur.png'))),
-                    ]),
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    InkWell(
+                        onTap: () {
+                          setState(() {
+                            but1 = 0;
+                            but2 = 1;
+                            but3 = 1;
+                          });
+                        },
+                        child: GreyoutButtons(
+                            icon: "images/thinFur.png", grayout: but1)),
+                    InkWell(
+                        onTap: () {
+                          setState(() {
+                            but1 = 1;
+                            but2 = 0;
+                            but3 = 1;
+                          });
+                        },
+                        child: GreyoutButtons(
+                            icon: "images/standartFur.png", grayout: but2)),
+                    InkWell(
+                        onTap: () {
+                          setState(() {
+                            but1 = 1;
+                            but2 = 1;
+                            but3 = 0;
+                          });
+                        },
+                        child: GreyoutButtons(
+                            icon: "images/denseFur.png", grayout: but3)),
+                  ],
+                ),
               ),
               const SizedBox(
                 height: 20,
@@ -417,7 +444,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
                 but3 = 1;
               });
             },
-            child: GreyoutButtons(icon: "images/spf50.png", grayout: but1)),
+            child: GreyoutButtons(icon: "images/coldwater.png", grayout: but1)),
         InkWell(
             onTap: () {
               setState(() {
@@ -426,7 +453,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
                 but3 = 1;
               });
             },
-            child: GreyoutButtons(icon: "images/spf30.png", grayout: but2)),
+            child: GreyoutButtons(icon: "images/warmwater.png", grayout: but2)),
         InkWell(
             onTap: () {
               setState(() {
@@ -435,7 +462,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
                 but3 = 0;
               });
             },
-            child: GreyoutButtons(icon: "images/spf15.png", grayout: but3)),
+            child: GreyoutButtons(icon: "images/hotwater.png", grayout: but3)),
       ],
     );
   }
