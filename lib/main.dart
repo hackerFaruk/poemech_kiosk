@@ -204,12 +204,16 @@ class _ProcessPageState extends State<ProcessPage> {
                           child: const Text('cancel selelction')),
                       ElevatedButton(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => StartProcessPage(
-                                          application: globals.firstButton,
-                                        )));
+                            if (globals.selected.length < 2) {
+                              null;
+                            } else {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => StartProcessPage(
+                                            application: globals.firstButton,
+                                          )));
+                            }
                           },
                           child: const Text('Navigayon zamanı ')),
                     ],
@@ -636,7 +640,7 @@ class DogBreedButton extends StatelessWidget {
                       builder: (context) =>
                           StartProcessPage(application: globals.selected)));
             },
-            child: Image(image: AssetImage(icon))),
+            child: Hero(tag: icon, child: Image(image: AssetImage(icon)))),
       ),
     );
   }
