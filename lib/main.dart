@@ -410,7 +410,7 @@ class ConditionalControlRow extends StatelessWidget {
       return const FurSlection();
     } else if (application == "images/wheel.png") {
       return const WheelChairRow();
-    } else if (application == 'images/custom') {
+    } else if (application == 'images/custom.png') {
       return const CustomDogWash();
     } else if (application.contains('dog')) {
       return const DirtSelection();
@@ -600,7 +600,8 @@ class _CustomDogWashState extends State<CustomDogWash> {
                     but6 = 1;
                   });
                 },
-                child: GreyoutButtons(icon: "images/dusty.png", grayout: but1)),
+                child:
+                    GreyoutButtons(icon: "images/thinFur.png", grayout: but4)),
             InkWell(
                 onTap: () {
                   setState(() {
@@ -609,7 +610,8 @@ class _CustomDogWashState extends State<CustomDogWash> {
                     but6 = 1;
                   });
                 },
-                child: GreyoutButtons(icon: "images/dirty.png", grayout: but2)),
+                child: GreyoutButtons(
+                    icon: "images/standartFur.png", grayout: but5)),
             InkWell(
                 onTap: () {
                   setState(() {
@@ -618,7 +620,8 @@ class _CustomDogWashState extends State<CustomDogWash> {
                     but6 = 0;
                   });
                 },
-                child: GreyoutButtons(icon: "images/grimy.png", grayout: but3)),
+                child:
+                    GreyoutButtons(icon: "images/denseFur.png", grayout: but6)),
           ],
         ),
       ],
