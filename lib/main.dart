@@ -410,6 +410,8 @@ class ConditionalControlRow extends StatelessWidget {
       return const FurSlection();
     } else if (application == "images/wheel.png") {
       return const WheelChairRow();
+    } else if (application.contains('dog')) {
+      return const DirtSelection();
     } else {
       return Column(children: const [
         SizedBox(
@@ -475,6 +477,59 @@ class _WheelChairRowState extends State<WheelChairRow> {
 }
 
 // tekerlekli sandalye modu  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+//Dirt Selection----------------------------------
+
+class DirtSelection extends StatefulWidget {
+  const DirtSelection({super.key});
+
+  @override
+  State<DirtSelection> createState() => _DirtSelectionState();
+}
+
+class _DirtSelectionState extends State<DirtSelection> {
+  int but1 = 0;
+  int but2 = 0;
+  int but3 = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        InkWell(
+            onTap: () {
+              setState(() {
+                but1 = 0;
+                but2 = 1;
+                but3 = 1;
+              });
+            },
+            child: GreyoutButtons(icon: "images/dusty.png", grayout: but1)),
+        InkWell(
+            onTap: () {
+              setState(() {
+                but1 = 1;
+                but2 = 0;
+                but3 = 1;
+              });
+            },
+            child: GreyoutButtons(icon: "images/dirty.png", grayout: but2)),
+        InkWell(
+            onTap: () {
+              setState(() {
+                but1 = 1;
+                but2 = 1;
+                but3 = 0;
+              });
+            },
+            child: GreyoutButtons(icon: "images/grimy.png", grayout: but3)),
+      ],
+    );
+  }
+}
+
+// Dirt Selection  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 /// GrayOutable buttons -_______________________________________________________
 class GreyoutButtons extends StatelessWidget {
