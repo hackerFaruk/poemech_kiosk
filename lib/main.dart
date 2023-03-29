@@ -562,9 +562,25 @@ class DogBreeds extends StatelessWidget {
               children: const [
                 DogBreedButton(icon: 'images/dogCane.png'),
                 DogBreedButton(icon: 'images/dogchihua.png'),
-                DogBreedButton(icon: 'images/dogCocker')
+                DogBreedButton(icon: 'images/dogCocker.png')
               ],
-            )
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: const [
+                DogBreedButton(icon: 'images/dogDobermann.png'),
+                DogBreedButton(icon: 'images/dogGerman.png'),
+                DogBreedButton(icon: 'images/dogGoldeen.png')
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: const [
+                DogBreedButton(icon: 'images/dogMaltese.png'),
+                DogBreedButton(icon: 'images/dogPomer.png'),
+                DogBreedButton(icon: 'images/dogPug.png')
+              ],
+            ),
           ],
         ),
       ),
