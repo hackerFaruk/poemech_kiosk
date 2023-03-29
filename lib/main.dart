@@ -123,9 +123,13 @@ class _SelectionButtonsState extends State<SelectionButtons> {
       } else {
         return success;
       }
-    } else {
-      print(res.body.done);
     }
+    /*
+    else {
+      null;
+      //print(res.body.done);
+    }
+    */
   }
 }
 
@@ -196,8 +200,6 @@ class _ProcessPageState extends State<ProcessPage> {
                             // changin trigger re renders controls
                             trigger = trigger == true ? false : true;
                             setState(() {});
-
-                            ;
                           },
                           child: const Text('cancel selelction')),
                       ElevatedButton(
@@ -526,3 +528,77 @@ class GreyoutButtons extends StatelessWidget {
 }
 
 //stateful buttons will grey out or not  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+// Dog Breed selection Page ---------------------------------------------------------------
+
+class DogBreeds extends StatelessWidget {
+  const DogBreeds({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+        child: Scaffold(
+      appBar: AppBar(
+        title: Text(globals.lang == 'en'
+            ? 'Please Select The  Breed '
+            : 'Lütfen Cins Seçimi Yapınız'),
+        leading: const BackButton(
+          color: Colors.white,
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: const [
+                DogBreedButton(icon: 'images/dogAkita.png'),
+                DogBreedButton(icon: 'images/dogArgentino.png'),
+                DogBreedButton(icon: 'images/dogBoxer.png')
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: const [
+                DogBreedButton(icon: 'images/dogCane.png'),
+                DogBreedButton(icon: 'images/dogchihua.png'),
+                DogBreedButton(icon: 'images/dogCocker')
+              ],
+            )
+          ],
+        ),
+      ),
+    ));
+  }
+}
+
+class DogBreedButton extends StatelessWidget {
+  final String icon;
+
+  const DogBreedButton({super.key, required this.icon});
+
+  @override
+  Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size.width;
+    return Material(
+      shape: const CircleBorder(),
+      child: SizedBox(
+        width: screenSize * 0.25,
+        height: screenSize * 0.25,
+        child: InkWell(
+          onTap: () {
+            globals.selected = icon;
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        StartProcessPage(application: globals.selected)));
+          },
+        ),
+      ),
+    );
+  }
+}
+
+
+// Dog Breed Page ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

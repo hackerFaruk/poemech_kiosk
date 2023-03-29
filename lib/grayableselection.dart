@@ -244,9 +244,7 @@ class _GrayableRowState extends State<GrayableRow> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => main.StartProcessPage(
-                                  application: global.firstButton,
-                                )));
+                            builder: (context) => const main.DogBreeds()));
                   },
                   child: GreyoutButtons(
                       butNo: 9,
