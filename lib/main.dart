@@ -410,6 +410,8 @@ class ConditionalControlRow extends StatelessWidget {
       return const FurSlection();
     } else if (application == "images/wheel.png") {
       return const WheelChairRow();
+    } else if (application == 'images/custom') {
+      return const CustomDogWash();
     } else if (application.contains('dog')) {
       return const DirtSelection();
     } else {
@@ -530,6 +532,101 @@ class _DirtSelectionState extends State<DirtSelection> {
 }
 
 // Dirt Selection  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+// custom dog wash page --------------------------------------
+
+class CustomDogWash extends StatefulWidget {
+  const CustomDogWash({super.key});
+
+  @override
+  State<CustomDogWash> createState() => _CustomDogWashState();
+}
+
+class _CustomDogWashState extends State<CustomDogWash> {
+  int but1 = 0;
+  int but2 = 0;
+  int but3 = 0;
+  int but4 = 0;
+  int but5 = 0;
+  int but6 = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            InkWell(
+                onTap: () {
+                  setState(() {
+                    but1 = 0;
+                    but2 = 1;
+                    but3 = 1;
+                  });
+                },
+                child: GreyoutButtons(icon: "images/dusty.png", grayout: but1)),
+            InkWell(
+                onTap: () {
+                  setState(() {
+                    but1 = 1;
+                    but2 = 0;
+                    but3 = 1;
+                  });
+                },
+                child: GreyoutButtons(icon: "images/dirty.png", grayout: but2)),
+            InkWell(
+                onTap: () {
+                  setState(() {
+                    but1 = 1;
+                    but2 = 1;
+                    but3 = 0;
+                  });
+                },
+                child: GreyoutButtons(icon: "images/grimy.png", grayout: but3)),
+          ],
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            InkWell(
+                onTap: () {
+                  setState(() {
+                    but4 = 0;
+                    but5 = 1;
+                    but6 = 1;
+                  });
+                },
+                child: GreyoutButtons(icon: "images/dusty.png", grayout: but1)),
+            InkWell(
+                onTap: () {
+                  setState(() {
+                    but4 = 1;
+                    but5 = 0;
+                    but6 = 1;
+                  });
+                },
+                child: GreyoutButtons(icon: "images/dirty.png", grayout: but2)),
+            InkWell(
+                onTap: () {
+                  setState(() {
+                    but4 = 1;
+                    but5 = 1;
+                    but6 = 0;
+                  });
+                },
+                child: GreyoutButtons(icon: "images/grimy.png", grayout: but3)),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+// custom dog wash page ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 /// GrayOutable buttons -_______________________________________________________
 class GreyoutButtons extends StatelessWidget {
@@ -660,7 +757,7 @@ class DogBreeds extends StatelessWidget {
               children: const [
                 DogBreedButton(icon: 'images/dogRottweiler.png'),
                 DogBreedButton(icon: 'images/dogSpaniel.png'),
-                DogBreedButton(icon: 'images/dogbutton.png')
+                DogBreedButton(icon: 'images/custom.png')
               ],
             ),
             const SizedBox(
