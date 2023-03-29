@@ -194,16 +194,21 @@ class _ProcessPageState extends State<ProcessPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      ElevatedButton(
-                          onPressed: () {
+                      InkWell(
+                          onTap: () {
                             globals.revertAll();
                             // changin trigger re renders controls
                             trigger = trigger == true ? false : true;
                             setState(() {});
                           },
-                          child: const Text('cancel selelction')),
-                      ElevatedButton(
-                          onPressed: () {
+                          child: SizedBox(
+                            height: 60,
+                            width: screenSize.width * 0.4,
+                            child: const Image(
+                                image: AssetImage('images/cancel.png')),
+                          )),
+                      InkWell(
+                          onTap: () {
                             if (globals.selected.length < 2) {
                               null;
                             } else {
@@ -215,7 +220,13 @@ class _ProcessPageState extends State<ProcessPage> {
                                           )));
                             }
                           },
-                          child: const Text('Navigayon zamanı ')),
+                          child: SizedBox(
+                            height: 60,
+                            width: screenSize.width * 0.4,
+                            child: const Image(
+                              image: AssetImage('images/ok.png'),
+                            ),
+                          )),
                     ],
                   )
                 ],
@@ -450,39 +461,77 @@ class _WheelChairRowState extends State<WheelChairRow> {
   int but1 = 0;
   int but2 = 0;
   int but3 = 0;
+  int but4 = 0;
+  int but5 = 0;
+  int but6 = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return Column(
       children: [
-        InkWell(
-            onTap: () {
-              setState(() {
-                but1 = 0;
-                but2 = 1;
-                but3 = 1;
-              });
-            },
-            child: GreyoutButtons(icon: "images/coldwater.png", grayout: but1)),
-        InkWell(
-            onTap: () {
-              setState(() {
-                but1 = 1;
-                but2 = 0;
-                but3 = 1;
-              });
-            },
-            child: GreyoutButtons(icon: "images/warmwater.png", grayout: but2)),
-        InkWell(
-            onTap: () {
-              setState(() {
-                but1 = 1;
-                but2 = 1;
-                but3 = 0;
-              });
-            },
-            child: GreyoutButtons(icon: "images/hotwater.png", grayout: but3)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            InkWell(
+                onTap: () {
+                  setState(() {
+                    but1 = 0;
+                    but2 = 1;
+                    but3 = 1;
+                  });
+                },
+                child: GreyoutButtons(
+                    icon: "images/coldwater.png", grayout: but1)),
+            InkWell(
+                onTap: () {
+                  setState(() {
+                    but1 = 1;
+                    but2 = 0;
+                    but3 = 1;
+                  });
+                },
+                child: GreyoutButtons(
+                    icon: "images/warmwater.png", grayout: but2)),
+            InkWell(
+                onTap: () {
+                  setState(() {
+                    but1 = 1;
+                    but2 = 1;
+                    but3 = 0;
+                  });
+                },
+                child:
+                    GreyoutButtons(icon: "images/hotwater.png", grayout: but3)),
+          ],
+        ),
+        const SizedBox(
+          height: 20,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            InkWell(
+                onTap: () {
+                  setState(() {
+                    but4 = 0;
+                    but5 = 1;
+                    but6 = 1;
+                  });
+                },
+                child:
+                    GreyoutButtons(icon: "images/pressLo.png", grayout: but4)),
+            InkWell(
+                onTap: () {
+                  setState(() {
+                    but4 = 1;
+                    but5 = 0;
+                    but6 = 1;
+                  });
+                },
+                child:
+                    GreyoutButtons(icon: "images/pressReg.png", grayout: but5)),
+          ],
+        ),
       ],
     );
   }
