@@ -579,7 +579,7 @@ class DogBreeds extends StatelessWidget {
               children: const [
                 DogBreedButton(icon: 'images/dogDobermann.png'),
                 DogBreedButton(icon: 'images/dogGerman.png'),
-                DogBreedButton(icon: 'images/dogGoldeen.png')
+                DogBreedButton(icon: 'images/dogGolden.png')
               ],
             ),
             const SizedBox(
@@ -591,6 +591,17 @@ class DogBreeds extends StatelessWidget {
                 DogBreedButton(icon: 'images/dogMaltese.png'),
                 DogBreedButton(icon: 'images/dogPomer.png'),
                 DogBreedButton(icon: 'images/dogPug.png')
+              ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: const [
+                DogBreedButton(icon: 'images/dogRottweiler.png'),
+                DogBreedButton(icon: 'images/dogSpaniel.png'),
+                DogBreedButton(icon: 'images/dogbutton.png')
               ],
             ),
             const SizedBox(
@@ -617,15 +628,15 @@ class DogBreedButton extends StatelessWidget {
         width: screenSize * 0.25,
         height: screenSize * 0.25,
         child: InkWell(
-          onTap: () {
-            globals.selected = icon;
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) =>
-                        StartProcessPage(application: globals.selected)));
-          },
-        ),
+            onTap: () {
+              globals.selected = icon;
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          StartProcessPage(application: globals.selected)));
+            },
+            child: Image(image: AssetImage(icon))),
       ),
     );
   }
