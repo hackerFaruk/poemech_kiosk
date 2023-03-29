@@ -549,6 +549,9 @@ class DogBreeds extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            const SizedBox(
+              height: 20,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: const [
@@ -556,6 +559,9 @@ class DogBreeds extends StatelessWidget {
                 DogBreedButton(icon: 'images/dogArgentino.png'),
                 DogBreedButton(icon: 'images/dogBoxer.png')
               ],
+            ),
+            const SizedBox(
+              height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -565,6 +571,9 @@ class DogBreeds extends StatelessWidget {
                 DogBreedButton(icon: 'images/dogCocker.png')
               ],
             ),
+            const SizedBox(
+              height: 20,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: const [
@@ -573,6 +582,9 @@ class DogBreeds extends StatelessWidget {
                 DogBreedButton(icon: 'images/dogGoldeen.png')
               ],
             ),
+            const SizedBox(
+              height: 20,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: const [
@@ -580,6 +592,9 @@ class DogBreeds extends StatelessWidget {
                 DogBreedButton(icon: 'images/dogPomer.png'),
                 DogBreedButton(icon: 'images/dogPug.png')
               ],
+            ),
+            const SizedBox(
+              height: 20,
             ),
           ],
         ),
