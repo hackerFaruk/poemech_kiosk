@@ -281,7 +281,12 @@ class StartProcessPage extends StatelessWidget {
 
 // ok cancel row _______________________________
 class OKCancelRow extends StatelessWidget {
-  const OKCancelRow({super.key});
+  final Widget? destination;
+
+  const OKCancelRow({
+    super.key,
+    this.destination,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -302,7 +307,12 @@ class OKCancelRow extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                print('at 441');
+                if (destination == null) {
+                  null;
+                } else {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => destination!));
+                }
               },
               child: SizedBox(
                   width: screenSize.width * 0.4,
