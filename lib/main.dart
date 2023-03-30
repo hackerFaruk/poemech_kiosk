@@ -8,7 +8,7 @@ import 'grayableselection.dart' as grayable;
 import 'processcontrol.dart' as process;
 
 void main() {
-  runApp(const MainPage());
+  runApp(const MaterialApp(home: CardScreen()));
 }
 
 class MainPage extends StatefulWidget {
@@ -863,5 +863,57 @@ class DogBreedButton extends StatelessWidget {
   }
 }
 
+class CardScreen extends StatefulWidget {
+  const CardScreen({super.key});
 
+  @override
+  State<CardScreen> createState() => _CardScreen();
+}
+
+class _CardScreen extends State<CardScreen> {
+  @override
+  Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Column(
+        children: [
+          Container(
+            height: screenSize.height * 0.05,
+          ),
+          Image(image: AssetImage('images/Abyssos.jpg')),
+          Container(
+            height: screenSize.height * 0.1,
+          ),
+          Text(
+            "LÜTFEN KARTI OKUTUNUZ!",
+            style: TextStyle(
+                fontWeight: FontWeight.w700,
+                color: Colors.blue[800],
+                fontSize: screenSize.width * 0.05),
+          ),
+          Text(
+            "PLEASE KEEP KEYCARD CLOSE TO THE RFID BOX!",
+            style: TextStyle(
+                fontWeight: FontWeight.w700,
+                color: Colors.blue[800],
+                fontSize: screenSize.width * 0.04),
+          ),
+          Container(
+            height: screenSize.height * 0.2,
+          ),
+          IconButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MainPage()),
+                );
+              },
+              icon: Icon(Icons.skip_next))
+        ],
+      ),
+    );
+  }
+}
 // Dog Breed Page ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
