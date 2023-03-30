@@ -483,121 +483,137 @@ class _WheelChairRowState extends State<WheelChairRow> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(
-          height: 20,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            InkWell(
-                onTap: () {
-                  setState(() {
-                    but7 = 0;
-                    but8 = 1;
-                    but9 = 1;
-                  });
-                },
-                child: GreyoutButtons(
-                    icon: "images/showerQuick.png", grayout: but7)),
-            InkWell(
-                onTap: () {
-                  setState(() {
-                    but7 = 1;
-                    but8 = 0;
-                    but9 = 1;
-                  });
-                },
-                child: GreyoutButtons(
-                    icon: "images/showerNormal.png", grayout: but8)),
-            InkWell(
-                onTap: () {
-                  setState(() {
-                    but7 = 1;
-                    but8 = 1;
-                    but9 = 0;
-                  });
-                },
-                child: GreyoutButtons(
-                    icon: "images/showerLong.png", grayout: but9)),
-          ],
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            InkWell(
-                onTap: () {
-                  setState(() {
-                    but1 = 0;
-                    but2 = 1;
-                    but3 = 1;
-                  });
-                },
-                child: GreyoutButtons(
-                    icon: "images/coldwater.png", grayout: but1)),
-            InkWell(
-                onTap: () {
-                  setState(() {
-                    but1 = 1;
-                    but2 = 0;
-                    but3 = 1;
-                  });
-                },
-                child: GreyoutButtons(
-                    icon: "images/warmwater.png", grayout: but2)),
-            InkWell(
-                onTap: () {
-                  setState(() {
-                    but1 = 1;
-                    but2 = 1;
-                    but3 = 0;
-                  });
-                },
-                child:
-                    GreyoutButtons(icon: "images/hotwater.png", grayout: but3)),
-          ],
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            InkWell(
-                onTap: () {
-                  setState(() {
-                    but4 = 0;
-                    but5 = 1;
-                    but6 = 1;
-                  });
-                },
-                child:
-                    GreyoutButtons(icon: "images/pressLo.png", grayout: but4)),
-            InkWell(
-                onTap: () {
-                  setState(() {
-                    but4 = 1;
-                    but5 = 0;
-                    but6 = 1;
-                  });
-                },
-                child:
-                    GreyoutButtons(icon: "images/pressReg.png", grayout: but5)),
-          ],
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        const OKCancelRow(
-          destination: process.ProcessControlPage(
-            application: 'images/wheel.png',
+    return InkWell(
+      hoverColor: Colors.transparent,
+      onTap: () {
+        setState(() {
+          but1 = 0;
+          but2 = 0;
+          but3 = 0;
+          but4 = 0;
+          but5 = 0;
+          but6 = 0;
+          but7 = 0;
+          but8 = 0;
+          but9 = 0;
+        });
+      },
+      child: Column(
+        children: [
+          const SizedBox(
+            height: 20,
           ),
-        )
-      ],
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              InkWell(
+                  onTap: () {
+                    setState(() {
+                      but7 = 0;
+                      but8 = 1;
+                      but9 = 1;
+                    });
+                  },
+                  child: GreyoutButtons(
+                      icon: "images/showerQuick.png", grayout: but7)),
+              InkWell(
+                  onTap: () {
+                    setState(() {
+                      but7 = 1;
+                      but8 = 0;
+                      but9 = 1;
+                    });
+                  },
+                  child: GreyoutButtons(
+                      icon: "images/showerNormal.png", grayout: but8)),
+              InkWell(
+                  onTap: () {
+                    setState(() {
+                      but7 = 1;
+                      but8 = 1;
+                      but9 = 0;
+                    });
+                  },
+                  child: GreyoutButtons(
+                      icon: "images/showerLong.png", grayout: but9)),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              InkWell(
+                  onTap: () {
+                    setState(() {
+                      but1 = 0;
+                      but2 = 1;
+                      but3 = 1;
+                    });
+                  },
+                  child: GreyoutButtons(
+                      icon: "images/coldwater.png", grayout: but1)),
+              InkWell(
+                  onTap: () {
+                    setState(() {
+                      but1 = 1;
+                      but2 = 0;
+                      but3 = 1;
+                    });
+                  },
+                  child: GreyoutButtons(
+                      icon: "images/warmwater.png", grayout: but2)),
+              InkWell(
+                  onTap: () {
+                    setState(() {
+                      but1 = 1;
+                      but2 = 1;
+                      but3 = 0;
+                    });
+                  },
+                  child: GreyoutButtons(
+                      icon: "images/hotwater.png", grayout: but3)),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              InkWell(
+                  onTap: () {
+                    setState(() {
+                      but4 = 0;
+                      but5 = 1;
+                      but6 = 1;
+                    });
+                  },
+                  child: GreyoutButtons(
+                      icon: "images/pressLo.png", grayout: but4)),
+              InkWell(
+                  onTap: () {
+                    setState(() {
+                      but4 = 1;
+                      but5 = 0;
+                      but6 = 1;
+                    });
+                  },
+                  child: GreyoutButtons(
+                      icon: "images/pressReg.png", grayout: but5)),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const OKCancelRow(
+            destination: process.ProcessControlPage(
+              application: 'images/wheel.png',
+            ),
+          )
+        ],
+      ),
     );
   }
 }
