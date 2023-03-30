@@ -267,23 +267,24 @@ class StartProcessPage extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-      body: Column(
-        children: [
-          Center(
-            child: SizedBox(
-              width: screenSize.width * 0.5,
-              height: screenSize.height * 0.5,
-              child: Hero(
-                  tag: application,
-                  child: Image(
-                    image: AssetImage(application),
-                  )),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Center(
+              child: SizedBox(
+                height: screenSize.height * 0.4,
+                child: Hero(
+                    tag: application,
+                    child: Image(
+                      image: AssetImage(application),
+                    )),
+              ),
             ),
-          ),
-          ConditionalControlRow(
-            application: application,
-          ),
-        ],
+            ConditionalControlRow(
+              application: application,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -408,6 +409,11 @@ class _FurSlectionState extends State<FurSlection> {
                     width: screenSize.width * 0.4,
                     child: const Image(image: AssetImage('images/cancel.png'))),
               ),
+              OKCancelRow(
+                destination: process.ProcessControlPage(
+                  application: globals.selected,
+                ),
+              )
             ],
           )
         ],
@@ -439,11 +445,15 @@ class ConditionalControlRow extends StatelessWidget {
     } else if (application.contains('dog')) {
       return const DirtSelection();
     } else {
-      return Column(children: const [
-        SizedBox(
+      return Column(children: [
+        const SizedBox(
           height: 30,
         ),
-        OKCancelRow()
+        OKCancelRow(
+          destination: process.ProcessControlPage(
+            application: application,
+          ),
+        )
       ]);
     }
   }
@@ -535,6 +545,11 @@ class _WheelChairRowState extends State<WheelChairRow> {
                     GreyoutButtons(icon: "images/pressReg.png", grayout: but5)),
           ],
         ),
+        const OKCancelRow(
+          destination: process.ProcessControlPage(
+            application: 'images/wheel.png',
+          ),
+        )
       ],
     );
   }
@@ -558,36 +573,45 @@ class _DirtSelectionState extends State<DirtSelection> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return Column(
       children: [
-        InkWell(
-            onTap: () {
-              setState(() {
-                but1 = 0;
-                but2 = 1;
-                but3 = 1;
-              });
-            },
-            child: GreyoutButtons(icon: "images/dusty.png", grayout: but1)),
-        InkWell(
-            onTap: () {
-              setState(() {
-                but1 = 1;
-                but2 = 0;
-                but3 = 1;
-              });
-            },
-            child: GreyoutButtons(icon: "images/dirty.png", grayout: but2)),
-        InkWell(
-            onTap: () {
-              setState(() {
-                but1 = 1;
-                but2 = 1;
-                but3 = 0;
-              });
-            },
-            child: GreyoutButtons(icon: "images/grimy.png", grayout: but3)),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            InkWell(
+                onTap: () {
+                  setState(() {
+                    but1 = 0;
+                    but2 = 1;
+                    but3 = 1;
+                  });
+                },
+                child: GreyoutButtons(icon: "images/dusty.png", grayout: but1)),
+            InkWell(
+                onTap: () {
+                  setState(() {
+                    but1 = 1;
+                    but2 = 0;
+                    but3 = 1;
+                  });
+                },
+                child: GreyoutButtons(icon: "images/dirty.png", grayout: but2)),
+            InkWell(
+                onTap: () {
+                  setState(() {
+                    but1 = 1;
+                    but2 = 1;
+                    but3 = 0;
+                  });
+                },
+                child: GreyoutButtons(icon: "images/grimy.png", grayout: but3)),
+          ],
+        ),
+        OKCancelRow(
+          destination: process.ProcessControlPage(
+            application: globals.selected,
+          ),
+        )
       ],
     );
   }
@@ -686,6 +710,11 @@ class _CustomDogWashState extends State<CustomDogWash> {
                     GreyoutButtons(icon: "images/denseFur.png", grayout: but6)),
           ],
         ),
+        OKCancelRow(
+          destination: process.ProcessControlPage(
+            application: globals.selected,
+          ),
+        )
       ],
     );
   }

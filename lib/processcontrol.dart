@@ -9,29 +9,31 @@ class ProcessControlPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: AppBar(
-        title:
-            Text(globals.lang == 'en' ? ' Ongoing Process ' : 'İşlem Sürüyor'),
-        leading: const BackButton(
-          color: Colors.white,
-        ),
-      ),
-      body: Column(
-        children: [
-          Center(
-            child: SizedBox(
-              width: screenSize.width * 0.5,
-              height: screenSize.height * 0.5,
-              child: Hero(
-                  tag: application,
-                  child: Image(
-                    image: AssetImage(application),
-                  )),
-            ),
+    return Material(
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+              globals.lang == 'en' ? ' Ongoing Process ' : 'İşlem Sürüyor'),
+          leading: const BackButton(
+            color: Colors.white,
           ),
-          EmergencyControls(),
-        ],
+        ),
+        body: Column(
+          children: [
+            Center(
+              child: SizedBox(
+                width: screenSize.width * 0.5,
+                height: screenSize.height * 0.5,
+                child: Hero(
+                    tag: application,
+                    child: Image(
+                      image: AssetImage(application),
+                    )),
+              ),
+            ),
+            EmergencyControls(),
+          ],
+        ),
       ),
     );
   }
@@ -57,30 +59,33 @@ class _EmergencyControlsState extends State<EmergencyControls> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size.width;
-    return Column(
-      children: [
-        SizedBox(
-          height: 60,
-          width: screenSize,
-          child: Center(
-              child: Text(isProcessOngoing == false ? StartQuery : StopQuery)),
-        ),
-        InkWell(
-          onTap: () {
-            setState(() {
-              isProcessOngoing = isProcessOngoing == false ? true : false;
-            });
-          },
-          child: SizedBox(
-            height: 70,
-            width: screenSize * 0.5,
-            child: Image(
-                image: AssetImage(isProcessOngoing == false
-                    ? 'images/ok.png'
-                    : 'images/cancel.png')),
+    return Material(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 60,
+            width: screenSize,
+            child: Center(
+                child:
+                    Text(isProcessOngoing == false ? StartQuery : StopQuery)),
           ),
-        )
-      ],
+          InkWell(
+            onTap: () {
+              setState(() {
+                isProcessOngoing = isProcessOngoing == false ? true : false;
+              });
+            },
+            child: SizedBox(
+              height: 70,
+              width: screenSize * 0.5,
+              child: Image(
+                  image: AssetImage(isProcessOngoing == false
+                      ? 'images/ok.png'
+                      : 'images/cancel.png')),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
