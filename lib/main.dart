@@ -477,11 +477,55 @@ class _WheelChairRowState extends State<WheelChairRow> {
   int but4 = 0;
   int but5 = 0;
   int but6 = 0;
+  int but7 = 0;
+  int but8 = 0;
+  int but9 = 0;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        const SizedBox(
+          height: 20,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            InkWell(
+                onTap: () {
+                  setState(() {
+                    but7 = 0;
+                    but8 = 1;
+                    but9 = 1;
+                  });
+                },
+                child: GreyoutButtons(
+                    icon: "images/showerQuick.png", grayout: but7)),
+            InkWell(
+                onTap: () {
+                  setState(() {
+                    but7 = 1;
+                    but8 = 0;
+                    but9 = 1;
+                  });
+                },
+                child: GreyoutButtons(
+                    icon: "images/showerNormal.png", grayout: but8)),
+            InkWell(
+                onTap: () {
+                  setState(() {
+                    but7 = 1;
+                    but8 = 1;
+                    but9 = 0;
+                  });
+                },
+                child: GreyoutButtons(
+                    icon: "images/showerLong.png", grayout: but9)),
+          ],
+        ),
+        const SizedBox(
+          height: 20,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -544,6 +588,9 @@ class _WheelChairRowState extends State<WheelChairRow> {
                 child:
                     GreyoutButtons(icon: "images/pressReg.png", grayout: but5)),
           ],
+        ),
+        const SizedBox(
+          height: 20,
         ),
         const OKCancelRow(
           destination: process.ProcessControlPage(
