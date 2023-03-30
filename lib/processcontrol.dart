@@ -31,7 +31,7 @@ class ProcessControlPage extends StatelessWidget {
                     )),
               ),
             ),
-            EmergencyControls(),
+            const EmergencyControls(),
           ],
         ),
       ),
