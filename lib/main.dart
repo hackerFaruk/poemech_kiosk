@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
 import 'package:http/http.dart' as http;
 import 'grayableselection.dart' as grayable;
+import 'processcontrol.dart' as process;
 
 void main() {
   runApp(const MainPage());
@@ -430,6 +431,8 @@ class ConditionalControlRow extends StatelessWidget {
     if (application == 'images/dogbutton.png') {
       return const FurSlection();
     } else if (application == "images/wheel.png") {
+      return const WheelChairRow();
+    } else if (application == "images/shower.png") {
       return const WheelChairRow();
     } else if (application == 'images/custom.png') {
       return const CustomDogWash();
