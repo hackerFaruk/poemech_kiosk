@@ -62,32 +62,32 @@ class _SelectionButtonsState extends State<SelectionButtons> {
                   height: screenSize.width * 0.3,
                   child: InkWell(
                       onTap: () {
-                        globals.lang = 'en';
+                        globals.lang = 'tr';
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => const ProcessPage(
-                                    lang: 'en',
+                                    lang: 'tr',
                                   )),
                         );
                       },
                       child: const Image(
-                          image: AssetImage('images/flag_en.png')))),
+                          image: AssetImage('images/flag_tr.png')))),
               SizedBox(
                   width: screenSize.width * 0.3,
                   height: screenSize.width * 0.3,
                   child: InkWell(
                       onTap: () {
-                        globals.lang = 'tr';
+                        globals.lang = 'en';
                         Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) =>
-                                  const ProcessPage(lang: 'tr')),
+                                  const ProcessPage(lang: 'en')),
                         );
                       },
                       child: const Image(
-                          image: AssetImage('images/flag_tr.png')))),
+                          image: AssetImage('images/flag_en.png')))),
             ],
           ),
         ),
