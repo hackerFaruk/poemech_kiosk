@@ -723,104 +723,121 @@ class _CustomDogWashState extends State<CustomDogWash> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 50,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            InkWell(
-                onTap: () {
-                  setState(() {
-                    but1 = 0;
-                    but2 = 1;
-                    but3 = 1;
-                  });
-                },
-                child: GreyoutButtons(icon: "images/dusty.png", grayout: but1)),
-            InkWell(
-                onTap: () {
-                  setState(() {
-                    but1 = 1;
-                    but2 = 0;
-                    but3 = 1;
-                  });
-                },
-                child: GreyoutButtons(icon: "images/dirty.png", grayout: but2)),
-            InkWell(
-                onTap: () {
-                  setState(() {
-                    but1 = 1;
-                    but2 = 1;
-                    but3 = 0;
-                  });
-                },
-                child: GreyoutButtons(icon: "images/grimy.png", grayout: but3)),
-          ],
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            InkWell(
-                onTap: () {
-                  setState(() {
-                    but4 = 0;
-                    but5 = 1;
-                    but6 = 1;
-                    but7 = 1;
-                  });
-                },
-                child:
-                    GreyoutButtons(icon: "images/furShort.png", grayout: but4)),
-            InkWell(
-                onTap: () {
-                  setState(() {
-                    but4 = 1;
-                    but5 = 0;
-                    but6 = 1;
-                    but7 = 1;
-                  });
-                },
-                child:
-                    GreyoutButtons(icon: "images/furMid.png", grayout: but5)),
-            InkWell(
-                onTap: () {
-                  setState(() {
-                    but4 = 1;
-                    but5 = 1;
-                    but6 = 0;
-                    but7 = 1;
-                  });
-                },
-                child:
-                    GreyoutButtons(icon: "images/furLong.png", grayout: but6)),
-            InkWell(
-                onTap: () {
-                  setState(() {
-                    but4 = 1;
-                    but5 = 1;
-                    but6 = 1;
-                    but7 = 0;
-                  });
-                },
-                child: GreyoutButtons(
-                    icon: "images/furLayered.png", grayout: but7)),
-          ],
-        ),
-        Container(
-          height: 50,
-        ),
-        OKCancelRow(
-          destination: process.ProcessControlPage(
-            application: globals.selected,
+    return InkWell(
+      hoverColor: Colors.transparent,
+      onTap: () {
+        setState(() {
+          but1 = 0;
+          but2 = 0;
+          but3 = 0;
+          but4 = 0;
+          but5 = 0;
+          but6 = 0;
+          but7 = 0;
+        });
+      },
+      child: Column(
+        children: [
+          Container(
+            height: 50,
           ),
-        )
-      ],
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              InkWell(
+                  onTap: () {
+                    setState(() {
+                      but1 = 0;
+                      but2 = 1;
+                      but3 = 1;
+                    });
+                  },
+                  child:
+                      GreyoutButtons(icon: "images/dusty.png", grayout: but1)),
+              InkWell(
+                  onTap: () {
+                    setState(() {
+                      but1 = 1;
+                      but2 = 0;
+                      but3 = 1;
+                    });
+                  },
+                  child:
+                      GreyoutButtons(icon: "images/dirty.png", grayout: but2)),
+              InkWell(
+                  onTap: () {
+                    setState(() {
+                      but1 = 1;
+                      but2 = 1;
+                      but3 = 0;
+                    });
+                  },
+                  child:
+                      GreyoutButtons(icon: "images/grimy.png", grayout: but3)),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              InkWell(
+                  onTap: () {
+                    setState(() {
+                      but4 = 0;
+                      but5 = 1;
+                      but6 = 1;
+                      but7 = 1;
+                    });
+                  },
+                  child: GreyoutButtons(
+                      icon: "images/furShort.png", grayout: but4)),
+              InkWell(
+                  onTap: () {
+                    setState(() {
+                      but4 = 1;
+                      but5 = 0;
+                      but6 = 1;
+                      but7 = 1;
+                    });
+                  },
+                  child:
+                      GreyoutButtons(icon: "images/furMid.png", grayout: but5)),
+              InkWell(
+                  onTap: () {
+                    setState(() {
+                      but4 = 1;
+                      but5 = 1;
+                      but6 = 0;
+                      but7 = 1;
+                    });
+                  },
+                  child: GreyoutButtons(
+                      icon: "images/furLong.png", grayout: but6)),
+              InkWell(
+                  onTap: () {
+                    setState(() {
+                      but4 = 1;
+                      but5 = 1;
+                      but6 = 1;
+                      but7 = 0;
+                    });
+                  },
+                  child: GreyoutButtons(
+                      icon: "images/furLayered.png", grayout: but7)),
+            ],
+          ),
+          Container(
+            height: 50,
+          ),
+          OKCancelRow(
+            destination: process.ProcessControlPage(
+              application: globals.selected,
+            ),
+          )
+        ],
+      ),
     );
   }
 }
