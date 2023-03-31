@@ -998,7 +998,7 @@ class _CardScreen extends State<CardScreen> {
                 fontSize: screenSize.width * 0.05),
           ),
           Text(
-            "PLEASE KEEP KEYCARD CLOSE TO THE RFID BOX!",
+            "PLEASE READ KEYCARD!",
             style: TextStyle(
                 fontWeight: FontWeight.w700,
                 color: Colors.blue[800],
