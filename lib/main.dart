@@ -8,7 +8,8 @@ import 'grayableselection.dart' as grayable;
 import 'processcontrol.dart' as process;
 
 void main() {
-  runApp(const MaterialApp(home: CardScreen()));
+  runApp(
+      const MaterialApp(home: CardScreen(), debugShowCheckedModeBanner: false));
 }
 
 class MainPage extends StatefulWidget {
@@ -23,6 +24,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: const Color.fromARGB(255, 58, 98, 114),
         appBar: AppBar(
@@ -638,6 +640,7 @@ class _DirtSelectionState extends State<DirtSelection> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Container(height: 75),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -669,6 +672,9 @@ class _DirtSelectionState extends State<DirtSelection> {
                 },
                 child: GreyoutButtons(icon: "images/grimy.png", grayout: but3)),
           ],
+        ),
+        Container(
+          height: 75,
         ),
         OKCancelRow(
           destination: process.ProcessControlPage(
@@ -703,6 +709,9 @@ class _CustomDogWashState extends State<CustomDogWash> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Container(
+          height: 50,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -772,6 +781,9 @@ class _CustomDogWashState extends State<CustomDogWash> {
                 child:
                     GreyoutButtons(icon: "images/denseFur.png", grayout: but6)),
           ],
+        ),
+        Container(
+          height: 50,
         ),
         OKCancelRow(
           destination: process.ProcessControlPage(
