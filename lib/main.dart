@@ -352,6 +352,7 @@ class _FurSlectionState extends State<FurSlection> {
   int but1 = 0;
   int but2 = 0;
   int but3 = 0;
+  int but4 = 0;
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
@@ -372,30 +373,44 @@ class _FurSlectionState extends State<FurSlection> {
                             but1 = 0;
                             but2 = 1;
                             but3 = 1;
+                            but3 = 1;
                           });
                         },
                         child: GreyoutButtons(
-                            icon: "images/thinFur.png", grayout: but1)),
+                            icon: "images/furShort.png", grayout: but1)),
                     InkWell(
                         onTap: () {
                           setState(() {
                             but1 = 1;
                             but2 = 0;
                             but3 = 1;
+                            but4 = 1;
                           });
                         },
                         child: GreyoutButtons(
-                            icon: "images/standartFur.png", grayout: but2)),
+                            icon: "images/furMid.png", grayout: but2)),
                     InkWell(
                         onTap: () {
                           setState(() {
                             but1 = 1;
                             but2 = 1;
                             but3 = 0;
+                            but4 = 0;
                           });
                         },
                         child: GreyoutButtons(
-                            icon: "images/denseFur.png", grayout: but3)),
+                            icon: "images/furLong.png", grayout: but3)),
+                    InkWell(
+                        onTap: () {
+                          setState(() {
+                            but1 = 1;
+                            but2 = 1;
+                            but3 = 1;
+                            but4 = 0;
+                          });
+                        },
+                        child: GreyoutButtons(
+                            icon: "images/furLayered.png", grayout: but4)),
                   ],
                 ),
               ),
