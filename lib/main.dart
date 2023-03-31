@@ -719,6 +719,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
   int but4 = 0;
   int but5 = 0;
   int but6 = 0;
+  int but7 = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -771,30 +772,44 @@ class _CustomDogWashState extends State<CustomDogWash> {
                     but4 = 0;
                     but5 = 1;
                     but6 = 1;
+                    but7 = 1;
                   });
                 },
                 child:
-                    GreyoutButtons(icon: "images/thinFur.png", grayout: but4)),
+                    GreyoutButtons(icon: "images/furShort.png", grayout: but4)),
             InkWell(
                 onTap: () {
                   setState(() {
                     but4 = 1;
                     but5 = 0;
                     but6 = 1;
+                    but7 = 1;
                   });
                 },
-                child: GreyoutButtons(
-                    icon: "images/standartFur.png", grayout: but5)),
+                child:
+                    GreyoutButtons(icon: "images/furMid.png", grayout: but5)),
             InkWell(
                 onTap: () {
                   setState(() {
                     but4 = 1;
                     but5 = 1;
                     but6 = 0;
+                    but7 = 1;
                   });
                 },
                 child:
-                    GreyoutButtons(icon: "images/denseFur.png", grayout: but6)),
+                    GreyoutButtons(icon: "images/furDense.png", grayout: but6)),
+            InkWell(
+                onTap: () {
+                  setState(() {
+                    but4 = 1;
+                    but5 = 1;
+                    but6 = 1;
+                    but7 = 0;
+                  });
+                },
+                child: GreyoutButtons(
+                    icon: "images/furLayered.png", grayout: but7)),
           ],
         ),
         Container(
