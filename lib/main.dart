@@ -798,7 +798,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
                   });
                 },
                 child:
-                    GreyoutButtons(icon: "images/furDense.png", grayout: but6)),
+                    GreyoutButtons(icon: "images/furLong.png", grayout: but6)),
             InkWell(
                 onTap: () {
                   setState(() {
