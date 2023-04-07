@@ -310,3 +310,19 @@ bool isSecondSelection() {
 }
 
 int selectedTime = 100;
+
+void timeSet() {
+  if (selected.contains('spf')) {
+    selectedTime = 30;
+  } else if (selected.contains('Long')) {
+    selectedTime = 500;
+  } else if (selected.contains('Normal')) {
+    selectedTime = 120;
+  } else if (selected.contains('Quick')) {
+    selectedTime = 45;
+  } else if (selected.contains('dog')) {
+    selectedTime = 100;
+  } else {
+    selectedTime = 80;
+  }
+}

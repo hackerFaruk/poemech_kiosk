@@ -12,25 +12,23 @@ class StopWatch extends StatefulWidget {
 }
 
 class _StopWatchState extends State<StopWatch> {
-  int timeRemains = 100;
-  double progressBar = 0.5;
+  int timeRemains = globals.selectedTime;
+  int timeTotal = globals.selectedTime;
+  double progressBar = 1.0;
   bool isTimerActive = true;
 
   late Timer _everySecond;
-  late String _now;
 
   @override
   void initState() {
     super.initState();
-
-    // sets first value
-    _now = DateTime.now().second.toString();
 
     // defines a timer
     _everySecond = Timer.periodic(const Duration(seconds: 1), (Timer t) {
       setState(() {
         if (isTimerActive) {
           timeRemains = timeRemains - 1;
+          progressBar = ((timeRemains * 100.0) / timeTotal) / 100.0;
         }
         if (timeRemains < 1) {
           isTimerActive = false;
@@ -41,26 +39,43 @@ class _StopWatchState extends State<StopWatch> {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size.width;
+    final explanation = globals.lang == 'en' ? 'Time Remaining' : 'Kalan Süre';
+    final secSan = globals.lang == 'en' ? 'Seconds Remainins' : 'Saniye Kaldı';
     return Material(
       child: Center(
         child: Column(
           children: [
-            const Text(
-              'Linear progress indicator',
-              style: TextStyle(fontSize: 20),
-            ),
-            const SizedBox(height: 30),
-            LinearProgressIndicator(
-              value: progressBar,
-              semanticsLabel: 'Linear progress indicator',
+            Text(
+              explanation,
+              style: const TextStyle(fontSize: 40),
             ),
             const SizedBox(height: 10),
-            Text(timeRemains.toString()),
-            ElevatedButton(
-              onPressed: () {
+            Center(
+              child: SizedBox(
+                width: screenSize * 0.9,
+                child: LinearProgressIndicator(
+                  minHeight: 20,
+                  color: Colors.green,
+                  value: progressBar,
+                  semanticsLabel: explanation,
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            Text('$timeRemains  $secSan'),
+            InkWell(
+              onTap: () {
                 isTimerActive = !isTimerActive;
               },
-              child: const Text('timer'),
+              child: SizedBox(
+                height: 100,
+                width: screenSize * 0.5,
+                child: Image(
+                    image: AssetImage(isTimerActive == false
+                        ? 'images/ok.png'
+                        : 'images/cancel.png')),
+              ),
             )
           ],
         ),

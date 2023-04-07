@@ -274,6 +274,9 @@ class StartProcessPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            const SizedBox(
+              height: 30,
+            ),
             Center(
               child: SizedBox(
                 height: screenSize.height * 0.4,
