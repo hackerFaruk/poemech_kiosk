@@ -16,6 +16,7 @@ class _StopWatchState extends State<StopWatch> {
   int timeTotal = globals.selectedTime;
   double progressBar = 1.0;
   bool isTimerActive = true;
+  bool isFirstLoop = true;
 
   late Timer _everySecond;
 
@@ -25,6 +26,10 @@ class _StopWatchState extends State<StopWatch> {
 
     // defines a timer
     _everySecond = Timer.periodic(const Duration(seconds: 1), (Timer t) {
+      if (isFirstLoop) {
+        isFirstLoop = false;
+        globals.timeSet();
+      }
       setState(() {
         if (isTimerActive) {
           timeRemains = timeRemains - 1;
