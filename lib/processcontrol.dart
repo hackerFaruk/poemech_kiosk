@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
+import 'stopwatch.dart' as stop;
 
 class ProcessControlPage extends StatelessWidget {
   final String application;
@@ -61,29 +62,8 @@ class _EmergencyControlsState extends State<EmergencyControls> {
     var screenSize = MediaQuery.of(context).size.width;
     return Material(
       child: Column(
-        children: [
-          SizedBox(
-            height: 60,
-            width: screenSize,
-            child: Center(
-                child:
-                    Text(isProcessOngoing == false ? StartQuery : StopQuery)),
-          ),
-          InkWell(
-            onTap: () {
-              setState(() {
-                isProcessOngoing = isProcessOngoing == false ? true : false;
-              });
-            },
-            child: SizedBox(
-              height: 70,
-              width: screenSize * 0.5,
-              child: Image(
-                  image: AssetImage(isProcessOngoing == false
-                      ? 'images/ok.png'
-                      : 'images/cancel.png')),
-            ),
-          )
+        children: const [
+          stop.StopWatch(),
         ],
       ),
     );

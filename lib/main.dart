@@ -94,7 +94,6 @@ class _SelectionButtonsState extends State<SelectionButtons> {
             ],
           ),
         ),
-        stop.StopWatch(),
       ],
     );
   }

@@ -322,6 +322,10 @@ void timeSet() {
     selectedTime = 45;
   } else if (selected.contains('dog')) {
     selectedTime = 100;
+  } else if (selected.contains('bronz')) {
+    selectedTime = 30;
+  } else if (selected.contains('moist')) {
+    selectedTime = 20;
   } else {
     selectedTime = 80;
   }
