@@ -12,8 +12,9 @@ class StopWatch extends StatefulWidget {
 }
 
 class _StopWatchState extends State<StopWatch> {
-  int timeRemains = 0;
+  int timeRemains = 100;
   double progressBar = 0.5;
+  bool isTimerActive = true;
 
   late Timer _everySecond;
   late String _now;
@@ -28,7 +29,12 @@ class _StopWatchState extends State<StopWatch> {
     // defines a timer
     _everySecond = Timer.periodic(const Duration(seconds: 1), (Timer t) {
       setState(() {
-        _now = DateTime.now().second.toString();
+        if (isTimerActive) {
+          timeRemains = timeRemains - 1;
+        }
+        if (timeRemains < 1) {
+          isTimerActive = false;
+        }
       });
     });
   }
@@ -49,7 +55,13 @@ class _StopWatchState extends State<StopWatch> {
               semanticsLabel: 'Linear progress indicator',
             ),
             const SizedBox(height: 10),
-            Text(_now),
+            Text(timeRemains.toString()),
+            ElevatedButton(
+              onPressed: () {
+                isTimerActive = !isTimerActive;
+              },
+              child: const Text('timer'),
+            )
           ],
         ),
       ),
