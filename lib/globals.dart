@@ -308,3 +308,5 @@ bool isSecondSelection() {
     return false;
   }
 }
+
+int selectedTime = 100;

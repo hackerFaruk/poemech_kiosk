@@ -6,6 +6,7 @@ import 'globals.dart' as globals;
 import 'package:http/http.dart' as http;
 import 'grayableselection.dart' as grayable;
 import 'processcontrol.dart' as process;
+import 'stopwatch.dart' as stop;
 
 void main() {
   runApp(
@@ -93,6 +94,7 @@ class _SelectionButtonsState extends State<SelectionButtons> {
             ],
           ),
         ),
+        stop.StopWatch(),
       ],
     );
   }
