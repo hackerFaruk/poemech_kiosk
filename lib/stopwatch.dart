@@ -3,7 +3,7 @@ import 'globals.dart' as globals;
 import 'dart:async';
 
 class StopWatch extends StatefulWidget {
-  StopWatch({
+  const StopWatch({
     super.key,
   });
 
@@ -68,5 +68,3 @@ class _StopWatchState extends State<StopWatch> {
     );
   }
 }
-
-void updateBitch() {}
