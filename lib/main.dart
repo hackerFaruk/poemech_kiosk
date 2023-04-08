@@ -1,4 +1,5 @@
 import 'dart:convert';
+// ignore: unused_import
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -6,7 +7,6 @@ import 'globals.dart' as globals;
 import 'package:http/http.dart' as http;
 import 'grayableselection.dart' as grayable;
 import 'processcontrol.dart' as process;
-import 'stopwatch.dart' as stop;
 import 'popupalert.dart' as pop;
 
 void main() {
@@ -106,10 +106,12 @@ class _SelectionButtonsState extends State<SelectionButtons> {
     var url = Uri.parse("https://poemech.com.tr:3001/api/mail/emergencyButton");
     final body = json.encode({"id": "5", "mail": "info@onarfa.com"});
 
+    // ignore: prefer_typing_uninitialized_variables
     var res;
     try {
       res = await http.post(url,
           headers: {"Content-Type": "application/json"}, body: body);
+      // ignore: unused_catch_clause
     } on Exception catch (e) {
       //print(e.toString());
       connection = false;
@@ -334,10 +336,11 @@ class OKCancelRow extends StatelessWidget {
                   pop.Alert(context, 'selection');
                   // seçim uyarı dialogu çıkart burda
                 } else {
-                  globals.timeSet();
                   for (var i = 0; i < selections.length; i++) {
                     globals.selected = globals.selected + selections[i];
+                    globals.selected = '${globals.selected}  ';
                   }
+                  globals.timeSet();
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => destination!));
                 }
@@ -970,7 +973,7 @@ class _CardScreen extends State<CardScreen> {
           Container(
             height: screenSize.height * 0.05,
           ),
-          Image(image: AssetImage('images/Abyssos.jpg')),
+          const Image(image: AssetImage('images/Abyssos.jpg')),
           Container(
             height: screenSize.height * 0.1,
           ),
@@ -998,7 +1001,7 @@ class _CardScreen extends State<CardScreen> {
                   MaterialPageRoute(builder: (context) => const MainPage()),
                 );
               },
-              icon: Icon(Icons.skip_next))
+              icon: const Icon(Icons.skip_next))
         ],
       ),
     );

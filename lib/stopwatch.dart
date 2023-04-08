@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
-import 'dart:async';
 
 class StopWatch extends StatefulWidget {
   const StopWatch({
@@ -18,28 +17,11 @@ class _StopWatchState extends State<StopWatch> {
   bool isTimerActive = true;
   bool isFirstLoop = true;
 
-  late Timer _everySecond;
-
   @override
   void initState() {
     super.initState();
 
     // defines a timer
-    _everySecond = Timer.periodic(const Duration(seconds: 1), (Timer t) {
-      if (isFirstLoop) {
-        isFirstLoop = false;
-        globals.timeSet();
-      }
-      setState(() {
-        if (isTimerActive) {
-          timeRemains = timeRemains - 1;
-          progressBar = ((timeRemains * 100.0) / timeTotal) / 100.0;
-        }
-        if (timeRemains < 1) {
-          isTimerActive = false;
-        }
-      });
-    });
   }
 
   @override

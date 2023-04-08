@@ -5,6 +5,7 @@ String title = '';
 String description = '';
 String button = '';
 
+// ignore: non_constant_identifier_names
 Alert(BuildContext context, inputtext) {
   selector(inputtext);
   // set up the button

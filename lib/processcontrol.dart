@@ -49,17 +49,18 @@ class EmergencyControls extends StatefulWidget {
 
 class _EmergencyControlsState extends State<EmergencyControls> {
   bool isProcessOngoing = false;
+  // ignore: non_constant_identifier_names
   var StartQuery = globals.lang == 'en'
       ? 'Click To Start '
       : 'İşlemi Başlatmak İçin Tıklaynız';
 
+  // ignore: non_constant_identifier_names
   var StopQuery = globals.lang == 'en'
       ? 'Click for Emergency Stop'
       : 'Acil Durdurma İçin Tıklayınız';
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size.width;
     return Material(
       child: Column(
         children: const [
