@@ -301,11 +301,9 @@ class StartProcessPage extends StatelessWidget {
 // ok cancel row _______________________________
 class OKCancelRow extends StatelessWidget {
   final Widget? destination;
+  final List? selections;
 
-  const OKCancelRow({
-    super.key,
-    this.destination,
-  });
+  const OKCancelRow({super.key, this.destination, this.selections});
 
   @override
   Widget build(BuildContext context) {
@@ -318,6 +316,7 @@ class OKCancelRow extends StatelessWidget {
           children: [
             InkWell(
               onTap: () {
+                globals.selected = "";
                 Navigator.pop(context);
               },
               child: SizedBox(
@@ -326,6 +325,11 @@ class OKCancelRow extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
+                if (selections != null) {
+                  for (var i = 0; i < selections!.length; i++) {
+                    globals.selected = globals.selected + selections![i];
+                  }
+                }
                 if (destination == null) {
                   null;
                 } else {
