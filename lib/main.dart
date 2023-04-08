@@ -343,108 +343,6 @@ class OKCancelRow extends StatelessWidget {
 }
 // ok cancel row ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-// fur control _--______________--------_-_--____-_________-___-
-
-class FurSlection extends StatefulWidget {
-  const FurSlection({super.key});
-
-  @override
-  State<FurSlection> createState() => _FurSlectionState();
-}
-
-class _FurSlectionState extends State<FurSlection> {
-  int but1 = 0;
-  int but2 = 0;
-  int but3 = 0;
-  int but4 = 0;
-  @override
-  Widget build(BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
-
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Column(
-            children: [
-              SizedBox(
-                height: screenSize.width * 0.3,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    InkWell(
-                        onTap: () {
-                          setState(() {
-                            but1 = 0;
-                            but2 = 1;
-                            but3 = 1;
-                            but3 = 1;
-                          });
-                        },
-                        child: GreyoutButtons(
-                            icon: "images/furShort.png", grayout: but1)),
-                    InkWell(
-                        onTap: () {
-                          setState(() {
-                            but1 = 1;
-                            but2 = 0;
-                            but3 = 1;
-                            but4 = 1;
-                          });
-                        },
-                        child: GreyoutButtons(
-                            icon: "images/furMid.png", grayout: but2)),
-                    InkWell(
-                        onTap: () {
-                          setState(() {
-                            but1 = 1;
-                            but2 = 1;
-                            but3 = 0;
-                            but4 = 0;
-                          });
-                        },
-                        child: GreyoutButtons(
-                            icon: "images/furLong.png", grayout: but3)),
-                    InkWell(
-                        onTap: () {
-                          setState(() {
-                            but1 = 1;
-                            but2 = 1;
-                            but3 = 1;
-                            but4 = 0;
-                          });
-                        },
-                        child: GreyoutButtons(
-                            icon: "images/furLayered.png", grayout: but4)),
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              InkWell(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: SizedBox(
-                    height: 50,
-                    width: screenSize.width * 0.4,
-                    child: const Image(image: AssetImage('images/cancel.png'))),
-              ),
-              OKCancelRow(
-                destination: process.ProcessControlPage(
-                  application: globals.selected,
-                ),
-              )
-            ],
-          )
-        ],
-      ),
-    );
-  }
-}
-
-// fur cıntrıl ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 // Conditional Row ____________________________________________________
 
 /// If the application is the dog button, return the FurSlection widget. If the application is the
@@ -455,9 +353,7 @@ class ConditionalControlRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (application == 'images/dogbutton.png') {
-      return const FurSlection();
-    } else if (application == "images/wheel.png") {
+    if (application == "images/wheel.png") {
       return const WheelChairRow();
     } else if (application == "images/shower.png") {
       return const WheelChairRow();
