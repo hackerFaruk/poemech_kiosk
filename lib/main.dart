@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'grayableselection.dart' as grayable;
 import 'processcontrol.dart' as process;
 import 'stopwatch.dart' as stop;
+import 'popupalert.dart' as pop;
 
 void main() {
   runApp(
@@ -332,7 +333,8 @@ class OKCancelRow extends StatelessWidget {
                 if (destination == null) {
                   null;
                 } else if (globals.isSelectionEmpty(selections)) {
-                  null;
+                  print('alert');
+                  pop.Alert(context);
                   // seçim uyarı dialogu çıkart burda
                 } else {
                   Navigator.push(context,
