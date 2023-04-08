@@ -401,6 +401,9 @@ class _WheelChairRowState extends State<WheelChairRow> {
   int but7 = 0;
   int but8 = 0;
   int but9 = 0;
+  String lengthselected = '';
+  String warmthselected = '';
+  String pressselected = '';
 
   @override
   Widget build(BuildContext context) {
@@ -429,6 +432,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
             children: [
               InkWell(
                   onTap: () {
+                    lengthselected = 'showerQuick';
                     setState(() {
                       but7 = 0;
                       but8 = 1;
@@ -439,6 +443,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
                       icon: "images/showerQuick.png", grayout: but7)),
               InkWell(
                   onTap: () {
+                    lengthselected = 'showerNormal';
                     setState(() {
                       but7 = 1;
                       but8 = 0;
@@ -450,6 +455,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
               InkWell(
                   onTap: () {
                     setState(() {
+                      lengthselected = 'showerLong';
                       but7 = 1;
                       but8 = 1;
                       but9 = 0;
@@ -467,6 +473,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
             children: [
               InkWell(
                   onTap: () {
+                    warmthselected = 'coldwater';
                     setState(() {
                       but1 = 0;
                       but2 = 1;
@@ -477,6 +484,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
                       icon: "images/coldwater.png", grayout: but1)),
               InkWell(
                   onTap: () {
+                    warmthselected = 'warmwater';
                     setState(() {
                       but1 = 1;
                       but2 = 0;
@@ -487,6 +495,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
                       icon: "images/warmwater.png", grayout: but2)),
               InkWell(
                   onTap: () {
+                    warmthselected = 'hotwater';
                     setState(() {
                       but1 = 1;
                       but2 = 1;
@@ -505,6 +514,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
             children: [
               InkWell(
                   onTap: () {
+                    pressselected = 'pressLo';
                     setState(() {
                       but4 = 0;
                       but5 = 1;
@@ -515,6 +525,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
                       icon: "images/pressLo.png", grayout: but4)),
               InkWell(
                   onTap: () {
+                    pressselected = 'pressReg';
                     setState(() {
                       but4 = 1;
                       but5 = 0;
@@ -528,8 +539,9 @@ class _WheelChairRowState extends State<WheelChairRow> {
           const SizedBox(
             height: 20,
           ),
-          const OKCancelRow(
-            destination: process.ProcessControlPage(
+          OKCancelRow(
+            selections: [warmthselected, pressselected, lengthselected],
+            destination: const process.ProcessControlPage(
               application: 'images/wheel.png',
             ),
           )
@@ -554,6 +566,7 @@ class _DirtSelectionState extends State<DirtSelection> {
   int but1 = 0;
   int but2 = 0;
   int but3 = 0;
+  String dirtselected = '';
 
   @override
   Widget build(BuildContext context) {
@@ -565,6 +578,7 @@ class _DirtSelectionState extends State<DirtSelection> {
           children: [
             InkWell(
                 onTap: () {
+                  dirtselected = 'dusty';
                   setState(() {
                     but1 = 0;
                     but2 = 1;
@@ -574,6 +588,7 @@ class _DirtSelectionState extends State<DirtSelection> {
                 child: GreyoutButtons(icon: "images/dusty.png", grayout: but1)),
             InkWell(
                 onTap: () {
+                  dirtselected = 'dirty';
                   setState(() {
                     but1 = 1;
                     but2 = 0;
@@ -583,6 +598,7 @@ class _DirtSelectionState extends State<DirtSelection> {
                 child: GreyoutButtons(icon: "images/dirty.png", grayout: but2)),
             InkWell(
                 onTap: () {
+                  dirtselected = 'grimy';
                   setState(() {
                     but1 = 1;
                     but2 = 1;
@@ -596,6 +612,7 @@ class _DirtSelectionState extends State<DirtSelection> {
           height: 75,
         ),
         OKCancelRow(
+          selections: [dirtselected],
           destination: process.ProcessControlPage(
             application: globals.selected,
           ),
@@ -624,6 +641,8 @@ class _CustomDogWashState extends State<CustomDogWash> {
   int but5 = 0;
   int but6 = 0;
   int but7 = 0;
+  String dirtselected = '';
+  String furselected = '';
 
   @override
   Widget build(BuildContext context) {
@@ -650,6 +669,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
             children: [
               InkWell(
                   onTap: () {
+                    dirtselected = 'dusty';
                     setState(() {
                       but1 = 0;
                       but2 = 1;
@@ -660,6 +680,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
                       GreyoutButtons(icon: "images/dusty.png", grayout: but1)),
               InkWell(
                   onTap: () {
+                    dirtselected = 'dirty';
                     setState(() {
                       but1 = 1;
                       but2 = 0;
@@ -670,6 +691,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
                       GreyoutButtons(icon: "images/dirty.png", grayout: but2)),
               InkWell(
                   onTap: () {
+                    dirtselected = 'grimy';
                     setState(() {
                       but1 = 1;
                       but2 = 1;
@@ -688,6 +710,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
             children: [
               InkWell(
                   onTap: () {
+                    furselected = 'furShort';
                     setState(() {
                       but4 = 0;
                       but5 = 1;
@@ -699,6 +722,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
                       icon: "images/furShort.png", grayout: but4)),
               InkWell(
                   onTap: () {
+                    furselected = 'furMid';
                     setState(() {
                       but4 = 1;
                       but5 = 0;
@@ -710,6 +734,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
                       GreyoutButtons(icon: "images/furMid.png", grayout: but5)),
               InkWell(
                   onTap: () {
+                    furselected = 'furLong';
                     setState(() {
                       but4 = 1;
                       but5 = 1;
@@ -721,6 +746,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
                       icon: "images/furLong.png", grayout: but6)),
               InkWell(
                   onTap: () {
+                    furselected = 'furLayered';
                     setState(() {
                       but4 = 1;
                       but5 = 1;
@@ -736,6 +762,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
             height: 50,
           ),
           OKCancelRow(
+            selections: [furselected, dirtselected],
             destination: process.ProcessControlPage(
               application: globals.selected,
             ),
