@@ -332,6 +332,7 @@ class OKCancelRow extends StatelessWidget {
                 }
                 if (destination == null) {
                   null;
+                } else if (globals.isSelectionEmpty(selections)) {
                 } else {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => destination!));
