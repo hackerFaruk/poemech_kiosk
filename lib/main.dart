@@ -301,9 +301,9 @@ class StartProcessPage extends StatelessWidget {
 // ok cancel row _______________________________
 class OKCancelRow extends StatelessWidget {
   final Widget? destination;
-  final List? selections;
+  final List<dynamic> selections;
 
-  const OKCancelRow({super.key, this.destination, this.selections});
+  const OKCancelRow({super.key, this.destination, required this.selections});
 
   @override
   Widget build(BuildContext context) {
@@ -325,14 +325,15 @@ class OKCancelRow extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                if (selections != null) {
-                  for (var i = 0; i < selections!.length; i++) {
-                    globals.selected = globals.selected + selections![i];
-                  }
+                for (var i = 0; i < selections.length; i++) {
+                  globals.selected = globals.selected + selections[i];
                 }
+
                 if (destination == null) {
                   null;
                 } else if (globals.isSelectionEmpty(selections)) {
+                  null;
+                  // seçim uyarı dialogu çıkart burda
                 } else {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => destination!));
@@ -372,6 +373,7 @@ class ConditionalControlRow extends StatelessWidget {
           height: 30,
         ),
         OKCancelRow(
+          selections: [application],
           destination: process.ProcessControlPage(
             application: application,
           ),
