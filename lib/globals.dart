@@ -330,3 +330,12 @@ void timeSet() {
     selectedTime = 80;
   }
 }
+
+bool isSelectionEmpty(List<String> a) {
+  for (var i = 0; i < a.length; i++) {
+    if (a[i] == '') {
+      return true;
+    }
+  }
+  return false;
+}
