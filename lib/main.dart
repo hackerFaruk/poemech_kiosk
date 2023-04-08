@@ -333,8 +333,7 @@ class OKCancelRow extends StatelessWidget {
                 if (destination == null) {
                   null;
                 } else if (globals.isSelectionEmpty(selections)) {
-                  print('alert');
-                  pop.Alert(context);
+                  pop.Alert(context, 'selection');
                   // seçim uyarı dialogu çıkart burda
                 } else {
                   Navigator.push(context,
