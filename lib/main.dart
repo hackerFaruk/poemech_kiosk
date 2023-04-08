@@ -326,9 +326,7 @@ class OKCancelRow extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                for (var i = 0; i < selections.length; i++) {
-                  globals.selected = globals.selected + selections[i];
-                }
+                globals.selected = '';
 
                 if (destination == null) {
                   null;
@@ -336,6 +334,10 @@ class OKCancelRow extends StatelessWidget {
                   pop.Alert(context, 'selection');
                   // seçim uyarı dialogu çıkart burda
                 } else {
+                  globals.timeSet();
+                  for (var i = 0; i < selections.length; i++) {
+                    globals.selected = globals.selected + selections[i];
+                  }
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => destination!));
                 }

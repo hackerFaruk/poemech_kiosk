@@ -312,8 +312,9 @@ bool isSecondSelection() {
 int selectedTime = 100;
 
 void timeSet() {
+  selectedTime = 10;
   if (selected.contains('spf')) {
-    selectedTime = 30;
+    selectedTime = selectedTime + 5;
   } else if (selected.contains('Long')) {
     selectedTime = 500;
   } else if (selected.contains('Normal')) {
