@@ -327,8 +327,23 @@ void timeSet() {
     selectedTime = 30;
   } else if (selected.contains('moist')) {
     selectedTime = 20;
-  } else {
-    selectedTime = 80;
+  }
+
+  if (selected.contains('dusty')) {
+    selectedTime = selectedTime + 20;
+  } else if (selected.contains('dirty')) {
+    selectedTime = selectedTime + 30;
+  } else if (selected.contains('grimy')) {
+    selectedTime = selectedTime + 40;
+  }
+  if (selected.contains('furShort')) {
+    selectedTime = selectedTime + 20;
+  } else if (selected.contains('furMid')) {
+    selectedTime = selectedTime + 40;
+  } else if (selected.contains('furLong')) {
+    selectedTime = selectedTime + 80;
+  } else if (selected.contains('furLayered')) {
+    selectedTime = selectedTime + 160;
   }
 }
 
