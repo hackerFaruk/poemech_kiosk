@@ -315,11 +315,11 @@ void timeSet() {
   selectedTime = 10;
   if (selected.contains('spf')) {
     selectedTime = selectedTime + 5;
-  } else if (selected.contains('Long')) {
+  } else if (selected.contains('showerLong')) {
     selectedTime = 500;
-  } else if (selected.contains('Normal')) {
+  } else if (selected.contains('showerNormal')) {
     selectedTime = 120;
-  } else if (selected.contains('Quick')) {
+  } else if (selected.contains('ShowerQuick')) {
     selectedTime = 45;
   } else if (selected.contains('dog')) {
     selectedTime = 100;
