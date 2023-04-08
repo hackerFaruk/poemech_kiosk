@@ -331,7 +331,7 @@ void timeSet() {
   }
 }
 
-bool isSelectionEmpty(List<String> a) {
+bool isSelectionEmpty(List<dynamic> a) {
   for (var i = 0; i < a.length; i++) {
     if (a[i] == '') {
       return true;
