@@ -282,11 +282,9 @@ class StartProcessPage extends StatelessWidget {
             Center(
               child: SizedBox(
                 height: screenSize.height * 0.4,
-                child: Hero(
-                    tag: application,
-                    child: Image(
-                      image: AssetImage(application),
-                    )),
+                child: Image(
+                  image: AssetImage(application),
+                ),
               ),
             ),
             ConditionalControlRow(
@@ -948,7 +946,7 @@ class DogBreedButton extends StatelessWidget {
                       builder: (context) =>
                           StartProcessPage(application: globals.selected)));
             },
-            child: Hero(tag: icon, child: Image(image: AssetImage(icon)))),
+            child: Image(image: AssetImage(icon))),
       ),
     );
   }
