@@ -17,6 +17,8 @@ class _StopWatchState extends State<StopWatch> {
   double progressBar = 1.0;
   bool isTimerActive = true;
   bool isFirstLoop = true;
+  var explanation = globals.lang == 'en' ? 'Time Remaining' : 'Kalan Süre';
+  var secSan = globals.lang == 'en' ? 'Seconds Remainins' : 'Saniye Kaldı';
   // ignore: unused_field
   Timer _everySecond = Timer(const Duration(seconds: 1), () {});
 
@@ -27,7 +29,16 @@ class _StopWatchState extends State<StopWatch> {
     // defines a timer
     _everySecond = Timer.periodic(const Duration(seconds: 1), (Timer t) {
       setState(() {
-        timeRemains = timeRemains - 1;
+        if (timeRemains > 0) {
+          timeRemains = timeRemains - 1;
+          progressBar = ((timeRemains * 100.0) / timeTotal) / 100.0;
+        } else {
+          _everySecond.cancel();
+          explanation = globals.lang == 'en'
+              ? 'Process is Completed'
+              : 'Uygulama Tamamlandı';
+          secSan = globals.lang == 'en' ? 'Ended' : 'Tamamlandı';
+        }
       });
     });
   }
@@ -35,8 +46,7 @@ class _StopWatchState extends State<StopWatch> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size.width;
-    final explanation = globals.lang == 'en' ? 'Time Remaining' : 'Kalan Süre';
-    final secSan = globals.lang == 'en' ? 'Seconds Remainins' : 'Saniye Kaldı';
+
     return Material(
       child: Center(
         child: Column(
@@ -58,7 +68,7 @@ class _StopWatchState extends State<StopWatch> {
               ),
             ),
             const SizedBox(height: 10),
-            Text('$timeRemains  $secSan'),
+            Text(timeRemains >= 1 ? '$timeRemains  $secSan' : secSan),
             InkWell(
               onTap: () {
                 isTimerActive = !isTimerActive;
