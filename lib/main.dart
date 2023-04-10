@@ -971,7 +971,7 @@ class _CardScreen extends State<CardScreen> {
           Container(
             height: screenSize.height * 0.05,
           ),
-          const Image(image: AssetImage('images/Abyssos.jpg')),
+          const Image(image: AssetImage('images/abyssos.jpg')),
           Container(
             height: screenSize.height * 0.1,
           ),
