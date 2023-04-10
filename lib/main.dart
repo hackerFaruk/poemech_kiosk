@@ -418,7 +418,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
       hoverColor: Colors.transparent,
       onTap: () {
         globals.selected = '';
-        print(globals.selected);
+
         setState(() {
           but1 = 0;
           but2 = 0;

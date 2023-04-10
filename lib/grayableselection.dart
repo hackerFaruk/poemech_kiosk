@@ -58,7 +58,7 @@ class GreyoutButtons extends StatelessWidget {
           height: screenSize * 0.25,
           decoration: BoxDecoration(
               border: Border.all(width: 7.0, color: Colors.green),
-              borderRadius: BorderRadius.circular(60)),
+              borderRadius: BorderRadius.circular(200)),
           child: Image(
             image: AssetImage(icon),
           ));
