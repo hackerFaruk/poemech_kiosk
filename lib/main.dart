@@ -419,6 +419,9 @@ class _WheelChairRowState extends State<WheelChairRow> {
       hoverColor: Colors.transparent,
       onTap: () {
         globals.selected = '';
+        lengthselected = '';
+        warmthselected = '';
+        pressselected = '';
         setState(() {
           but1 = 0;
           but2 = 0;
@@ -585,6 +588,7 @@ class _DirtSelectionState extends State<DirtSelection> {
         InkWell(
           onTap: () {
             globals.selected = '';
+            dirtselected = '';
             setState(() {
               but1 = 0;
               but2 = 1;
@@ -672,6 +676,8 @@ class _CustomDogWashState extends State<CustomDogWash> {
       hoverColor: Colors.transparent,
       onTap: () {
         globals.selected = '';
+        dirtselected = '';
+        furselected = '';
         setState(() {
           but1 = 0;
           but2 = 0;
