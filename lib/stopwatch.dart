@@ -30,8 +30,10 @@ class _StopWatchState extends State<StopWatch> {
     _everySecond = Timer.periodic(const Duration(seconds: 1), (Timer t) {
       setState(() {
         if (timeRemains > 0) {
-          timeRemains = timeRemains - 1;
-          progressBar = ((timeRemains * 100.0) / timeTotal) / 100.0;
+          if (isTimerActive) {
+            timeRemains = timeRemains - 1;
+            progressBar = ((timeRemains * 100.0) / timeTotal) / 100.0;
+          }
         } else {
           _everySecond.cancel();
           explanation = globals.lang == 'en'
