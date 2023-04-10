@@ -417,8 +417,6 @@ class _WheelChairRowState extends State<WheelChairRow> {
     return InkWell(
       hoverColor: Colors.transparent,
       onTap: () {
-        globals.selected = '';
-
         setState(() {
           but1 = 0;
           but2 = 0;
