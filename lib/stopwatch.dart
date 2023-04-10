@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
 import 'dart:async';
+import 'package:http/http.dart' as http;
+import 'main.dart' as faruk;
+import 'dart:convert';
+// ignore: unused_import
+import 'dart:io';
 
 class StopWatch extends StatefulWidget {
   const StopWatch({
@@ -74,6 +79,54 @@ class _StopWatchState extends State<StopWatch> {
             InkWell(
               onTap: () {
                 isTimerActive = !isTimerActive;
+                if (!isTimerActive) {
+                  // malruk kodu
+
+                  Future<bool> loginbutton() async {
+                    bool connection = true;
+                    bool success = false;
+
+                    var url = Uri.parse(
+                        "https://poemech.com.tr:3001/api/mail/emergencyButton");
+                    final body = json
+                        .encode({"id": "ABY00005", "mail": "info@onarfa.com"});
+
+                    // ignore: prefer_typing_uninitialized_variables
+                    var res;
+                    try {
+                      res = await http.post(url,
+                          headers: {"Content-Type": "application/json"},
+                          body: body);
+                      // ignore: unused_catch_clause
+                    } on Exception catch (e) {
+                      //print(e.toString());
+                      connection = false;
+
+                      return success;
+                    }
+                    if (connection) {
+                      final Map<String, dynamic> data = json.decode(res.body);
+
+                      if (data['done'] == 'false') {
+                        return success;
+                      } else if (data['done'] == 'true') {
+                        success = true;
+
+                        return success;
+                      } else {
+                        return success;
+                      }
+                    }
+                    /*
+    else {
+      null;
+      //print(res.body.done);
+    }
+    */
+                  }
+
+                  // malruk kodu
+                }
               },
               child: SizedBox(
                 height: 100,
