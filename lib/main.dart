@@ -418,6 +418,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
     return InkWell(
       hoverColor: Colors.transparent,
       onTap: () {
+        globals.selected = '';
         setState(() {
           but1 = 0;
           but2 = 0;
@@ -581,40 +582,53 @@ class _DirtSelectionState extends State<DirtSelection> {
     return Column(
       children: [
         Container(height: 75),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            InkWell(
-                onTap: () {
-                  dirtselected = 'dusty';
-                  setState(() {
-                    but1 = 0;
-                    but2 = 1;
-                    but3 = 1;
-                  });
-                },
-                child: GreyoutButtons(icon: "images/dusty.png", grayout: but1)),
-            InkWell(
-                onTap: () {
-                  dirtselected = 'dirty';
-                  setState(() {
-                    but1 = 1;
-                    but2 = 0;
-                    but3 = 1;
-                  });
-                },
-                child: GreyoutButtons(icon: "images/dirty.png", grayout: but2)),
-            InkWell(
-                onTap: () {
-                  dirtselected = 'grimy';
-                  setState(() {
-                    but1 = 1;
-                    but2 = 1;
-                    but3 = 0;
-                  });
-                },
-                child: GreyoutButtons(icon: "images/grimy.png", grayout: but3)),
-          ],
+        InkWell(
+          onTap: () {
+            globals.selected = '';
+            setState(() {
+              but1 = 0;
+              but2 = 1;
+              but3 = 1;
+            });
+          },
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              InkWell(
+                  onTap: () {
+                    dirtselected = 'dusty';
+                    setState(() {
+                      but1 = 0;
+                      but2 = 1;
+                      but3 = 1;
+                    });
+                  },
+                  child:
+                      GreyoutButtons(icon: "images/dusty.png", grayout: but1)),
+              InkWell(
+                  onTap: () {
+                    dirtselected = 'dirty';
+                    setState(() {
+                      but1 = 1;
+                      but2 = 0;
+                      but3 = 1;
+                    });
+                  },
+                  child:
+                      GreyoutButtons(icon: "images/dirty.png", grayout: but2)),
+              InkWell(
+                  onTap: () {
+                    dirtselected = 'grimy';
+                    setState(() {
+                      but1 = 1;
+                      but2 = 1;
+                      but3 = 0;
+                    });
+                  },
+                  child:
+                      GreyoutButtons(icon: "images/grimy.png", grayout: but3)),
+            ],
+          ),
         ),
         Container(
           height: 75,
@@ -657,6 +671,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
     return InkWell(
       hoverColor: Colors.transparent,
       onTap: () {
+        globals.selected = '';
         setState(() {
           but1 = 0;
           but2 = 0;
