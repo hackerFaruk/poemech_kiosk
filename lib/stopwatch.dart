@@ -76,53 +76,35 @@ class _StopWatchState extends State<StopWatch> {
             const SizedBox(height: 10),
             Text(timeRemains >= 1 ? '$timeRemains  $secSan' : secSan),
             InkWell(
-              onTap: () {
+              onTap: () async {
                 isTimerActive = !isTimerActive;
                 if (!isTimerActive) {
                   // malruk kodu
 
-                  Future<bool> loginbutton() async {
-                    bool connection = true;
-                    bool success = false;
+                  bool connection = true;
 
-                    var url = Uri.parse(
-                        "https://poemech.com.tr:3001/api/mail/emergencyButton");
-                    final body = json
-                        .encode({"id": "ABY00005", "mail": "info@onarfa.com"});
+                  var url = Uri.parse(
+                      "https://poemech.com.tr:3001/api/mail/emergencyButton");
+                  final body = json
+                      .encode({"id": "ABY00005", "mail": "info@onarfa.com"});
 
-                    // ignore: prefer_typing_uninitialized_variables
-                    var res;
-                    try {
-                      res = await http.post(url,
-                          headers: {"Content-Type": "application/json"},
-                          body: body);
-                      // ignore: unused_catch_clause
-                    } on Exception catch (e) {
-                      //print(e.toString());
-                      connection = false;
+                  // ignore: prefer_typing_uninitialized_variables
+                  var res;
+                  try {
+                    res = await http.post(url,
+                        headers: {"Content-Type": "application/json"},
+                        body: body);
+                    // ignore: unused_catch_clause
+                  } on Exception catch (e) {
+                    //print(e.toString());
+                    connection = false;
+                  }
+                  if (connection) {
+                    final Map<String, dynamic> data = json.decode(res.body);
 
-                      return success;
-                    }
-                    if (connection) {
-                      final Map<String, dynamic> data = json.decode(res.body);
-
-                      if (data['done'] == 'false') {
-                        return success;
-                      } else if (data['done'] == 'true') {
-                        success = true;
-
-                        return success;
-                      } else {
-                        return success;
-                      }
-                    }
-
-                    /*
-    else {
-      null;
-      //print(res.body.done);
-    }
-    */
+                    if (data['done'] == 'false') {
+                    } else if (data['done'] == 'true') {
+                    } else {}
                   }
 
                   // malruk kodu
