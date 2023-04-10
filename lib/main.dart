@@ -277,11 +277,12 @@ class StartProcessPage extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(
-              height: 30,
+              height: 10,
             ),
             Center(
               child: SizedBox(
-                height: screenSize.height * 0.4,
+                height: screenSize.height * 0.3,
+                width: screenSize.height * 0.3,
                 child: Image(
                   image: AssetImage(application),
                 ),
