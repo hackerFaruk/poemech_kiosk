@@ -990,30 +990,51 @@ class _CardScreen extends State<CardScreen> {
       backgroundColor: Colors.white,
       body: Column(
         children: [
-          Container(
-            height: screenSize.height * 0.05,
+          //unfocusbale column
+
+          InkWell(
+            onTap: () {
+              FocusScope.of(context).previousFocus();
+            },
+            splashColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            child: Column(children: [
+              Container(
+                height: screenSize.height * 0.05,
+              ),
+              const Image(image: AssetImage('images/abyssos.jpg')),
+              Container(
+                height: screenSize.height * 0.1,
+              ),
+              Text(
+                "LÜTFEN KARTI OKUTUNUZ!",
+                style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    color: Colors.blue[800],
+                    fontSize: screenSize.width * 0.05),
+              ),
+              Text(
+                "PLEASE READ KEYCARD!",
+                style: TextStyle(
+                    fontWeight: FontWeight.w700,
+                    color: Colors.blue[800],
+                    fontSize: screenSize.width * 0.04),
+              ),
+              Container(
+                height: screenSize.height * 0.02,
+              ),
+            ]),
           ),
-          const Image(image: AssetImage('images/abyssos.jpg')),
-          Container(
-            height: screenSize.height * 0.1,
+          // unfocusable cloumn end
+          TextField(
+            autofocus: true,
+            onSubmitted: (value) {
+              //value is entered text after Enter
+              print(value);
+              //you can also call any function here or make setState() to assign value to other variable
+            },
           ),
-          Text(
-            "LÜTFEN KARTI OKUTUNUZ!",
-            style: TextStyle(
-                fontWeight: FontWeight.w700,
-                color: Colors.blue[800],
-                fontSize: screenSize.width * 0.05),
-          ),
-          Text(
-            "PLEASE READ KEYCARD!",
-            style: TextStyle(
-                fontWeight: FontWeight.w700,
-                color: Colors.blue[800],
-                fontSize: screenSize.width * 0.04),
-          ),
-          Container(
-            height: screenSize.height * 0.2,
-          ),
+          /*
           IconButton(
               onPressed: () {
                 Navigator.push(
@@ -1022,6 +1043,7 @@ class _CardScreen extends State<CardScreen> {
                 );
               },
               icon: const Icon(Icons.skip_next))
+              */
         ],
       ),
     );
