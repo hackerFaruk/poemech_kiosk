@@ -1,3 +1,5 @@
+// ignore: file_names
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'main.dart' as mainpage;
 
@@ -63,6 +65,11 @@ class _CardScreen extends State<CardScreen> {
                   MaterialPageRoute(
                       builder: (context) => const mainpage.MainPage()),
                 );
+              } else {
+                // works only at debug
+                if (kDebugMode) {
+                  print(value);
+                }
               }
               //you can also call any function here or make setState() to assign value to other variable
             },
