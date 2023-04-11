@@ -296,6 +296,8 @@ void selectionMaker(int butNo, int isButNoSelected, String iconName) {
       // özel durumlar için seçiçi açılışlar
       if (butNo == 1) {
         global.setSingleActive(4);
+        global.setSingleActive(5);
+        global.setSingleActive(7);
       }
     } else {
       // tüm seçimleri sfırlar ve renk sıfırlar
