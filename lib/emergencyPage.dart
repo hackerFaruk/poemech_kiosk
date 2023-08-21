@@ -1,6 +1,6 @@
-import 'package:flutter/foundation.dart';
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
-import 'main.dart' as mainpage;
 
 class emergencyPage extends StatefulWidget {
   const emergencyPage({super.key});
@@ -12,10 +12,10 @@ class emergencyPage extends StatefulWidget {
 class _emergencyPageState extends State<emergencyPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.red,
-      body: Column(
-        children: [],
+      body: Center(
+        child: Image(image: AssetImage('images/emg.png')),
       ),
     );
   }

@@ -17,14 +17,20 @@ class emergencyStop extends StatefulWidget {
 class _emergencyStopState extends State<emergencyStop> {
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const emergency.emergencyPage()),
-          );
-        },
-        child: const Text('EmergencyStop'));
+    return SizedBox(
+      height: 130.0,
+      child: ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const emergency.emergencyPage()),
+            );
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Color.fromARGB(0, 0, 0, 0), // Background color
+          ),
+          child: const Image(image: AssetImage('images/emg.png'))),
+    );
   }
 }
