@@ -2,6 +2,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'main.dart' as mainpage;
+import 'emergencyStop.dart' as emergencyStop;
 
 class CardScreen extends StatefulWidget {
   const CardScreen({super.key});
@@ -35,6 +36,7 @@ class _CardScreen extends State<CardScreen> {
               Container(
                 height: screenSize.height * 0.1,
               ),
+              const emergencyStop.emergencyStop(),
               Text(
                 "LÜTFEN KARTI OKUTUNUZ!",
                 style: TextStyle(
