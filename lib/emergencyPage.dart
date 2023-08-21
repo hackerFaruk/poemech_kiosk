@@ -12,6 +12,11 @@ class emergencyPage extends StatefulWidget {
 class _emergencyPageState extends State<emergencyPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      backgroundColor: Colors.red,
+      body: Column(
+        children: [],
+      ),
+    );
   }
 }
