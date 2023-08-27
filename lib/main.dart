@@ -1,6 +1,7 @@
 import 'dart:convert';
 // ignore: unused_import
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
@@ -9,6 +10,7 @@ import 'grayableselection.dart' as grayable;
 import 'processcontrol.dart' as process;
 import 'popupalert.dart' as pop;
 import 'cardscreen.dart' as cardscreen;
+import 'package:flutter_libserialport/flutter_libserialport.dart';
 
 void main() {
   runApp(const MaterialApp(
@@ -17,7 +19,7 @@ void main() {
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
-
+  static SerialPort? port1;
   @override
   State<MainPage> createState() => _MainPageState();
 }
@@ -51,7 +53,7 @@ class _SelectionButtonsState extends State<SelectionButtons> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-
+    findPort();
     return Column(
       children: [
         Container(height: 20),
@@ -138,6 +140,59 @@ class _SelectionButtonsState extends State<SelectionButtons> {
       //print(res.body.done);
     }
     */
+  }
+
+  Uint8List _stringToUint8List(String data) {
+    List<int> codeUnits = data.codeUnits;
+    Uint8List uint8list = Uint8List.fromList(codeUnits);
+    return uint8list;
+  }
+
+  Future<void> writePort(String number) async {
+    try {
+      MainPage.port1?.openReadWrite();
+      MainPage.port1?.write(_stringToUint8List("<3,0,0,0," + number + ">"));
+    } catch (e) {
+      print(e);
+    }
+    //SerialPort serialPort = new SerialPort();
+    //await serialPort.open(mode: mode);
+  }
+
+  Future<void> readPort(int number) async {
+    try {
+      SerialPortReader reader = SerialPortReader(MainPage.port1!);
+      Stream<String> upcomingData = reader.stream.map((data) {
+        return String.fromCharCodes(data);
+      });
+
+      upcomingData.listen((data) {});
+    } catch (e) {
+      print("yazamadım");
+    }
+  }
+  /*
+  
+  
+  */
+
+  Future<void> findPort() async {
+    List<String> available = SerialPort.availablePorts;
+    print(available);
+
+    if (!MainPage.port1!.isOpen) {
+      for (var i = 0; i < available.length; i++) {
+        try {
+          if (SerialPort(available[i]).productId == 22336) {
+            print("vid eşitti ve port " + available[i]);
+            MainPage.port1 = SerialPort(available[i]);
+          }
+        } catch (e) {
+          print(e);
+        }
+      }
+    }
+    // bi şekilde boş yaratmak lazım sanırım
   }
 }
 
