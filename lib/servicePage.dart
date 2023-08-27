@@ -15,9 +15,9 @@ class _servicePageState extends State<servicePage> {
     return Material(
         child: Scaffold(
       appBar: AppBar(
-        title: const Text('Sample Code'),
+        title: const Text('Servis Moduna Girildi'),
       ),
-      body: const Center(child: Text('You have pressed the button times.')),
+      body: const Center(child: Text('Servisleniyorsunuz.')),
     ));
   }
 }
