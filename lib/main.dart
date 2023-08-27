@@ -142,23 +142,6 @@ class _SelectionButtonsState extends State<SelectionButtons> {
     */
   }
 
-  Uint8List _stringToUint8List(String data) {
-    List<int> codeUnits = data.codeUnits;
-    Uint8List uint8list = Uint8List.fromList(codeUnits);
-    return uint8list;
-  }
-
-  Future<void> writePort(String number) async {
-    try {
-      MainPage.port1?.openReadWrite();
-      MainPage.port1?.write(_stringToUint8List("<3,0,0,0," + number + ">"));
-    } catch (e) {
-      print(e);
-    }
-    //SerialPort serialPort = new SerialPort();
-    //await serialPort.open(mode: mode);
-  }
-
   Future<void> readPort(int number) async {
     try {
       SerialPortReader reader = SerialPortReader(MainPage.port1!);
