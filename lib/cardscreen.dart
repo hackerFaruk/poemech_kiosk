@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'main.dart' as mainpage;
 import 'emergencyStop.dart' as emergencyStop;
+import 'servicePage.dart' as servicePage;
 
 class CardScreen extends StatefulWidget {
   const CardScreen({super.key});
@@ -66,6 +67,13 @@ class _CardScreen extends State<CardScreen> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const mainpage.MainPage()),
+                );
+                // service page code  servis sayfası girişi
+              } else if (value == "123456") {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const servicePage.servicePage()),
                 );
               } else {
                 // works only at debug
