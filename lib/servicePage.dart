@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+// ignore: library_prefixes
 import 'serviceButtonsGrid.dart' as serviceButtonsGrid;
 
 class servicePage extends StatefulWidget {
@@ -10,6 +9,7 @@ class servicePage extends StatefulWidget {
   State<servicePage> createState() => _servicePageState();
 }
 
+// ignore: camel_case_types
 class _servicePageState extends State<servicePage> {
   @override
   Widget build(BuildContext context) {
@@ -18,7 +18,7 @@ class _servicePageState extends State<servicePage> {
       appBar: AppBar(
         title: const Text('Servis Moduna Girildi'),
       ),
-      body: serviceButtonsGrid.ButtonGrid(),
+      body: const serviceButtonsGrid.ButtonGrid(),
     ));
   }
 }
