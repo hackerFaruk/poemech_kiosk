@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'serviceButtonsGrid.dart' as serviceButtonsGrid;
 
 class servicePage extends StatefulWidget {
   const servicePage({super.key});
@@ -17,7 +18,7 @@ class _servicePageState extends State<servicePage> {
       appBar: AppBar(
         title: const Text('Servis Moduna Girildi'),
       ),
-      body: const Center(child: Text('Servisleniyorsunuz.')),
+      body: serviceButtonsGrid.ButtonGrid(),
     ));
   }
 }
