@@ -220,6 +220,8 @@ class _ProcessPageState extends State<ProcessPage> {
 
 // change trigger to trigger re render of child
     bool trigger = true;
+    // seçimden önce false sonra doğru yapcam gerekirse
+    globals.isEmergencyButton = false;
 
     return SizedBox(
         width: screenSize.width,
@@ -404,12 +406,16 @@ class ConditionalControlRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (application == "images/wheel.png") {
+      globals.isEmergencyButton = true;
       return const WheelChairRow();
     } else if (application == "images/shower.png") {
+      globals.isEmergencyButton = false;
       return const WheelChairRow();
     } else if (application == 'images/custom.png') {
+      globals.isEmergencyButton = false;
       return const CustomDogWash();
     } else if (application.contains('dog')) {
+      globals.isEmergencyButton = true;
       return const DirtSelection();
     } else {
       return Column(children: [

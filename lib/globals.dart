@@ -4,6 +4,8 @@ String lang = '';
 
 String selected = '';
 
+bool isEmergencyButton = false;
+
 String firstButton = "";
 
 /// required for grayablenine widget

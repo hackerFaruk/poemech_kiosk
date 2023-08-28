@@ -1,5 +1,7 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
+import 'main.dart' as mainFile;
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -53,13 +55,16 @@ class _StopWatchState extends State<StopWatch> {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size.width;
 
+    if (kDebugMode) {
+      print(globals.isEmergencyButton);
+    }
     return Material(
       child: Center(
         child: Column(
           children: [
             Text(
               explanation,
-              style: const TextStyle(fontSize: 40),
+              style: const TextStyle(fontSize: 80),
             ),
             const SizedBox(height: 10),
             Center(
