@@ -53,7 +53,6 @@ class _SelectionButtonsState extends State<SelectionButtons> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    findPort();
     return Column(
       children: [
         Container(height: 20),
