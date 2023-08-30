@@ -5,6 +5,8 @@ import 'main.dart' as mainFile;
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'emergencyStop.dart' as emergencyStop;
+
 // ignore: unused_import
 import 'dart:io';
 
@@ -123,7 +125,11 @@ class _StopWatchState extends State<StopWatch> {
                         ? 'images/ok.png'
                         : 'images/cancel.png')),
               ),
-            )
+            ),
+            SizedBox(
+                child: globals.isEmergencyButton == true
+                    ? const emergencyStop.emergencyStop()
+                    : SizedBox())
           ],
         ),
       ),
