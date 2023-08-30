@@ -538,6 +538,8 @@ class _WheelChairRowState extends State<WheelChairRow> {
                   },
                   child: GreyoutButtons(
                       icon: "images/coldwater.png", grayout: but1)),
+
+              /*
               InkWell(
                   onTap: () {
                     warmthselected = 'warmwater';
@@ -547,8 +549,10 @@ class _WheelChairRowState extends State<WheelChairRow> {
                       but3 = 1;
                     });
                   },
+                  
                   child: GreyoutButtons(
                       icon: "images/warmwater.png", grayout: but2)),
+                      */
               InkWell(
                   onTap: () {
                     warmthselected = 'hotwater';
