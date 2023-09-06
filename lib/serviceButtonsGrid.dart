@@ -38,12 +38,17 @@ class _ButtonGridState extends State<ButtonGrid> {
 
   Future<void> writePort(String number) async {
     try {
-      CardScreen.port1?.openReadWrite();
+      if (CardScreen.port1 != null) {
+        if (!CardScreen.port1!.isOpen) {
+          CardScreen.port1?.openReadWrite();
+        }
+      }
       print(_stringToUint8List("<3,0,0,0," + number + ">"));
       CardScreen.port1?.write(_stringToUint8List("<3,0,0,0," + number + ">"));
     } catch (e) {
-      print(e);
-    } 
+      print("HATA ALDIM BREMIN");
+    }
+    readPort();
     //SerialPort serialPort = new SerialPort();
     //await serialPort.open(mode: mode);
   }
@@ -56,7 +61,7 @@ class _ButtonGridState extends State<ButtonGrid> {
       });
 
       upcomingData.listen((data) {
-        print(data.toString());
+        print("GELEN DATA: " + data.toString());
       });
     } catch (e) {
       print("yazamadım");

@@ -105,7 +105,7 @@ class _CardScreen extends State<CardScreen> {
     List<String> available = SerialPort.availablePorts;
     print(available);
     try {
-      if (!CardScreen.port1!.isOpen) {
+      if (CardScreen.port1 == null) {
         for (var i = 0; i < available.length; i++) {
           try {
             if (SerialPort(available[i]).productId == 22336) {
@@ -119,16 +119,18 @@ class _CardScreen extends State<CardScreen> {
       }
     } catch (e) {
       print(available.length);
-      for (var i = 0; i < available.length; i++) {
-        print("BURALARA YAZ GÜNÜ KAR YAĞMADI" +
-            SerialPort(available[i]).productId.toString());
-        try {
-          if (SerialPort(available[i]).productId == 22336) {
-            print("vid eşitti ve port " + available[i]);
-            CardScreen.port1 = SerialPort(available[i]);
+      if (CardScreen.port1 == null) {
+        for (var i = 0; i < available.length; i++) {
+          print("BURALARA YAZ GÜNÜ KAR YAĞMADI" +
+              SerialPort(available[i]).productId.toString());
+          try {
+            if (SerialPort(available[i]).productId == 22336) {
+              print("vid eşitti ve port " + available[i]);
+              CardScreen.port1 = SerialPort(available[i]);
+            }
+          } catch (e) {
+            print("HATA 1");
           }
-        } catch (e) {
-          print("HATA 1");
         }
       }
     }
