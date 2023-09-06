@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_libserialport/flutter_libserialport.dart';
 import 'package:poemech_kiosk/cardscreen.dart';
 import 'buttonList.dart' as buttonList;
-import 'main.dart';
 
 class ButtonGrid extends StatefulWidget {
   const ButtonGrid({super.key});
@@ -43,8 +42,8 @@ class _ButtonGridState extends State<ButtonGrid> {
           CardScreen.port1?.openReadWrite();
         }
       }
-      print(_stringToUint8List("<3,0,0,0," + number + ">"));
-      CardScreen.port1?.write(_stringToUint8List("<3,0,0,0," + number + ">"));
+      print(_stringToUint8List("<3,0,0,0,$number>"));
+      CardScreen.port1?.write(_stringToUint8List("<3,0,0,0,$number>"));
     } catch (e) {
       print("HATA ALDIM BREMIN");
     }
@@ -61,7 +60,7 @@ class _ButtonGridState extends State<ButtonGrid> {
       });
 
       upcomingData.listen((data) {
-        print("GELEN DATA: " + data.toString());
+        print("GELEN DATA: $data");
       });
     } catch (e) {
       print("yazamadım");

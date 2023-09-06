@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
-import 'main.dart' as mainFile;
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -129,7 +128,7 @@ class _StopWatchState extends State<StopWatch> {
             SizedBox(
                 child: globals.isEmergencyButton == true
                     ? const emergencyStop.emergencyStop()
-                    : SizedBox())
+                    : const SizedBox())
           ],
         ),
       ),

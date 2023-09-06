@@ -1,8 +1,5 @@
 // ignore: file_names
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'emergencyPage.dart';
-import 'main.dart' as mainpage;
 import 'emergencyPage.dart' as emergency;
 
 // write  staefulW for stateful widget and rename
@@ -28,7 +25,7 @@ class _emergencyStopState extends State<emergencyStop> {
             );
           },
           style: ElevatedButton.styleFrom(
-            backgroundColor: Color.fromARGB(0, 0, 0, 0), // Background color
+            backgroundColor: const Color.fromARGB(0, 0, 0, 0), // Background color
           ),
           child: const Image(image: AssetImage('images/emg.png'))),
     );

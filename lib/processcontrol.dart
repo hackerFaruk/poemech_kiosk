@@ -59,9 +59,9 @@ class _EmergencyControlsState extends State<EmergencyControls> {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
+    return const Material(
       child: Column(
-        children: const [
+        children: [
           stop.StopWatch(),
         ],
       ),
