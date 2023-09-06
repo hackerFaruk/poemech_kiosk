@@ -2,7 +2,7 @@ import 'dart:convert';
 
 // ignore: unused_import
 import 'dart:io';
-import 'dart:ui';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
@@ -16,6 +16,11 @@ import 'package:flutter_libserialport/flutter_libserialport.dart';
 void main() {
   runApp(const MaterialApp(
       home: cardscreen.CardScreen(), debugShowCheckedModeBanner: false));
+
+  const ScreenUtilInit(
+    designSize: Size(800, 800), // Replace with your design size
+    // Adjust as needed
+  );
 }
 
 class MainPage extends StatefulWidget {
