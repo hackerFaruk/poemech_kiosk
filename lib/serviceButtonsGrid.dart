@@ -27,7 +27,8 @@ class _ButtonGridState extends State<ButtonGrid> {
             onPressed: () => writePort(buttonList.serialStrings[index]),
             style: ElevatedButton.styleFrom(
                 side: const BorderSide(width: 3.0, color: Colors.indigoAccent)),
-            child: Text(buttonList.buttonNames[index]),
+            child: Text(buttonList.buttonNames[index],
+                style: const TextStyle(fontSize: 18.0)),
           ),
         );
       },
