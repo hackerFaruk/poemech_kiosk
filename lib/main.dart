@@ -16,11 +16,6 @@ import 'package:flutter_libserialport/flutter_libserialport.dart';
 void main() {
   runApp(const MaterialApp(
       home: cardscreen.CardScreen(), debugShowCheckedModeBanner: false));
-
-  const ScreenUtilInit(
-    designSize: Size(800, 800), // Replace with your design size
-    // Adjust as needed
-  );
 }
 
 class MainPage extends StatefulWidget {
@@ -932,65 +927,65 @@ class DogBreeds extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
+              children: const [
                 DogBreedButton(icon: 'images/dogAkita.png'),
                 DogBreedButton(icon: 'images/dogArgentino.png'),
                 DogBreedButton(icon: 'images/dogBoxer.png')
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
+              children: const [
                 DogBreedButton(icon: 'images/dogCane.png'),
                 DogBreedButton(icon: 'images/dogchihua.png'),
                 DogBreedButton(icon: 'images/dogCocker.png')
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
+              children: const [
                 DogBreedButton(icon: 'images/dogDobermann.png'),
                 DogBreedButton(icon: 'images/dogGerman.png'),
                 DogBreedButton(icon: 'images/dogGolden.png')
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
+              children: const [
                 DogBreedButton(icon: 'images/dogMaltese.png'),
                 DogBreedButton(icon: 'images/dogPomer.png'),
                 DogBreedButton(icon: 'images/dogPug.png')
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
+              children: const [
                 DogBreedButton(icon: 'images/dogRottweiler.png'),
                 DogBreedButton(icon: 'images/dogSpaniel.png'),
                 DogBreedButton(icon: 'images/custom.png')
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
           ],

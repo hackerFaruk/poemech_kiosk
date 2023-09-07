@@ -109,6 +109,15 @@ class _CardScreen extends State<CardScreen> {
             if (SerialPort(available[i]).productId == 22336) {
               print("vid eşitti ve port NULLSUZ${available[i]}");
               CardScreen.port1 = SerialPort(available[i]);
+              if (CardScreen.port1 != null) {
+                if (!CardScreen.port1!.isOpen) {
+                  try {
+                    await CardScreen.port1?.openReadWrite();
+                  } catch (e) {
+                    print(e);
+                  }
+                }
+              }
             }
           } catch (e) {
             print(e);
@@ -124,6 +133,15 @@ class _CardScreen extends State<CardScreen> {
             if (SerialPort(available[i]).productId == 22336) {
               print("vid eşitti ve port ${available[i]}");
               CardScreen.port1 = SerialPort(available[i]);
+              if (CardScreen.port1 != null) {
+                if (!CardScreen.port1!.isOpen) {
+                  try {
+                    await CardScreen.port1?.openReadWrite();
+                  } catch (e) {
+                    print(e);
+                  }
+                }
+              }
             }
           } catch (e) {
             print("HATA 1");
