@@ -54,7 +54,6 @@ class _ButtonGridState extends State<ButtonGrid> {
         CardScreen.port1
             ?.write(_stringToUint8List("<3,0,0,0,0" + number + ">"));
       }
-      CardScreen.port1?.write(_stringToUint8List("<3,0,0,0," + number + ">"));
     } catch (e) {
       print(e);
     }
