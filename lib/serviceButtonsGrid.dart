@@ -23,7 +23,7 @@ class _ButtonGridState extends State<ButtonGrid> {
       itemCount: buttonList.buttonNames.length,
       itemBuilder: (context, index) {
         return ElevatedButton(
-          onPressed: () => writePort(buttonList.serialStrings[index]),
+          onPressed: () => readPort(buttonList.serialStrings[index]),
           child: Text(buttonList.buttonNames[index]),
         );
       },
@@ -36,35 +36,49 @@ class _ButtonGridState extends State<ButtonGrid> {
     return uint8list;
   }
 
-  Future<void> writePort(String number) async {
+  Future<void> writePort(number) async {
     try {
       if (CardScreen.port1 != null) {
         if (!CardScreen.port1!.isOpen) {
-          CardScreen.port1?.openReadWrite();
+          try {
+            CardScreen.port1?.openReadWrite();
+            print(SerialPort.lastError);
+          } catch (e) {
+            print(e);
+          }
         }
       }
       print(_stringToUint8List("<3,0,0,0," + number + ">"));
-      CardScreen.port1?.write(_stringToUint8List("<3,0,0,0," + number + ">"));
+      if (int.parse(number) >= 10) {
+        CardScreen.port1?.write(_stringToUint8List("<3,0,0,0," + number + ">"));
+      } else {
+        CardScreen.port1
+            ?.write(_stringToUint8List("<3,0,0,0,0" + number + ">"));
+      }
     } catch (e) {
-      print("HATA ALDIM BREMIN");
+      print(e);
     }
-    readPort();
     //SerialPort serialPort = new SerialPort();
     //await serialPort.open(mode: mode);
   }
 
-  Future<void> readPort() async {
+  Future<void> readPort(number) async {
+    await writePort(number);
     try {
+      CardScreen.port1!.flush(0);
+      CardScreen.port1!.flush(1);
       SerialPortReader reader = SerialPortReader(CardScreen.port1!);
       Stream<String> upcomingData = reader.stream.map((data) {
         return String.fromCharCodes(data);
       });
-
+      reader.port.flush(0);
+      reader.port.flush(1);
       upcomingData.listen((data) {
         print("GELEN DATA: " + data.toString());
       });
     } catch (e) {
       print("yazamadım");
     }
+    CardScreen.port1!.close();
   }
 }
