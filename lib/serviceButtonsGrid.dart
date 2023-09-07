@@ -21,9 +21,14 @@ class _ButtonGridState extends State<ButtonGrid> {
       ),
       itemCount: buttonList.buttonNames.length,
       itemBuilder: (context, index) {
-        return ElevatedButton(
-          onPressed: () => writePort(buttonList.serialStrings[index]),
-          child: Text(buttonList.buttonNames[index]),
+        return Container(
+          margin: const EdgeInsets.all(5.0),
+          child: ElevatedButton(
+            onPressed: () => writePort(buttonList.serialStrings[index]),
+            style: ElevatedButton.styleFrom(
+                side: const BorderSide(width: 3.0, color: Colors.indigoAccent)),
+            child: Text(buttonList.buttonNames[index]),
+          ),
         );
       },
     );
