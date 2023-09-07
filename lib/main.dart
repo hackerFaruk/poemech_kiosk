@@ -1,7 +1,8 @@
 import 'dart:convert';
+
 // ignore: unused_import
 import 'dart:io';
-import 'dart:typed_data';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
@@ -15,6 +16,11 @@ import 'package:flutter_libserialport/flutter_libserialport.dart';
 void main() {
   runApp(const MaterialApp(
       home: cardscreen.CardScreen(), debugShowCheckedModeBanner: false));
+
+  const ScreenUtilInit(
+    designSize: Size(800, 800), // Replace with your design size
+    // Adjust as needed
+  );
 }
 
 class MainPage extends StatefulWidget {
@@ -166,7 +172,7 @@ class _SelectionButtonsState extends State<SelectionButtons> {
       for (var i = 0; i < available.length; i++) {
         try {
           if (SerialPort(available[i]).productId == 22336) {
-            print("vid eşitti ve port " + available[i]);
+            print("vid eşitti ve port ${available[i]}");
             MainPage.port1 = SerialPort(available[i]);
           }
         } catch (e) {
@@ -926,65 +932,65 @@ class DogBreeds extends StatelessWidget {
           color: Colors.white,
         ),
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(
+            SizedBox(
               height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
+              children: [
                 DogBreedButton(icon: 'images/dogAkita.png'),
                 DogBreedButton(icon: 'images/dogArgentino.png'),
                 DogBreedButton(icon: 'images/dogBoxer.png')
               ],
             ),
-            const SizedBox(
+            SizedBox(
               height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
+              children: [
                 DogBreedButton(icon: 'images/dogCane.png'),
                 DogBreedButton(icon: 'images/dogchihua.png'),
                 DogBreedButton(icon: 'images/dogCocker.png')
               ],
             ),
-            const SizedBox(
+            SizedBox(
               height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
+              children: [
                 DogBreedButton(icon: 'images/dogDobermann.png'),
                 DogBreedButton(icon: 'images/dogGerman.png'),
                 DogBreedButton(icon: 'images/dogGolden.png')
               ],
             ),
-            const SizedBox(
+            SizedBox(
               height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
+              children: [
                 DogBreedButton(icon: 'images/dogMaltese.png'),
                 DogBreedButton(icon: 'images/dogPomer.png'),
                 DogBreedButton(icon: 'images/dogPug.png')
               ],
             ),
-            const SizedBox(
+            SizedBox(
               height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
+              children: [
                 DogBreedButton(icon: 'images/dogRottweiler.png'),
                 DogBreedButton(icon: 'images/dogSpaniel.png'),
                 DogBreedButton(icon: 'images/custom.png')
               ],
             ),
-            const SizedBox(
+            SizedBox(
               height: 20,
             ),
           ],

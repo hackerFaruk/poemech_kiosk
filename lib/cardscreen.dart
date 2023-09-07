@@ -2,9 +2,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'main.dart' as mainpage;
-import 'emergencyStop.dart' as emergencyStop;
 import 'servicePage.dart' as servicePage;
-import 'dart:typed_data';
 import 'package:flutter_libserialport/flutter_libserialport.dart';
 
 class CardScreen extends StatefulWidget {
@@ -109,7 +107,7 @@ class _CardScreen extends State<CardScreen> {
         for (var i = 0; i < available.length; i++) {
           try {
             if (SerialPort(available[i]).productId == 22336) {
-              print("vid eşitti ve port NULLSUZ" + available[i]);
+              print("vid eşitti ve port NULLSUZ${available[i]}");
               CardScreen.port1 = SerialPort(available[i]);
               if (CardScreen.port1 != null) {
                 if (!CardScreen.port1!.isOpen) {
@@ -130,11 +128,10 @@ class _CardScreen extends State<CardScreen> {
       print(available.length);
       if (CardScreen.port1 == null) {
         for (var i = 0; i < available.length; i++) {
-          print("BURALARA YAZ GÜNÜ KAR YAĞMADI" +
-              SerialPort(available[i]).productId.toString());
+          print("BURALARA YAZ GÜNÜ KAR YAĞMADI${SerialPort(available[i]).productId}");
           try {
             if (SerialPort(available[i]).productId == 22336) {
-              print("vid eşitti ve port " + available[i]);
+              print("vid eşitti ve port ${available[i]}");
               CardScreen.port1 = SerialPort(available[i]);
               if (CardScreen.port1 != null) {
                 if (!CardScreen.port1!.isOpen) {

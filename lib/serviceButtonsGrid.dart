@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_libserialport/flutter_libserialport.dart';
 import 'package:poemech_kiosk/cardscreen.dart';
 import 'buttonList.dart' as buttonList;
-import 'main.dart';
 
 class ButtonGrid extends StatefulWidget {
   const ButtonGrid({super.key});
@@ -23,7 +22,7 @@ class _ButtonGridState extends State<ButtonGrid> {
       itemCount: buttonList.buttonNames.length,
       itemBuilder: (context, index) {
         return ElevatedButton(
-          onPressed: () => readPort(buttonList.serialStrings[index]),
+          onPressed: () => writePort(buttonList.serialStrings[index]),
           child: Text(buttonList.buttonNames[index]),
         );
       },
@@ -49,12 +48,7 @@ class _ButtonGridState extends State<ButtonGrid> {
         }
       }
       print(_stringToUint8List("<3,0,0,0," + number + ">"));
-      if (int.parse(number) >= 10) {
-        CardScreen.port1?.write(_stringToUint8List("<3,0,0,0," + number + ">"));
-      } else {
-        CardScreen.port1
-            ?.write(_stringToUint8List("<3,0,0,0,0" + number + ">"));
-      }
+      CardScreen.port1?.write(_stringToUint8List("<3,0,0,0," + number + ">"));
     } catch (e) {
       print(e);
     }
@@ -74,7 +68,7 @@ class _ButtonGridState extends State<ButtonGrid> {
       reader.port.flush(0);
       reader.port.flush(1);
       upcomingData.listen((data) {
-        print("GELEN DATA: " + data.toString());
+        print("GELEN DATA: $data");
       });
     } catch (e) {
       print("yazamadım");
