@@ -48,6 +48,12 @@ class _ButtonGridState extends State<ButtonGrid> {
         }
       }
       print(_stringToUint8List("<3,0,0,0," + number + ">"));
+      if (int.parse(number) >= 10) {
+        CardScreen.port1?.write(_stringToUint8List("<3,0,0,0," + number + ">"));
+      } else {
+        CardScreen.port1
+            ?.write(_stringToUint8List("<3,0,0,0,0" + number + ">"));
+      }
       CardScreen.port1?.write(_stringToUint8List("<3,0,0,0," + number + ">"));
     } catch (e) {
       print(e);
