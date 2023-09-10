@@ -15,7 +15,7 @@ class _emergencyPageState extends State<emergencyPage> {
     return const Scaffold(
       backgroundColor: Colors.red,
       body: Center(
-        child: Image(image: AssetImage('images/emg.png')),
+        child: Image(image: AssetImage('images/emg2.png')),
       ),
     );
   }
