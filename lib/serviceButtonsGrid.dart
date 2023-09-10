@@ -1,7 +1,8 @@
 import 'dart:typed_data';
+import 'dart:ffi' as ffi;
 
 import 'package:flutter/material.dart';
-import 'buttonList.dart' as buttonList;
+import 'package:poemech_kiosk/buttonList.dart' as buttonList;
 import 'main.dart';
 
 class ButtonGrid extends StatefulWidget {
