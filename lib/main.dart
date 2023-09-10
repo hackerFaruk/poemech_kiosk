@@ -1,7 +1,8 @@
 import 'dart:convert';
+
 // ignore: unused_import
 import 'dart:io';
-import 'dart:typed_data';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
@@ -53,7 +54,6 @@ class _SelectionButtonsState extends State<SelectionButtons> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    findPort();
     return Column(
       children: [
         Container(height: 20),
@@ -167,7 +167,7 @@ class _SelectionButtonsState extends State<SelectionButtons> {
       for (var i = 0; i < available.length; i++) {
         try {
           if (SerialPort(available[i]).productId == 22336) {
-            print("vid eşitti ve port " + available[i]);
+            print("vid eşitti ve port ${available[i]}");
             MainPage.port1 = SerialPort(available[i]);
           }
         } catch (e) {
@@ -539,6 +539,8 @@ class _WheelChairRowState extends State<WheelChairRow> {
                   },
                   child: GreyoutButtons(
                       icon: "images/coldwater.png", grayout: but1)),
+
+              /*
               InkWell(
                   onTap: () {
                     warmthselected = 'warmwater';
@@ -548,8 +550,10 @@ class _WheelChairRowState extends State<WheelChairRow> {
                       but3 = 1;
                     });
                   },
+                  
                   child: GreyoutButtons(
                       icon: "images/warmwater.png", grayout: but2)),
+                      */
               InkWell(
                   onTap: () {
                     warmthselected = 'hotwater';

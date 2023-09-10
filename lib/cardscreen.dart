@@ -2,12 +2,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'main.dart' as mainpage;
-import 'emergencyStop.dart' as emergencyStop;
 import 'servicePage.dart' as servicePage;
+import 'package:flutter_libserialport/flutter_libserialport.dart';
 
 class CardScreen extends StatefulWidget {
   const CardScreen({super.key});
-
+  static SerialPort? port1;
   @override
   State<CardScreen> createState() => _CardScreen();
 }
@@ -16,7 +16,7 @@ class _CardScreen extends State<CardScreen> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-
+    findPort();
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -37,7 +37,7 @@ class _CardScreen extends State<CardScreen> {
               Container(
                 height: screenSize.height * 0.1,
               ),
-              const emergencyStop.emergencyStop(),
+              //const emergencyStop.emergencyStop(),
               Text(
                 "LÜTFEN KARTI OKUTUNUZ!",
                 style: TextStyle(
@@ -97,5 +97,59 @@ class _CardScreen extends State<CardScreen> {
         ],
       ),
     );
+  }
+
+  Future<void> findPort() async {
+    List<String> available = SerialPort.availablePorts;
+    print(available);
+    try {
+      if (CardScreen.port1 == null) {
+        for (var i = 0; i < available.length; i++) {
+          try {
+            if (SerialPort(available[i]).productId == 22336) {
+              print("vid eşitti ve port NULLSUZ${available[i]}");
+              CardScreen.port1 = SerialPort(available[i]);
+              if (CardScreen.port1 != null) {
+                if (!CardScreen.port1!.isOpen) {
+                  try {
+                    await CardScreen.port1?.openReadWrite();
+                  } catch (e) {
+                    print(e);
+                  }
+                }
+              }
+            }
+          } catch (e) {
+            print(e);
+          }
+        }
+      }
+    } catch (e) {
+      print(available.length);
+      if (CardScreen.port1 == null) {
+        for (var i = 0; i < available.length; i++) {
+          print("BURALARA YAZ GÜNÜ KAR YAĞMADI${SerialPort(available[i]).productId}");
+          try {
+            if (SerialPort(available[i]).productId == 22336) {
+              print("vid eşitti ve port ${available[i]}");
+              CardScreen.port1 = SerialPort(available[i]);
+              if (CardScreen.port1 != null) {
+                if (!CardScreen.port1!.isOpen) {
+                  try {
+                    await CardScreen.port1?.openReadWrite();
+                  } catch (e) {
+                    print(e);
+                  }
+                }
+              }
+            }
+          } catch (e) {
+            print("HATA 1");
+          }
+        }
+      }
+    }
+
+    // bi şekilde boş yaratmak lazım sanırım
   }
 }
