@@ -23,8 +23,8 @@ class ProcessControlPage extends StatelessWidget {
           children: [
             Center(
               child: SizedBox(
-                width: screenSize.width * 0.5,
-                height: screenSize.height * 0.5,
+                width: screenSize.width * 0.4,
+                height: screenSize.height * 0.4,
                 child: Image(
                   image: AssetImage(application),
                 ),
