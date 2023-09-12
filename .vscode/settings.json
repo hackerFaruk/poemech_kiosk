@@ -1,3 +1,7 @@
 {
+<<<<<<< HEAD
+    "cmake.sourceDirectory": "C:/Users/onura/Documents/VSproject/poemech_kiosk/windows/flutter"
+=======
     "cmake.sourceDirectory": "/home/onuralp/projects/poemech_kiosk/linux"
+>>>>>>> 8de9699cd464a6a0b1e284f8ff1f3cb442194bd6
 }

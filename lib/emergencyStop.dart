@@ -27,7 +27,7 @@ class _emergencyStopState extends State<emergencyStop> {
             },
             child: const SizedBox(
                 height: 200.0,
-                child: Image(image: AssetImage('images/emg.png')))),
+                child: Image(image: AssetImage('images/emg2.png')))),
       ),
     );
   }

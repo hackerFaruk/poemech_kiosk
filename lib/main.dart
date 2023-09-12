@@ -2,7 +2,6 @@ import 'dart:convert';
 
 // ignore: unused_import
 import 'dart:io';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
@@ -32,9 +31,9 @@ class _MainPageState extends State<MainPage> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 58, 98, 114),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         appBar: AppBar(
-          backgroundColor: const Color.fromARGB(255, 58, 98, 114),
+          backgroundColor: Colors.blue,
           title: const Text('Language Selection'),
         ),
         body: const Center(child: SelectionButtons()),
