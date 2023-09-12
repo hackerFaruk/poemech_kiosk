@@ -19,7 +19,7 @@ class _ButtonGridState extends State<ButtonGrid> {
   Widget build(BuildContext context) {
     return Scrollbar(
       thumbVisibility: true,
-      thickness: 10,
+      thickness: 20.0,
       controller: controller,
       child: GridView.builder(
         controller: controller,
@@ -29,7 +29,7 @@ class _ButtonGridState extends State<ButtonGrid> {
         itemCount: buttonList.buttonNames.length,
         itemBuilder: (context, index) {
           return Container(
-            margin: const EdgeInsets.all(7.0),
+            margin: const EdgeInsets.all(10.0),
             child: ElevatedButton(
               onPressed: () => writePort(buttonList.serialStrings[index]),
               style: ElevatedButton.styleFrom(
