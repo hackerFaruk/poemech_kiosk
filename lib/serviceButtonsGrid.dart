@@ -16,8 +16,8 @@ class ButtonGrid extends StatefulWidget {
 class _ButtonGridState extends State<ButtonGrid> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: GridView.builder(
+    return ListView(children: [
+      GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3, // Change this value according to your layout
         ),
@@ -36,7 +36,7 @@ class _ButtonGridState extends State<ButtonGrid> {
           );
         },
       ),
-    );
+    ]);
   }
 
   Uint8List _stringToUint8List(String data) {
