@@ -16,23 +16,26 @@ class ButtonGrid extends StatefulWidget {
 class _ButtonGridState extends State<ButtonGrid> {
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3, // Change this value according to your layout
+    return SingleChildScrollView(
+      child: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3, // Change this value according to your layout
+        ),
+        itemCount: buttonList.buttonNames.length,
+        itemBuilder: (context, index) {
+          return Container(
+            margin: const EdgeInsets.all(5.0),
+            child: ElevatedButton(
+              onPressed: () => writePort(buttonList.serialStrings[index]),
+              style: ElevatedButton.styleFrom(
+                  side:
+                      const BorderSide(width: 3.0, color: Colors.indigoAccent)),
+              child: Text(buttonList.buttonNames[index],
+                  style: const TextStyle(fontSize: 20.0)),
+            ),
+          );
+        },
       ),
-      itemCount: buttonList.buttonNames.length,
-      itemBuilder: (context, index) {
-        return Container(
-          margin: const EdgeInsets.all(5.0),
-          child: ElevatedButton(
-            onPressed: () => writePort(buttonList.serialStrings[index]),
-            style: ElevatedButton.styleFrom(
-                side: const BorderSide(width: 3.0, color: Colors.indigoAccent)),
-            child: Text(buttonList.buttonNames[index],
-                style: const TextStyle(fontSize: 20.0)),
-          ),
-        );
-      },
     );
   }
 
