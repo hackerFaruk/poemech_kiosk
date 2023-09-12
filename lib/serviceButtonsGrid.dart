@@ -14,17 +14,22 @@ class ButtonGrid extends StatefulWidget {
 }
 
 class _ButtonGridState extends State<ButtonGrid> {
+  final ScrollController controller = ScrollController();
   @override
   Widget build(BuildContext context) {
-    return ListView(children: [
-      GridView.builder(
+    return Scrollbar(
+      thumbVisibility: true,
+      thickness: 10,
+      controller: controller,
+      child: GridView.builder(
+        controller: controller,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 3, // Change this value according to your layout
         ),
         itemCount: buttonList.buttonNames.length,
         itemBuilder: (context, index) {
           return Container(
-            margin: const EdgeInsets.all(5.0),
+            margin: const EdgeInsets.all(7.0),
             child: ElevatedButton(
               onPressed: () => writePort(buttonList.serialStrings[index]),
               style: ElevatedButton.styleFrom(
@@ -36,7 +41,7 @@ class _ButtonGridState extends State<ButtonGrid> {
           );
         },
       ),
-    ]);
+    );
   }
 
   Uint8List _stringToUint8List(String data) {
