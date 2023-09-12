@@ -17,7 +17,9 @@ class _ButtonGridState extends State<ButtonGrid> {
   final ScrollController controller = ScrollController();
   @override
   Widget build(BuildContext context) {
-    return Scrollbar(
+    return RawScrollbar(
+      thumbColor: Colors.green,
+      radius: const Radius.circular(15.0),
       thumbVisibility: true,
       thickness: 20.0,
       controller: controller,
