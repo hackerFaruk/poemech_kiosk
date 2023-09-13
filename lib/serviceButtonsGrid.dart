@@ -81,14 +81,10 @@ class _ButtonGridState extends State<ButtonGrid> {
   Future<void> readPort(number) async {
     await writePort(number);
     try {
-      CardScreen.port1!.flush(0);
-      CardScreen.port1!.flush(1);
       SerialPortReader reader = SerialPortReader(CardScreen.port1!);
       Stream<String> upcomingData = reader.stream.map((data) {
         return String.fromCharCodes(data);
       });
-      reader.port.flush(0);
-      reader.port.flush(1);
       upcomingData.listen((data) {
         print("GELEN DATA: $data");
       });
