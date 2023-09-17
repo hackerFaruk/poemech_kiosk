@@ -8,6 +8,7 @@ import 'package:flutter_libserialport/flutter_libserialport.dart';
 class CardScreen extends StatefulWidget {
   const CardScreen({super.key});
   static SerialPort? port1;
+  static int number = 0;
   @override
   State<CardScreen> createState() => _CardScreen();
 }
@@ -128,7 +129,8 @@ class _CardScreen extends State<CardScreen> {
       print(available.length);
       if (CardScreen.port1 == null) {
         for (var i = 0; i < available.length; i++) {
-          print("BURALARA YAZ GÜNÜ KAR YAĞMADI${SerialPort(available[i]).productId}");
+          print(
+              "BURALARA YAZ GÜNÜ KAR YAĞMADI${SerialPort(available[i]).productId}");
           try {
             if (SerialPort(available[i]).productId == 22336) {
               print("vid eşitti ve port ${available[i]}");
