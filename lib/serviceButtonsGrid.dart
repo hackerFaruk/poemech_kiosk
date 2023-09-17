@@ -73,15 +73,20 @@ class _ButtonGridState extends State<ButtonGrid> {
       print(_stringToUint8List("<3,0,0,0," + number + ">"));
       if (int.parse(number) >= 10) {
         CardScreen.port1?.write(_stringToUint8List("<3,0,0,0," + number + ">"));
+        ButtonGrid.count = 0;
       } else {
         CardScreen.port1
             ?.write(_stringToUint8List("<3,0,0,0,0" + number + ">"));
+        ButtonGrid.count = 0;
       }
     } catch (e) {
       ButtonGrid.count++;
-      print("HAYIR YAZARKEN GİRİYOR HATAYA");
-      print(e);
-      //3await writePort(number);
+      print(ButtonGrid.count);
+      if (ButtonGrid.count < 4000) {
+        await writePort(number);
+      } else {
+        ButtonGrid.count = 0;
+      }
     }
     //SerialPort serialPort = new SerialPort();
     //await serialPort.open(mode: mode);
