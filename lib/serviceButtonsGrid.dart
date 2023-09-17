@@ -8,7 +8,7 @@ import 'package:poemech_kiosk/buttonList.dart' as buttonList;
 
 class ButtonGrid extends StatefulWidget {
   const ButtonGrid({super.key});
-
+  static int count = 0;
   @override
   State<ButtonGrid> createState() => _ButtonGridState();
 }
@@ -78,9 +78,10 @@ class _ButtonGridState extends State<ButtonGrid> {
             ?.write(_stringToUint8List("<3,0,0,0,0" + number + ">"));
       }
     } catch (e) {
+      ButtonGrid.count++;
       print("HAYIR YAZARKEN GİRİYOR HATAYA");
       print(e);
-      await writePort(number);
+      //3await writePort(number);
     }
     //SerialPort serialPort = new SerialPort();
     //await serialPort.open(mode: mode);
