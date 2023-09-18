@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'main.dart' as mainpage;
 import 'servicePage.dart' as servicePage;
 import 'package:flutter_libserialport/flutter_libserialport.dart';
+import 'package:audioplayers/audioplayers.dart';
+
+import 'dart:async';
 
 class CardScreen extends StatefulWidget {
   const CardScreen({super.key});
@@ -15,6 +18,9 @@ class CardScreen extends StatefulWidget {
 class _CardScreen extends State<CardScreen> {
   @override
   Widget build(BuildContext context) {
+    AudioPlayer player = AudioPlayer();
+    const alarmAudioPath = "assets/service.mp3";
+
     final screenSize = MediaQuery.of(context).size;
     findPort();
     return Scaffold(
@@ -60,7 +66,7 @@ class _CardScreen extends State<CardScreen> {
           // unfocusable cloumn end
           TextField(
             autofocus: true,
-            onSubmitted: (value) {
+            onSubmitted: (value) async {
               //value is entered text after Enter
               if (value == "") {
                 Navigator.push(
@@ -70,6 +76,8 @@ class _CardScreen extends State<CardScreen> {
                 );
                 // service page code  servis sayfası girişi
               } else if (value == "123456") {
+                player.play(AssetSource("service.mp3"));
+
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -128,7 +136,8 @@ class _CardScreen extends State<CardScreen> {
       print(available.length);
       if (CardScreen.port1 == null) {
         for (var i = 0; i < available.length; i++) {
-          print("BURALARA YAZ GÜNÜ KAR YAĞMADI${SerialPort(available[i]).productId}");
+          print(
+              "BURALARA YAZ GÜNÜ KAR YAĞMADI${SerialPort(available[i]).productId}");
           try {
             if (SerialPort(available[i]).productId == 22336) {
               print("vid eşitti ve port ${available[i]}");
