@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_libserialport/flutter_libserialport.dart';
 import 'package:poemech_kiosk/cardscreen.dart';
 import 'package:poemech_kiosk/buttonList.dart' as buttonList;
+import 'package:audioplayers/audioplayers.dart';
 
 class ButtonGrid extends StatefulWidget {
   const ButtonGrid({super.key});
@@ -115,4 +116,6 @@ class _ButtonGridState extends State<ButtonGrid> {
   Future<void> OpenMk() async {
     CardScreen.port1?.openReadWrite();
   }
+
+  void playAudio() {}
 }
