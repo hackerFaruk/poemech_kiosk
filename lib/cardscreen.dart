@@ -11,6 +11,7 @@ import 'dart:async';
 class CardScreen extends StatefulWidget {
   const CardScreen({super.key});
   static SerialPort? port1;
+  static int number = 0;
   @override
   State<CardScreen> createState() => _CardScreen();
 }

@@ -8,7 +8,7 @@ import 'package:poemech_kiosk/buttonList.dart' as buttonList;
 
 class ButtonGrid extends StatefulWidget {
   const ButtonGrid({super.key});
-
+  static int count = 0;
   @override
   State<ButtonGrid> createState() => _ButtonGridState();
 }
@@ -33,7 +33,9 @@ class _ButtonGridState extends State<ButtonGrid> {
           return Container(
             margin: const EdgeInsets.all(10.0),
             child: ElevatedButton(
-              onPressed: () => writePort(buttonList.serialStrings[index]),
+              onPressed: () => readPort(buttonList.serialStrings[index])
+                  .onError((error, stackTrace) =>
+                      readPort(buttonList.serialStrings[index])),
               style: ElevatedButton.styleFrom(
                   side:
                       const BorderSide(width: 3.0, color: Colors.indigoAccent)),
@@ -53,26 +55,38 @@ class _ButtonGridState extends State<ButtonGrid> {
   }
 
   Future<void> writePort(number) async {
+    CardScreen.number += 1;
+    if (CardScreen.number >= 7) {
+      CardScreen.number = 0;
+      await CloseMk();
+    }
     try {
       if (CardScreen.port1 != null) {
         if (!CardScreen.port1!.isOpen) {
           try {
-            CardScreen.port1?.openReadWrite();
-            print(SerialPort.lastError);
+            await OpenMk();
           } catch (e) {
-            print(e);
+            print("PORT AÇARKEN GİRİYOR HATAYA");
           }
         }
       }
       print(_stringToUint8List("<3,0,0,0," + number + ">"));
       if (int.parse(number) >= 10) {
         CardScreen.port1?.write(_stringToUint8List("<3,0,0,0," + number + ">"));
+        ButtonGrid.count = 0;
       } else {
         CardScreen.port1
             ?.write(_stringToUint8List("<3,0,0,0,0" + number + ">"));
+        ButtonGrid.count = 0;
       }
     } catch (e) {
-      print(e);
+      ButtonGrid.count++;
+      print(ButtonGrid.count);
+      if (ButtonGrid.count < 4000) {
+        await writePort(number);
+      } else {
+        ButtonGrid.count = 0;
+      }
     }
     //SerialPort serialPort = new SerialPort();
     //await serialPort.open(mode: mode);
@@ -81,20 +95,24 @@ class _ButtonGridState extends State<ButtonGrid> {
   Future<void> readPort(number) async {
     await writePort(number);
     try {
-      CardScreen.port1!.flush(0);
-      CardScreen.port1!.flush(1);
       SerialPortReader reader = SerialPortReader(CardScreen.port1!);
       Stream<String> upcomingData = reader.stream.map((data) {
         return String.fromCharCodes(data);
       });
-      reader.port.flush(0);
-      reader.port.flush(1);
       upcomingData.listen((data) {
-        print("GELEN DATA: $data");
+        print("GELEN DATA: ");
+        print(data.codeUnits);
       });
     } catch (e) {
       print("yazamadım");
     }
-    CardScreen.port1!.close();
+  }
+
+  Future<void> CloseMk() async {
+    if (CardScreen.port1!.isOpen) CardScreen.port1!.close();
+  }
+
+  Future<void> OpenMk() async {
+    CardScreen.port1?.openReadWrite();
   }
 }
