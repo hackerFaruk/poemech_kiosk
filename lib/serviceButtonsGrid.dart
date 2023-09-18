@@ -34,9 +34,7 @@ class _ButtonGridState extends State<ButtonGrid> {
           return Container(
             margin: const EdgeInsets.all(10.0),
             child: ElevatedButton(
-              onPressed: () => readPort(buttonList.serialStrings[index])
-                  .onError((error, stackTrace) =>
-                      readPort(buttonList.serialStrings[index])),
+              onPressed: () => readPort(buttonList.serialStrings[index]),
               style: ElevatedButton.styleFrom(
                   side:
                       const BorderSide(width: 3.0, color: Colors.indigoAccent)),
@@ -57,10 +55,11 @@ class _ButtonGridState extends State<ButtonGrid> {
 
   Future<void> writePort(number) async {
     CardScreen.number += 1;
+    /*
     if (CardScreen.number >= 7) {
       CardScreen.number = 0;
       await CloseMk();
-    }
+    }*/
     try {
       if (CardScreen.port1 != null) {
         if (!CardScreen.port1!.isOpen) {
@@ -74,48 +73,56 @@ class _ButtonGridState extends State<ButtonGrid> {
       print(_stringToUint8List("<3,0,0,0," + number + ">"));
       if (int.parse(number) >= 10) {
         CardScreen.port1?.write(_stringToUint8List("<3,0,0,0," + number + ">"));
-        ButtonGrid.count = 0;
       } else {
         CardScreen.port1
             ?.write(_stringToUint8List("<3,0,0,0,0" + number + ">"));
-        ButtonGrid.count = 0;
       }
     } catch (e) {
-      ButtonGrid.count++;
-      print(ButtonGrid.count);
+      print(e);
+      /*
       if (ButtonGrid.count < 3000) {
         await writePort(number);
       } else {
+        CardScreen.number = 7;
         ButtonGrid.count = 0;
-      }
+      }*/
     }
     //SerialPort serialPort = new SerialPort();
     //await serialPort.open(mode: mode);
   }
 
   Future<void> readPort(number) async {
+    ButtonGrid.count = 0;
     await writePort(number);
-    try {
-      SerialPortReader reader = SerialPortReader(CardScreen.port1!);
-      Stream<String> upcomingData = reader.stream.map((data) {
-        return String.fromCharCodes(data);
-      });
-      upcomingData.listen((data) {
-        print("GELEN DATA: ");
-        print(data.codeUnits);
-      });
-    } catch (e) {
-      print("yazamadım");
+    if (int.parse(number) != 42 && int.parse(number) != 43) CloseMk();
+    if (int.parse(number) == 42 || int.parse(number) == 43) {
+      try {
+        SerialPortReader reader = SerialPortReader(CardScreen.port1!);
+        Stream<String> upcomingData = reader.stream.map((data) {
+          return String.fromCharCodes(data);
+        });
+        upcomingData.listen((data) {
+          ButtonGrid.count++;
+          print(ButtonGrid.count);
+          print("GELEN DATA: ");
+          print(data.codeUnits);
+          if (ButtonGrid.count >= 7) {
+            ButtonGrid.count = 0;
+            CloseMk();
+          }
+        });
+      } catch (e) {
+        print("yazamadım");
+      }
     }
   }
 
   Future<void> CloseMk() async {
+    print("close denedim");
     if (CardScreen.port1!.isOpen) CardScreen.port1!.close();
   }
 
   Future<void> OpenMk() async {
     CardScreen.port1?.openReadWrite();
   }
-
-  void playAudio() {}
 }
