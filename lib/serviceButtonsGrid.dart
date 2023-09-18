@@ -83,7 +83,7 @@ class _ButtonGridState extends State<ButtonGrid> {
     } catch (e) {
       ButtonGrid.count++;
       print(ButtonGrid.count);
-      if (ButtonGrid.count < 4000) {
+      if (ButtonGrid.count < 3000) {
         await writePort(number);
       } else {
         ButtonGrid.count = 0;

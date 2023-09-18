@@ -20,7 +20,7 @@ class _CardScreen extends State<CardScreen> {
   @override
   Widget build(BuildContext context) {
     AudioPlayer player = AudioPlayer();
-    const alarmAudioPath = "assets/service.mp3";
+    //const alarmAudioPath = "assets/service.mp3";
 
     final screenSize = MediaQuery.of(context).size;
     findPort();
