@@ -86,7 +86,7 @@ class _StopWatchState extends State<StopWatch> {
                 isTimerActive = !isTimerActive;
                 if (!isTimerActive) {
                   // malruk kodu
-
+                  /*
                   bool connection = true;
 
                   var url = Uri.parse(
@@ -112,7 +112,7 @@ class _StopWatchState extends State<StopWatch> {
                     } else if (data['done'] == 'true') {
                     } else {}
                   }
-
+*/
                   // malruk kodu
                 }
               },

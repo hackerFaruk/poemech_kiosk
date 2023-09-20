@@ -34,7 +34,8 @@ class _ButtonGridState extends State<ButtonGrid> {
           return Container(
             margin: const EdgeInsets.all(10.0),
             child: ElevatedButton(
-              onPressed: () => readPort(buttonList.serialStrings[index]),
+              onPressed: () =>
+                  readPort(3, 0, 0, 0, buttonList.serialStrings[index]),
               style: ElevatedButton.styleFrom(
                   side:
                       const BorderSide(width: 3.0, color: Colors.indigoAccent)),
@@ -53,7 +54,7 @@ class _ButtonGridState extends State<ButtonGrid> {
     return uint8list;
   }
 
-  Future<void> writePort(number) async {
+  Future<void> writePort(dus, krem, number1, number2, number3) async {
     CardScreen.number += 1;
     /*
     if (CardScreen.number >= 7) {
@@ -70,12 +71,47 @@ class _ButtonGridState extends State<ButtonGrid> {
           }
         }
       }
-      print(_stringToUint8List("<3,0,0,0," + number + ">"));
-      if (int.parse(number) >= 10) {
-        CardScreen.port1?.write(_stringToUint8List("<3,0,0,0," + number + ">"));
+      print(_stringToUint8List("<" +
+          dus +
+          "," +
+          krem +
+          "," +
+          number1 +
+          "," +
+          number1 +
+          "," +
+          number2 +
+          "," +
+          number3 +
+          ">"));
+      if (int.parse(number3) >= 10) {
+        CardScreen.port1?.write(_stringToUint8List("<" +
+            dus +
+            "," +
+            krem +
+            "," +
+            number1 +
+            "," +
+            number1 +
+            "," +
+            number2 +
+            "," +
+            number3 +
+            ">"));
       } else {
-        CardScreen.port1
-            ?.write(_stringToUint8List("<3,0,0,0,0" + number + ">"));
+        CardScreen.port1?.write(_stringToUint8List("<" +
+            dus +
+            "," +
+            krem +
+            "," +
+            number1 +
+            "," +
+            number1 +
+            "," +
+            number2 +
+            ",0" +
+            number3 +
+            ">"));
       }
     } catch (e) {
       print(e);
@@ -91,15 +127,15 @@ class _ButtonGridState extends State<ButtonGrid> {
     //await serialPort.open(mode: mode);
   }
 
-  Future<void> readPort(number) async {
+  Future<void> readPort(dus, krem, number1, number2, number3) async {
     ButtonGrid.count = 0;
-    await writePort(number);
-    if (int.parse(number) != 42 &&
-        int.parse(number) != 43 &&
-        int.parse(number) != 40) CloseMk();
-    if (int.parse(number) == 42 ||
-        int.parse(number) == 43 ||
-        int.parse(number) == 40) {
+    await writePort(dus, krem, number1, number2, number3);
+    if (int.parse(number3) != 42 &&
+        int.parse(number3) != 43 &&
+        int.parse(number3) != 40) CloseMk();
+    if (int.parse(number3) == 42 ||
+        int.parse(number3) == 43 ||
+        int.parse(number3) == 40) {
       try {
         SerialPortReader reader = SerialPortReader(CardScreen.port1!);
         Stream<String> upcomingData = reader.stream.map((data) {
@@ -109,7 +145,7 @@ class _ButtonGridState extends State<ButtonGrid> {
           ButtonGrid.count++;
           print(ButtonGrid.count);
           print("GELEN DATA: ");
-          if (number != 40)
+          if (number3 != 40)
             print(data.codeUnits);
           else
             print(data);

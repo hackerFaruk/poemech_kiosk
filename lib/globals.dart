@@ -8,6 +8,8 @@ bool isEmergencyButton = false;
 
 String firstButton = "";
 
+String deviceId = "";
+
 /// required for grayablenine widget
 List<int> butArr = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 List<int> isButtonSelected = [0, 0, 0, 0, 0, 0, 0, 0, 0];

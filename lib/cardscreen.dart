@@ -12,6 +12,11 @@ class CardScreen extends StatefulWidget {
   const CardScreen({super.key});
   static SerialPort? port1;
   static int number = 0;
+  static int dus = 0;
+  static int sure = 0;
+  static int sicaksoguk = 0;
+  static int basinc = 0;
+  static int krem = 0;
   @override
   State<CardScreen> createState() => _CardScreen();
 }

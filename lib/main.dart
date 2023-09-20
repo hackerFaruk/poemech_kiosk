@@ -100,82 +100,6 @@ class _SelectionButtonsState extends State<SelectionButtons> {
       ],
     );
   }
-
-  Future<bool> loginbutton() async {
-    bool connection = true;
-    bool success = false;
-
-    var url = Uri.parse("https://poemech.com.tr:3001/api/mail/emergencyButton");
-    final body = json.encode({"id": "ABY00005", "mail": "info@onarfa.com"});
-
-    // ignore: prefer_typing_uninitialized_variables
-    var res;
-    try {
-      res = await http.post(url,
-          headers: {"Content-Type": "application/json"}, body: body);
-      // ignore: unused_catch_clause
-    } on Exception catch (e) {
-      //print(e.toString());
-      connection = false;
-
-      return success;
-    }
-    if (connection) {
-      final Map<String, dynamic> data = json.decode(res.body);
-
-      if (data['done'] == 'false') {
-        return success;
-      } else if (data['done'] == 'true') {
-        success = true;
-
-        return success;
-      } else {
-        return success;
-      }
-    }
-    /*
-    else {
-      null;
-      //print(res.body.done);
-    }
-    */
-  }
-
-  Future<void> readPort(int number) async {
-    try {
-      SerialPortReader reader = SerialPortReader(MainPage.port1!);
-      Stream<String> upcomingData = reader.stream.map((data) {
-        return String.fromCharCodes(data);
-      });
-
-      upcomingData.listen((data) {});
-    } catch (e) {
-      print("yazamadım");
-    }
-  }
-  /*
-  
-  
-  */
-
-  Future<void> findPort() async {
-    List<String> available = SerialPort.availablePorts;
-    print(available);
-
-    if (!MainPage.port1!.isOpen) {
-      for (var i = 0; i < available.length; i++) {
-        try {
-          if (SerialPort(available[i]).productId == 22336) {
-            print("vid eşitti ve port ${available[i]}");
-            MainPage.port1 = SerialPort(available[i]);
-          }
-        } catch (e) {
-          print(e);
-        }
-      }
-    }
-    // bi şekilde boş yaratmak lazım sanırım
-  }
 }
 
 // Langugage selection page ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^lang select^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -380,6 +304,22 @@ class OKCancelRow extends StatelessWidget {
                     globals.selected = '${globals.selected}  ';
                   }
                   globals.timeSet();
+                  if (globals.isBut1Selected == 1)
+                    cardscreen.CardScreen.krem = 1;
+                  else if (globals.isBut2Selected == 1)
+                    cardscreen.CardScreen.krem = 2;
+                  else if (globals.isBut3Selected == 1)
+                    cardscreen.CardScreen.krem = 3;
+                  else if (globals.isBut5Selected == 1)
+                    cardscreen.CardScreen.krem = 3;
+                  else
+                    cardscreen.CardScreen.krem = 0;
+                  if (globals.isBut4Selected == 1 ||
+                      globals.isBut8Selected == 1)
+                    cardscreen.CardScreen.dus = 1;
+                  else
+                    cardscreen.CardScreen.dus = 0;
+
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => destination!));
                 }
