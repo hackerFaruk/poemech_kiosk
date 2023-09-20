@@ -94,8 +94,12 @@ class _ButtonGridState extends State<ButtonGrid> {
   Future<void> readPort(number) async {
     ButtonGrid.count = 0;
     await writePort(number);
-    if (int.parse(number) != 42 && int.parse(number) != 43) CloseMk();
-    if (int.parse(number) == 42 || int.parse(number) == 43) {
+    if (int.parse(number) != 42 &&
+        int.parse(number) != 43 &&
+        int.parse(number) != 40) CloseMk();
+    if (int.parse(number) == 42 ||
+        int.parse(number) == 43 ||
+        int.parse(number) == 40) {
       try {
         SerialPortReader reader = SerialPortReader(CardScreen.port1!);
         Stream<String> upcomingData = reader.stream.map((data) {
@@ -105,7 +109,10 @@ class _ButtonGridState extends State<ButtonGrid> {
           ButtonGrid.count++;
           print(ButtonGrid.count);
           print("GELEN DATA: ");
-          print(data.codeUnits);
+          if (number != 40)
+            print(data.codeUnits);
+          else
+            print(data);
           if (ButtonGrid.count >= 7) {
             ButtonGrid.count = 0;
             CloseMk();
