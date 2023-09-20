@@ -78,8 +78,6 @@ class _ButtonGridState extends State<ButtonGrid> {
           "," +
           number1 +
           "," +
-          number1 +
-          "," +
           number2 +
           "," +
           number3 +
@@ -92,8 +90,6 @@ class _ButtonGridState extends State<ButtonGrid> {
             "," +
             number1 +
             "," +
-            number1 +
-            "," +
             number2 +
             "," +
             number3 +
@@ -103,8 +99,6 @@ class _ButtonGridState extends State<ButtonGrid> {
             dus +
             "," +
             krem +
-            "," +
-            number1 +
             "," +
             number1 +
             "," +

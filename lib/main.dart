@@ -2,8 +2,10 @@ import 'dart:convert';
 
 // ignore: unused_import
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:poemech_kiosk/serviceButtonsGrid.dart';
 import 'globals.dart' as globals;
 import 'package:http/http.dart' as http;
 import 'grayableselection.dart' as grayable;
@@ -302,24 +304,33 @@ class OKCancelRow extends StatelessWidget {
                   for (var i = 0; i < selections.length; i++) {
                     globals.selected = globals.selected + selections[i];
                     globals.selected = '${globals.selected}  ';
+                    if (i == 2) cardscreen.CardScreen.sure = selections[i];
+                    if (i == 0)
+                      cardscreen.CardScreen.sicaksoguk = selections[i];
+                    if (i == 1) cardscreen.CardScreen.basinc = selections[i];
                   }
                   globals.timeSet();
                   if (globals.isBut1Selected == 1)
-                    cardscreen.CardScreen.krem = 1;
+                    cardscreen.CardScreen.krem = "1";
                   else if (globals.isBut2Selected == 1)
-                    cardscreen.CardScreen.krem = 2;
+                    cardscreen.CardScreen.krem = "2";
                   else if (globals.isBut3Selected == 1)
-                    cardscreen.CardScreen.krem = 3;
+                    cardscreen.CardScreen.krem = "3";
                   else if (globals.isBut5Selected == 1)
-                    cardscreen.CardScreen.krem = 3;
+                    cardscreen.CardScreen.krem = "3";
                   else
-                    cardscreen.CardScreen.krem = 0;
+                    cardscreen.CardScreen.krem = "0";
                   if (globals.isBut4Selected == 1 ||
                       globals.isBut8Selected == 1)
-                    cardscreen.CardScreen.dus = 1;
+                    cardscreen.CardScreen.dus = "1";
                   else
-                    cardscreen.CardScreen.dus = 0;
-
+                    cardscreen.CardScreen.dus = "0";
+                  readPort(
+                      cardscreen.CardScreen.dus,
+                      cardscreen.CardScreen.krem,
+                      cardscreen.CardScreen.sure,
+                      cardscreen.CardScreen.sicaksoguk,
+                      cardscreen.CardScreen.basinc);
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => destination!));
                 }
@@ -330,6 +341,119 @@ class OKCancelRow extends StatelessWidget {
             )
           ],
         ));
+  }
+
+  Uint8List _stringToUint8List(String data) {
+    List<int> codeUnits = data.codeUnits;
+    Uint8List uint8list = Uint8List.fromList(codeUnits);
+    return uint8list;
+  }
+
+  Future<void> writePort(dus, krem, number1, number2, number3) async {
+    try {
+      if (cardscreen.CardScreen.port1 != null) {
+        if (!cardscreen.CardScreen.port1!.isOpen) {
+          try {
+            await OpenMk();
+          } catch (e) {
+            print("PORT AÇARKEN GİRİYOR HATAYA");
+          }
+        }
+      }
+      print(_stringToUint8List("<" +
+          dus +
+          "," +
+          krem +
+          "," +
+          number1 +
+          "," +
+          number2 +
+          "," +
+          number3 +
+          ">"));
+      if (int.parse(number3) >= 10) {
+        cardscreen.CardScreen.port1?.write(_stringToUint8List("<" +
+            dus +
+            "," +
+            krem +
+            "," +
+            number1 +
+            "," +
+            number2 +
+            "," +
+            number3 +
+            ">"));
+      } else {
+        cardscreen.CardScreen.port1?.write(_stringToUint8List("<" +
+            dus +
+            "," +
+            krem +
+            "," +
+            number1 +
+            "," +
+            number2 +
+            ",0" +
+            number3 +
+            ">"));
+      }
+    } catch (e) {
+      print(e);
+      /*
+      if (ButtonGrid.count < 3000) {
+        await writePort(number);
+      } else {
+        CardScreen.number = 7;
+        ButtonGrid.count = 0;
+      }*/
+    }
+    //SerialPort serialPort = new SerialPort();
+    //await serialPort.open(mode: mode);
+  }
+
+  Future<void> readPort(dus, krem, number1, number2, number3) async {
+    ButtonGrid.count = 0;
+    await writePort(dus, krem, number1, number2, number3);
+    if (int.parse(number3) != 42 &&
+        int.parse(number3) != 43 &&
+        int.parse(number3) != 40) CloseMk();
+    if (int.parse(number3) == 42 ||
+        int.parse(number3) == 43 ||
+        int.parse(number3) == 40) {
+      try {
+        SerialPortReader reader =
+            SerialPortReader(cardscreen.CardScreen.port1!);
+        Stream<String> upcomingData = reader.stream.map((data) {
+          return String.fromCharCodes(data);
+        });
+        upcomingData.listen((data) {
+          ButtonGrid.count++;
+          print(ButtonGrid.count);
+          print("GELEN DATA: ");
+          if (number3 != 40)
+            print(data.codeUnits);
+          else
+            print(data);
+          if (ButtonGrid.count >= 7) {
+            ButtonGrid.count = 0;
+            CloseMk();
+          }
+        });
+      } catch (e) {
+        print("yazamadım");
+      }
+    }
+  }
+
+  Future<void> CloseMk() async {
+    print("close denedim");
+    if (cardscreen.CardScreen.port1 != null) {
+      if (cardscreen.CardScreen.port1!.isOpen)
+        cardscreen.CardScreen.port1!.close();
+    }
+  }
+
+  Future<void> OpenMk() async {
+    cardscreen.CardScreen.port1?.openReadWrite();
   }
 }
 // ok cancel row ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -393,9 +517,9 @@ class _WheelChairRowState extends State<WheelChairRow> {
   int but7 = 0;
   int but8 = 0;
   int but9 = 0;
-  String lengthselected = '';
-  String warmthselected = '';
-  String pressselected = '';
+  String lengthselected = "0";
+  String warmthselected = "0";
+  String pressselected = "0";
 
   @override
   Widget build(BuildContext context) {
@@ -403,9 +527,9 @@ class _WheelChairRowState extends State<WheelChairRow> {
       hoverColor: Colors.transparent,
       onTap: () {
         globals.selected = '';
-        lengthselected = '';
-        warmthselected = '';
-        pressselected = '';
+        lengthselected = "0";
+        warmthselected = "0";
+        pressselected = "0";
         setState(() {
           but1 = 0;
           but2 = 0;
@@ -428,7 +552,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
             children: [
               InkWell(
                   onTap: () {
-                    lengthselected = 'showerQuick';
+                    lengthselected = "1";
                     setState(() {
                       but7 = 0;
                       but8 = 1;
@@ -439,7 +563,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
                       icon: "images/showerQuick.png", grayout: but7)),
               InkWell(
                   onTap: () {
-                    lengthselected = 'showerNormal';
+                    lengthselected = "2";
                     setState(() {
                       but7 = 1;
                       but8 = 0;
@@ -451,7 +575,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
               InkWell(
                   onTap: () {
                     setState(() {
-                      lengthselected = 'showerLong';
+                      lengthselected = "3";
                       but7 = 1;
                       but8 = 1;
                       but9 = 0;
@@ -469,7 +593,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
             children: [
               InkWell(
                   onTap: () {
-                    warmthselected = 'coldwater';
+                    warmthselected = "1";
                     setState(() {
                       but1 = 0;
                       but2 = 1;
@@ -495,7 +619,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
                       */
               InkWell(
                   onTap: () {
-                    warmthselected = 'hotwater';
+                    warmthselected = "2";
                     setState(() {
                       but1 = 1;
                       but2 = 1;
@@ -514,7 +638,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
             children: [
               InkWell(
                   onTap: () {
-                    pressselected = 'pressLo';
+                    pressselected = "1";
                     setState(() {
                       but4 = 0;
                       but5 = 1;
@@ -525,7 +649,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
                       icon: "images/pressLo.png", grayout: but4)),
               InkWell(
                   onTap: () {
-                    pressselected = 'pressReg';
+                    pressselected = "2";
                     setState(() {
                       but4 = 1;
                       but5 = 0;
