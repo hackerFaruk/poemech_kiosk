@@ -22,6 +22,11 @@ class ProcessControlPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+    print("444444444444444444444444444444");
+    print("selected is ");
+    print(globals.selected);
+    print("444444444444444444444444444444");
+
     WaitPort(context);
     return Material(
       child: Scaffold(
@@ -146,7 +151,7 @@ class ProcessControlPage extends StatelessWidget {
       });
     } catch (e) {
       readPort(context);
-      print("yazamadım");
+      // print("yazamadım");
     }
   }
 
@@ -185,24 +190,25 @@ class _EmergencyControlsState extends State<EmergencyControls> {
       ? 'Click for Emergency Stop'
       : 'Acil Durdurma İçin Tıklayınız';
 
+  var WaitQuery = globals.lang == 'en'
+      ? 'Services are currently being provided in the cabin. Please wait. '
+      : 'Kabinde işlem devam etmektedir. Lütfen bekleyiniz.';
+
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Column(
-        children: const [
-          stop.StopWatch(),
-        ],
+      child: Center(
+        child: isStopwatch() ? const stop.StopWatch() : Text(WaitQuery),
       ),
     );
   }
 }
 
-//stop watch sadece köpek ve aşlı mod için o yüzden şöle bişi yapcaz
-// seçim aşlı a da köep modu ise true yoksa false
+//stop watch sadece köpek ve engelli mod için o yüzden şöle bişi yapcaz
+// engelli vwe köppekte stopwatch var ve emergenc button var
+// emergenc varsa stopta olsun dedik
 bool isStopwatch() {
-  if (globals.selected.contains("wheel")) {
-    return true;
-  } else if (globals.selected.contains("dog")) {
+  if (globals.isEmergencyButton) {
     return true;
   } else {
     return false;
