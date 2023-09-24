@@ -16,8 +16,10 @@ import 'package:flutter_libserialport/flutter_libserialport.dart';
 import 'package:audioplayers/audioplayers.dart';
 
 void main() {
-  runApp(
-      const MaterialApp(home: CardScreen(), debugShowCheckedModeBanner: false));
+  runApp(MaterialApp(
+      theme: ThemeData(fontFamily: 'Gilroy'),
+      home: const CardScreen(),
+      debugShowCheckedModeBanner: false));
 }
 
 class MainPage extends StatefulWidget {
