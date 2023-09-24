@@ -16,6 +16,14 @@ class _appIconState extends State<appIcon> {
     if (isDualIcon()) {
       print("dualMode");
       String secondIcon = detectSecondIcon();
+
+      //mutantAppIcon için globaller
+      globals.isDualIconMemo = "true";
+      globals.secondIcon = iconToPath(secondIcon);
+      globals.firstIconMemo = 'images/shower.png';
+      //mutantAppIcon için globaller
+      //
+
       return SizedBox(
         height: screenSize.height * 0.22,
         width: screenSize.height * 0.5,
@@ -36,6 +44,13 @@ class _appIconState extends State<appIcon> {
     } else {
       print("singleMode");
       String singleIcon = globals.selected;
+
+      //mutantAppIcon için globaller
+      globals.isDualIconMemo = "true";
+      globals.firstIconMemo = iconToPath(singleIcon);
+      //mutantAppIcon için globaller
+      //
+
       return Center(
           child: SizedBox(
         height: screenSize.height * 0.3,

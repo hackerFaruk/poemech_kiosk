@@ -3,11 +3,15 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:poemech_kiosk/main.dart';
+import 'package:poemech_kiosk/mutantAppIcon.dart';
 import 'cardscreen.dart';
 import 'globals.dart' as globals;
 import 'stopwatch.dart' as stop;
 import 'package:flutter_libserialport/flutter_libserialport.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'mutantAppIcon.dart' as mutant;
+
+import 'appIcon.dart' as appIcon;
 
 class ProcessControlPage extends StatelessWidget {
   final String application;
@@ -28,6 +32,12 @@ class ProcessControlPage extends StatelessWidget {
     print("444444444444444444444444444444");
 
     WaitPort(context);
+
+    double gapsize = 20.0;
+    if (isStopwatch()) {
+      gapsize = 0.0;
+    }
+
     return Material(
       child: Scaffold(
         appBar: AppBar(
@@ -39,15 +49,29 @@ class ProcessControlPage extends StatelessWidget {
         ),
         body: Column(
           children: [
+            SizedBox(
+              height: gapsize,
+            ),
             Center(
               child: SizedBox(
-                width: screenSize.width * 0.4,
-                height: screenSize.height * 0.4,
-                child: Image(
-                  image: AssetImage(application),
-                ),
-              ),
+                  //width: screenSize.width * 0.4,
+                  //height: screenSize.height * 0.4,
+
+                  child: isStopwatch()
+                      ? SizedBox(
+                          width: screenSize.width * 0.3,
+                          height: screenSize.height * 0.3,
+                          child: Image(
+                            image: AssetImage(application),
+                          ),
+                        )
+                      : const mutant.mutantAppIcon()
+
+                  //Image(image: AssetImage(application),),
+
+                  ),
             ),
+            SizedBox(height: gapsize),
             const EmergencyControls(),
           ],
         ),
@@ -198,7 +222,13 @@ class _EmergencyControlsState extends State<EmergencyControls> {
   Widget build(BuildContext context) {
     return Material(
       child: Center(
-        child: isStopwatch() ? const stop.StopWatch() : Text(WaitQuery),
+        child: isStopwatch()
+            ? const stop.StopWatch()
+            : Text(
+                WaitQuery,
+                style: const TextStyle(fontSize: 36),
+                textAlign: TextAlign.center,
+              ),
       ),
     );
   }

@@ -12,6 +12,12 @@ String secondButton = "";
 
 String deviceId = "";
 
+//bu üçlü proces ekranındaki hatayı süzelten mutant app icon için
+// direkt pathlar
+String isDualIconMemo = "";
+String firstIconMemo = "";
+String secondIcon = "";
+
 /// required for grayablenine widget
 List<int> butArr = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 List<int> isButtonSelected = [0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -65,6 +71,10 @@ void revertAll() {
   selected = "";
   firstButton = "";
   secondButton = "";
+
+  isDualIconMemo = "";
+  secondIcon = "";
+  firstIconMemo = "";
 }
 
 /// This function sets all the buttons to gray.
