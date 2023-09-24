@@ -12,6 +12,11 @@ class CardScreen extends StatefulWidget {
   const CardScreen({super.key});
   static SerialPort? port1;
   static int number = 0;
+  static String dus = "0";
+  static String sure = "0";
+  static String sicaksoguk = "0";
+  static String basinc = "0";
+  static String krem = "0";
   @override
   State<CardScreen> createState() => _CardScreen();
 }
@@ -20,7 +25,7 @@ class _CardScreen extends State<CardScreen> {
   @override
   Widget build(BuildContext context) {
     AudioPlayer player = AudioPlayer();
-    const alarmAudioPath = "assets/service.mp3";
+    //const alarmAudioPath = "assets/service.mp3";
 
     final screenSize = MediaQuery.of(context).size;
     findPort();
