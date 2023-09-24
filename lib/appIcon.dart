@@ -46,3 +46,8 @@ String detectSecondIcon() {
   //artık sonu döndürmek mümkün
   return input;
 }
+
+
+// grayable selecctiionda clear string var 
+// bu stringtedki images/ şeyinisiler ve icn smi kalır
+// biz bunu geri eklicez ve icon pathı bulunacak sihirr 
