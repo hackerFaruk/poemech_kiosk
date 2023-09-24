@@ -196,3 +196,6 @@ class _EmergencyControlsState extends State<EmergencyControls> {
     );
   }
 }
+
+
+//stop watch sadece köpek ve aşlı mod için o yüzden şöle bişi yapcaz 
