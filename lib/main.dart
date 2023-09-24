@@ -256,12 +256,13 @@ class StartProcessPage extends StatelessWidget {
             ),
             Center(
               child: SizedBox(
-                height: screenSize.height * 0.3,
-                width: screenSize.height * 0.3,
-                child: Image(
-                  image: AssetImage(application),
-                ),
-              ),
+                  height: screenSize.height * 0.3,
+                  width: screenSize.height * 0.3,
+                  child: appIcon.appIcon()
+
+                  //Image(image: AssetImage(application),),
+
+                  ),
             ),
             ConditionalControlRow(
               application: application,
