@@ -150,6 +150,7 @@ class _ProcessPageState extends State<ProcessPage> {
     bool trigger = true;
     // seçimden önce false sonra doğru yapcam gerekirse
     globals.isEmergencyButton = false;
+    globals.revertAll();
 
     return SizedBox(
         width: screenSize.width,
