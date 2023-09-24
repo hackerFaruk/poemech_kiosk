@@ -5,6 +5,7 @@ import 'main.dart' as mainpage;
 import 'servicePage.dart' as servicePage;
 import 'package:flutter_libserialport/flutter_libserialport.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'globals.dart' as globals;
 
 import 'dart:async';
 
@@ -29,6 +30,7 @@ class _CardScreen extends State<CardScreen> {
 
     final screenSize = MediaQuery.of(context).size;
     findPort();
+    globals.revertAll();
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
