@@ -35,3 +35,14 @@ bool isDualIcon() {
     return false;
   }
 }
+
+String detectSecondIcon() {
+  String input = globals.selected;
+
+  // shower girdisini siler çünkü ikikli seçimde shower hep olacak
+  input = input.replaceAll("shower", "");
+  // iki noktalarıda sileriz
+  input = input.replaceAll(":", "");
+  //artık sonu döndürmek mümkün
+  return input;
+}
