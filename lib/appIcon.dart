@@ -52,5 +52,5 @@ String detectSecondIcon() {
 // biz bunu geri eklicez ve icon pathı bulunacak sihirr
 
 String iconToPath(String icon) {
-  return "images/$icon";
+  return "images/$icon.png";
 }

@@ -238,6 +238,7 @@ class StartProcessPage extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
 
     print(appIcon.isDualIcon());
+    print(application); // to see path
 
     return Scaffold(
       appBar: AppBar(
