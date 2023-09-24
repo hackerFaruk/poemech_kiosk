@@ -400,3 +400,11 @@ int rememberFirst() {
     return 0;
   }
 }
+
+bool isShower() {
+  if (selected.contains("shower")) {
+    return true;
+  } else {
+    return false;
+  }
+}

@@ -463,7 +463,7 @@ class OKCancelRow extends StatelessWidget {
 // ok cancel row ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 // Conditional Row ____________________________________________________
-
+// duş seçenekleri
 /// If the application is the dog button, return the FurSlection widget. If the application is the
 /// wheelchair button, return the WheelChairRow widget. Otherwise, return the OKCancelRow widget
 class ConditionalControlRow extends StatelessWidget {
@@ -475,7 +475,8 @@ class ConditionalControlRow extends StatelessWidget {
     if (application == "images/wheel.png") {
       globals.isEmergencyButton = true;
       return const WheelChairRow();
-    } else if (application == "images/shower.png") {
+    } else if (globals.isShower()) {
+      //isShower fonksiyonu duş olup olmayacağını söyler
       globals.isEmergencyButton = false;
       return const WheelChairRow();
     } else if (application == 'images/custom.png') {

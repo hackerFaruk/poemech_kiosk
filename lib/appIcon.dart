@@ -14,6 +14,7 @@ class _appIconState extends State<appIcon> {
     final screenSize = MediaQuery.of(context).size;
 
     if (isDualIcon()) {
+      print("dualMode");
       String secondIcon = detectSecondIcon();
       return SizedBox(
         height: screenSize.height * 0.22,
@@ -33,6 +34,7 @@ class _appIconState extends State<appIcon> {
         ),
       );
     } else {
+      print("singleMode");
       String singleIcon = globals.selected;
       return Center(
           child: SizedBox(
