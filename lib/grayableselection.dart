@@ -311,6 +311,7 @@ void selectionMaker(int butNo, int isButNoSelected, String iconName) {
     }
   } else {
     // eğer button gri ise
+    //den
     null;
   }
 }
