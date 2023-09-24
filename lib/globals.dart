@@ -8,6 +8,8 @@ bool isEmergencyButton = false;
 
 String firstButton = "";
 
+String secondButton = "";
+
 String deviceId = "";
 
 /// required for grayablenine widget
@@ -62,6 +64,7 @@ void revertAll() {
 
   selected = "";
   firstButton = "";
+  secondButton = "";
 }
 
 /// This function sets all the buttons to gray.
@@ -70,6 +73,19 @@ void grayAll() {
   but2 = 1;
   but3 = 1;
   but4 = 1;
+  but5 = 1;
+  but6 = 1;
+  but7 = 1;
+  but8 = 1;
+  but9 = 1;
+}
+
+// i dont know why but it works, it allows you to make a selection after showwe
+
+void grayRest(int butno) {
+  but1 = 1;
+  but2 = 1;
+  but3 = 1;
   but5 = 1;
   but6 = 1;
   but7 = 1;
@@ -358,4 +374,29 @@ bool isSelectionEmpty(List<dynamic> a) {
     }
   }
   return false;
+}
+
+// incase of secon selection remembers the first one
+int rememberFirst() {
+  if (but1 == 0) {
+    return 1;
+  } else if (but2 == 0) {
+    return 2;
+  } else if (but3 == 0) {
+    return 3;
+  } else if (but4 == 0) {
+    return 4;
+  } else if (but5 == 0) {
+    return 5;
+  } else if (but6 == 0) {
+    return 6;
+  } else if (but7 == 0) {
+    return 7;
+  } else if (but8 == 0) {
+    return 8;
+  } else if (but9 == 0) {
+    return 9;
+  } else {
+    return 0;
+  }
 }

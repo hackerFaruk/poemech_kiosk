@@ -270,17 +270,30 @@ class _GrayableRowState extends State<GrayableRow> {
 void selectionMaker(int butNo, int isButNoSelected, String iconName) {
   if (global.isButActive(butNo) == 0) {
     if (global.isSecondSelection()) {
-      // eğer önceden seçili buton varsa
-      if (isButNoSelected == 0) {
+      // eğer önceden seçili buton varsa bu ikinci seçim seçimi ayarla
+      global.secondButton = iconName;
+
+      // duş ikinci seçimse durdur sistemi
+      if (butNo == 4) {
+        global.setSingleActive(butNo);
+        global.setSelected(butNo);
+        global.selected = "${global.selected + clearString(iconName)}:";
+      } else if (isButNoSelected == 0) {
         // seçileni işaratler
+
+        global.grayRest(butNo);
+
         global.setSingleActive(butNo);
         global.setSelected(butNo);
         global.selected = "${global.selected + clearString(iconName)}:";
       } else {
         // eğer buton önceden seçiliyse
         // tüm seçimleri sfırlar ve renk sıfırlar
+
         global.revertAll();
       }
+
+      print(global.selected);
     }
     // eğer button gri değilse
     else if (isButNoSelected == 0) {
@@ -304,6 +317,11 @@ void selectionMaker(int butNo, int isButNoSelected, String iconName) {
         global.setSingleActive(4);
       } else if (butNo == 6) {
         global.setSingleActive(4);
+      } else if (butNo == 4) {
+        global.setSingleActive(1);
+        global.setSingleActive(2);
+        global.setSingleActive(5);
+        global.setSingleActive(6);
       }
     } else {
       // tüm seçimleri sfırlar ve renk sıfırlar
