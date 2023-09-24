@@ -16,12 +16,15 @@ class _appIconState extends State<appIcon> {
     if (isDualIcon()) {
       String secondIcon = detectSecondIcon();
       return SizedBox(
-        height: screenSize.height * 0.3,
-        width: screenSize.height * 0.6,
+        height: screenSize.height * 0.22,
+        width: screenSize.height * 0.5,
         child: Row(
           children: [
             const Image(
               image: AssetImage('images/shower.png'),
+            ),
+            SizedBox(
+              width: screenSize.height * 0.06,
             ),
             Image(
               image: AssetImage(iconToPath(secondIcon)),
@@ -78,7 +81,9 @@ String detectSecondIcon() {
 // bu stringtedki images/ şeyinisiler ve icn smi kalır
 // biz bunu geri eklicez ve icon pathı bulunacak sihirr
 String iconToPath(String icon) {
-  return "images/$icon.png";
+  String path = icon.replaceAll(":", "");
+  path = path.replaceAll(" ", "");
+  return "images/$path.png";
 }
 
 
