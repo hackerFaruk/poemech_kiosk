@@ -15,8 +15,10 @@ import 'cardscreen.dart' as cardscreen;
 import 'package:flutter_libserialport/flutter_libserialport.dart';
 
 void main() {
-  runApp(const MaterialApp(
-      home: cardscreen.CardScreen(), debugShowCheckedModeBanner: false));
+  runApp(MaterialApp(
+      theme: ThemeData(fontFamily: 'Gilroy'),
+      home: const cardscreen.CardScreen(),
+      debugShowCheckedModeBanner: false));
 }
 
 class MainPage extends StatefulWidget {
