@@ -47,7 +47,10 @@ String detectSecondIcon() {
   return input;
 }
 
-
-// grayable selecctiionda clear string var 
+// grayable selecctiionda clear string var
 // bu stringtedki images/ şeyinisiler ve icn smi kalır
-// biz bunu geri eklicez ve icon pathı bulunacak sihirr 
+// biz bunu geri eklicez ve icon pathı bulunacak sihirr
+
+String iconToPath(String icon) {
+  return "images/$icon";
+}
