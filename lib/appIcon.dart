@@ -14,7 +14,21 @@ class _appIconState extends State<appIcon> {
     final screenSize = MediaQuery.of(context).size;
 
     if (isDualIcon()) {
-      return Container();
+      String secondIcon = detectSecondIcon();
+      return SizedBox(
+        height: screenSize.height * 0.3,
+        width: screenSize.height * 0.6,
+        child: Row(
+          children: [
+            const Image(
+              image: AssetImage('images/shower.png'),
+            ),
+            Image(
+              image: AssetImage(iconToPath(secondIcon)),
+            ),
+          ],
+        ),
+      );
     } else {
       String singleIcon = globals.selected;
       return Center(
