@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'globals.dart' as globals;
 
@@ -12,7 +11,21 @@ class appIcon extends StatefulWidget {
 class _appIconState extends State<appIcon> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final screenSize = MediaQuery.of(context).size;
+
+    if (isDualIcon()) {
+      return Container();
+    } else {
+      String singleIcon = globals.selected;
+      return Center(
+          child: SizedBox(
+        height: screenSize.height * 0.3,
+        width: screenSize.height * 0.3,
+        child: Image(
+          image: AssetImage(iconToPath(singleIcon)),
+        ),
+      ));
+    }
   }
 }
 
@@ -53,3 +66,11 @@ String detectSecondIcon() {
 String iconToPath(String icon) {
   return "images/$icon.png";
 }
+
+
+
+
+// selected height is 
+
+//              height: screenSize.height * 0.3,
+//                width: screenSize.height * 0.3,
