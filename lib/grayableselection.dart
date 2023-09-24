@@ -294,10 +294,16 @@ void selectionMaker(int butNo, int isButNoSelected, String iconName) {
       global.setSingleActive(butNo);
       global.firstButton = iconName;
       // özel durumlar için seçiçi açılışlar
+      // aktif kalan butonlar için
+      // şaun sadece kermeler + duş mevcut
       if (butNo == 1) {
         global.setSingleActive(4);
-        global.setSingleActive(5);
-        global.setSingleActive(7);
+      } else if (butNo == 2) {
+        global.setSingleActive(4);
+      } else if (butNo == 5) {
+        global.setSingleActive(4);
+      } else if (butNo == 6) {
+        global.setSingleActive(4);
       }
     } else {
       // tüm seçimleri sfırlar ve renk sıfırlar
