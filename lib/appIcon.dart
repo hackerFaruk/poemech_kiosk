@@ -83,6 +83,10 @@ String detectSecondIcon() {
 // bu stringtedki images/ şeyinisiler ve icn smi kalır
 // biz bunu geri eklicez ve icon pathı bulunacak sihirr
 String iconToPath(String icon) {
+  if (icon.contains("images/")) {
+    //  if it alread contains path
+    return icon;
+  }
   String path = icon.replaceAll(":", "");
   path = path.replaceAll(" ", "");
   return "images/$path.png";

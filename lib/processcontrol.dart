@@ -197,5 +197,14 @@ class _EmergencyControlsState extends State<EmergencyControls> {
   }
 }
 
-
-//stop watch sadece köpek ve aşlı mod için o yüzden şöle bişi yapcaz 
+//stop watch sadece köpek ve aşlı mod için o yüzden şöle bişi yapcaz
+// seçim aşlı a da köep modu ise true yoksa false
+bool isStopwatch() {
+  if (globals.selected.contains("wheel")) {
+    return true;
+  } else if (globals.selected.contains("dog")) {
+    return true;
+  } else {
+    return false;
+  }
+}
