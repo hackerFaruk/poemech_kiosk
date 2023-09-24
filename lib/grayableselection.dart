@@ -277,7 +277,12 @@ void selectionMaker(int butNo, int isButNoSelected, String iconName) {
       if (butNo == 4) {
         global.setSingleActive(butNo);
         global.setSelected(butNo);
-        global.selected = "${global.selected + clearString(iconName)}:";
+
+        if (global.selected.contains(iconName)) {
+          print("it is already selected");
+        } else {
+          global.selected = "${global.selected + clearString(iconName)}:";
+        }
       } else if (isButNoSelected == 0) {
         // seçileni işaratler
 
@@ -285,7 +290,12 @@ void selectionMaker(int butNo, int isButNoSelected, String iconName) {
 
         global.setSingleActive(butNo);
         global.setSelected(butNo);
-        global.selected = "${global.selected + clearString(iconName)}:";
+
+        if (global.selected.contains("shower")) {
+          print("it is already selected");
+        } else {
+          global.selected = "${global.selected + clearString(iconName)}:";
+        }
       } else {
         // eğer buton önceden seçiliyse
         // tüm seçimleri sfırlar ve renk sıfırlar
@@ -293,6 +303,11 @@ void selectionMaker(int butNo, int isButNoSelected, String iconName) {
         global.revertAll();
       }
 
+      if (global.selected.contains("shower")) {
+        print("it is already selected");
+      } else {
+        global.selected = "${global.selected + clearString(iconName)}:";
+      }
       print(global.selected);
     }
     // eğer button gri değilse
@@ -301,7 +316,11 @@ void selectionMaker(int butNo, int isButNoSelected, String iconName) {
       // seçili işsaretler
       global.setSelected(butNo);
       // selected a işlemi ekler
-      global.selected = "${clearString(iconName)}:";
+      if (global.selected.contains("shower")) {
+        print("it is already selected");
+      } else {
+        global.selected = "${global.selected + clearString(iconName)}:";
+      }
       // diğerleri graylenir kendinin rengini düzeltir
       global.grayAll();
       global.setSingleActive(butNo);

@@ -14,6 +14,7 @@ import 'popupalert.dart' as pop;
 import 'package:poemech_kiosk/cardscreen.dart';
 import 'package:flutter_libserialport/flutter_libserialport.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'appIcon.dart' as appIcon;
 
 void main() {
   runApp(MaterialApp(
@@ -235,6 +236,9 @@ class StartProcessPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
+
+    print(appIcon.isDualIcon());
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
