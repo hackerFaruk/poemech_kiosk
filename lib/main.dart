@@ -11,12 +11,13 @@ import 'package:http/http.dart' as http;
 import 'grayableselection.dart' as grayable;
 import 'processcontrol.dart' as process;
 import 'popupalert.dart' as pop;
-import 'cardscreen.dart' as cardscreen;
+import 'package:poemech_kiosk/cardscreen.dart';
 import 'package:flutter_libserialport/flutter_libserialport.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 void main() {
-  runApp(const MaterialApp(
-      home: cardscreen.CardScreen(), debugShowCheckedModeBanner: false));
+  runApp(
+      const MaterialApp(home: CardScreen(), debugShowCheckedModeBanner: false));
 }
 
 class MainPage extends StatefulWidget {
@@ -304,33 +305,30 @@ class OKCancelRow extends StatelessWidget {
                   for (var i = 0; i < selections.length; i++) {
                     globals.selected = globals.selected + selections[i];
                     globals.selected = '${globals.selected}  ';
-                    if (i == 2) cardscreen.CardScreen.sure = selections[i];
-                    if (i == 0)
-                      cardscreen.CardScreen.sicaksoguk = selections[i];
-                    if (i == 1) cardscreen.CardScreen.basinc = selections[i];
+                    if (i == 2) CardScreen.sure = selections[i];
+                    if (i == 0) CardScreen.sicaksoguk = selections[i];
+                    if (i == 1) CardScreen.basinc = selections[i];
                   }
                   globals.timeSet();
                   if (globals.isBut1Selected == 1)
-                    cardscreen.CardScreen.krem = "1";
+                    CardScreen.krem = "1";
                   else if (globals.isBut2Selected == 1)
-                    cardscreen.CardScreen.krem = "2";
+                    CardScreen.krem = "2";
                   else if (globals.isBut3Selected == 1)
-                    cardscreen.CardScreen.krem = "3";
+                    CardScreen.krem = "3";
                   else if (globals.isBut5Selected == 1)
-                    cardscreen.CardScreen.krem = "3";
+                    CardScreen.krem = "3";
                   else
-                    cardscreen.CardScreen.krem = "0";
+                    CardScreen.krem = "0";
                   if (globals.isBut4Selected == 1 ||
                       globals.isBut8Selected == 1)
-                    cardscreen.CardScreen.dus = "1";
+                    CardScreen.dus = "1";
                   else
-                    cardscreen.CardScreen.dus = "0";
-                  readPort(
-                      cardscreen.CardScreen.dus,
-                      cardscreen.CardScreen.krem,
-                      cardscreen.CardScreen.sure,
-                      cardscreen.CardScreen.sicaksoguk,
-                      cardscreen.CardScreen.basinc);
+                    CardScreen.dus = "0";
+                  AudioPlayer player = AudioPlayer();
+                  player.play(AssetSource("Doorsignal.mp3"));
+                  readPort(CardScreen.dus, CardScreen.krem, CardScreen.sure,
+                      CardScreen.sicaksoguk, CardScreen.basinc);
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => destination!));
                 }
@@ -351,8 +349,8 @@ class OKCancelRow extends StatelessWidget {
 
   Future<void> writePort(dus, krem, number1, number2, number3) async {
     try {
-      if (cardscreen.CardScreen.port1 != null) {
-        if (!cardscreen.CardScreen.port1!.isOpen) {
+      if (CardScreen.port1 != null) {
+        if (!CardScreen.port1!.isOpen) {
           try {
             await OpenMk();
           } catch (e) {
@@ -372,7 +370,7 @@ class OKCancelRow extends StatelessWidget {
           number3 +
           ">"));
       if (int.parse(number3) >= 10) {
-        cardscreen.CardScreen.port1?.write(_stringToUint8List("<" +
+        CardScreen.port1?.write(_stringToUint8List("<" +
             dus +
             "," +
             krem +
@@ -384,7 +382,7 @@ class OKCancelRow extends StatelessWidget {
             number3 +
             ">"));
       } else {
-        cardscreen.CardScreen.port1?.write(_stringToUint8List("<" +
+        CardScreen.port1?.write(_stringToUint8List("<" +
             dus +
             "," +
             krem +
@@ -420,8 +418,7 @@ class OKCancelRow extends StatelessWidget {
         int.parse(number3) == 43 ||
         int.parse(number3) == 40) {
       try {
-        SerialPortReader reader =
-            SerialPortReader(cardscreen.CardScreen.port1!);
+        SerialPortReader reader = SerialPortReader(CardScreen.port1!);
         Stream<String> upcomingData = reader.stream.map((data) {
           return String.fromCharCodes(data);
         });
@@ -446,14 +443,13 @@ class OKCancelRow extends StatelessWidget {
 
   Future<void> CloseMk() async {
     print("close denedim");
-    if (cardscreen.CardScreen.port1 != null) {
-      if (cardscreen.CardScreen.port1!.isOpen)
-        cardscreen.CardScreen.port1!.close();
+    if (CardScreen.port1 != null) {
+      if (CardScreen.port1!.isOpen) CardScreen.port1!.close();
     }
   }
 
   Future<void> OpenMk() async {
-    cardscreen.CardScreen.port1?.openReadWrite();
+    CardScreen.port1?.openReadWrite();
   }
 }
 // ok cancel row ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -552,7 +548,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
             children: [
               InkWell(
                   onTap: () {
-                    lengthselected = "1";
+                    lengthselected = "0";
                     setState(() {
                       but7 = 0;
                       but8 = 1;
@@ -563,7 +559,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
                       icon: "images/showerQuick.png", grayout: but7)),
               InkWell(
                   onTap: () {
-                    lengthselected = "2";
+                    lengthselected = "1";
                     setState(() {
                       but7 = 1;
                       but8 = 0;
@@ -575,7 +571,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
               InkWell(
                   onTap: () {
                     setState(() {
-                      lengthselected = "3";
+                      lengthselected = "2";
                       but7 = 1;
                       but8 = 1;
                       but9 = 0;
@@ -593,7 +589,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
             children: [
               InkWell(
                   onTap: () {
-                    warmthselected = "1";
+                    warmthselected = "0";
                     setState(() {
                       but1 = 0;
                       but2 = 1;
@@ -619,7 +615,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
                       */
               InkWell(
                   onTap: () {
-                    warmthselected = "2";
+                    warmthselected = "1";
                     setState(() {
                       but1 = 1;
                       but2 = 1;
@@ -638,7 +634,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
             children: [
               InkWell(
                   onTap: () {
-                    pressselected = "1";
+                    pressselected = "0";
                     setState(() {
                       but4 = 0;
                       but5 = 1;
@@ -649,7 +645,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
                       icon: "images/pressLo.png", grayout: but4)),
               InkWell(
                   onTap: () {
-                    pressselected = "2";
+                    pressselected = "1";
                     setState(() {
                       but4 = 1;
                       but5 = 0;

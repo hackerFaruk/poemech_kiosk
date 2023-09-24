@@ -35,7 +35,7 @@ class _ButtonGridState extends State<ButtonGrid> {
             margin: const EdgeInsets.all(10.0),
             child: ElevatedButton(
               onPressed: () =>
-                  readPort(3, 0, 0, 0, buttonList.serialStrings[index]),
+                  readPort("3", "0", "0", "0", buttonList.serialStrings[index]),
               style: ElevatedButton.styleFrom(
                   side:
                       const BorderSide(width: 3.0, color: Colors.indigoAccent)),
@@ -108,17 +108,8 @@ class _ButtonGridState extends State<ButtonGrid> {
             ">"));
       }
     } catch (e) {
-      print(e);
-      /*
-      if (ButtonGrid.count < 3000) {
-        await writePort(number);
-      } else {
-        CardScreen.number = 7;
-        ButtonGrid.count = 0;
-      }*/
+      print("burada hata");
     }
-    //SerialPort serialPort = new SerialPort();
-    //await serialPort.open(mode: mode);
   }
 
   Future<void> readPort(dus, krem, number1, number2, number3) async {
