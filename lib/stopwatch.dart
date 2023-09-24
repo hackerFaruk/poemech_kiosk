@@ -65,7 +65,7 @@ class _StopWatchState extends State<StopWatch> {
           children: [
             Text(
               explanation,
-              style: const TextStyle(fontSize: 80),
+              style: const TextStyle(fontSize: 32),
             ),
             const SizedBox(height: 10),
             Center(
