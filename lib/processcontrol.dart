@@ -28,7 +28,7 @@ class ProcessControlPage extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
     print(globals.selected);
 
-    WaitPort(context);
+    //WaitPort(context);
 
     double gapsize = 20.0;
     if (isStopwatch()) {
@@ -81,7 +81,7 @@ class ProcessControlPage extends StatelessWidget {
     music.setReleaseMode(ReleaseMode.loop);
     music.play(AssetSource("wait1.wav"));
 
-    Timer(Duration(seconds: 12), () {
+    Timer(Duration(seconds: 10), () {
       if (!impostor) {
         player.stop();
         player.play(AssetSource("1-1K.mp3"));
