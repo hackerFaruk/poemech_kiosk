@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'globals.dart' as global;
 import 'main.dart' as main;
@@ -268,6 +270,11 @@ class _GrayableRowState extends State<GrayableRow> {
 ///   isButNoSelected (int): 0 if the button is not selected, 1 if it is.
 ///   iconName (String): The name of the icon.
 void selectionMaker(int butNo, int isButNoSelected, String iconName) {
+  print(butNo);
+  if (global.isButSelected(butNo) == 1) {
+    print("this but was selected before");
+    global.revertAll();
+  }
   if (global.isButActive(butNo) == 0) {
     if (global.isSecondSelection()) {
       // eğer önceden seçili buton varsa bu ikinci seçim seçimi ayarla
