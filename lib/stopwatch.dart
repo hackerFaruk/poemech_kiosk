@@ -22,7 +22,8 @@ class _StopWatchState extends State<StopWatch> {
   int timeRemains = globals.selectedTime;
   int timeTotal = globals.selectedTime;
   double progressBar = 1.0;
-  bool isTimerActive = true;
+  // timers start still so it is false on defaulşt
+  bool isTimerActive = false;
   bool isFirstLoop = true;
   var explanation = globals.lang == 'en' ? 'Time Remaining' : 'Kalan Süre';
   var secSan = globals.lang == 'en' ? 'Seconds Remainins' : 'Saniye Kaldı';
@@ -71,11 +72,29 @@ class _StopWatchState extends State<StopWatch> {
             Center(
               child: SizedBox(
                 width: screenSize * 0.9,
-                child: LinearProgressIndicator(
-                  minHeight: 20,
-                  color: Colors.green,
-                  value: progressBar,
-                  semanticsLabel: explanation,
+                child: Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                          // shadow gölge drop shadow ayarları
+                          color: Colors.black.withOpacity(0.4),
+                          spreadRadius: 6,
+                          blurRadius: 12,
+                          offset: const Offset(0, 2))
+                    ],
+                    // border çerçeve ayarları
+                    border: Border.all(
+                      color: Colors.cyan,
+                      width: 3.0,
+                    ),
+                    borderRadius: BorderRadius.circular(4.0),
+                  ),
+                  child: LinearProgressIndicator(
+                    minHeight: 20,
+                    color: Colors.green,
+                    value: progressBar,
+                    semanticsLabel: explanation,
+                  ),
                 ),
               ),
             ),

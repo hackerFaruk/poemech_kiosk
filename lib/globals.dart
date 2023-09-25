@@ -18,6 +18,14 @@ String isDualIconMemo = "";
 String firstIconMemo = "";
 String secondIcon = "";
 
+//eğer wheelchairrowda seçim yapılırsa bunları kaydetmek lazım
+String lengthselected = "0";
+String warmthselected = "0";
+String pressselected = "0";
+
+// eğer wheelchair ekranının seçim rowu ise
+bool isWheelChairBeingSelected = false;
+
 /// required for grayablenine widget
 List<int> butArr = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 List<int> isButtonSelected = [0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -75,6 +83,12 @@ void revertAll() {
   isDualIconMemo = "";
   secondIcon = "";
   firstIconMemo = "";
+
+  lengthselected = "0";
+  warmthselected = "0";
+  pressselected = "0";
+
+  isWheelChairBeingSelected = false;
 }
 
 /// This function sets all the buttons to gray.
@@ -413,6 +427,18 @@ int rememberFirst() {
 
 bool isShower() {
   if (selected.contains("shower")) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+bool isThereMissingWheelChairSelection() {
+  if (warmthselected == "0") {
+    return true;
+  } else if (lengthselected == "0") {
+    return true;
+  } else if (pressselected == "0") {
     return true;
   } else {
     return false;

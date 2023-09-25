@@ -302,9 +302,15 @@ class OKCancelRow extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                globals.selected = '';
+                // bu onay tuşu onayda selected sıfırlama
+                //globals.selected = '';
 
-                if (destination == null) {
+                if (globals.isWheelChairBeingSelected &&
+                    globals.isThereMissingWheelChairSelection()) {
+                  print("wheelchair selection is online");
+
+                  pop.Alert(context, 'selection');
+                } else if (destination == null) {
                   null;
                 } else if (globals.isSelectionEmpty(selections)) {
                   pop.Alert(context, 'selection');
@@ -528,13 +534,18 @@ class _WheelChairRowState extends State<WheelChairRow> {
 
   @override
   Widget build(BuildContext context) {
+    String route = globals.selected.contains("wheel")
+        ? 'images/wheel.png'
+        : 'images/shower.png';
+    globals.isWheelChairBeingSelected = true;
     return InkWell(
       hoverColor: Colors.transparent,
       onTap: () {
-        globals.selected = '';
-        lengthselected = "0";
-        warmthselected = "0";
-        pressselected = "0";
+        //globals.selected = '';
+        globals.lengthselected = "0";
+        globals.warmthselected = "0";
+        globals.pressselected = "0";
+        print(globals.selected);
         setState(() {
           but1 = 0;
           but2 = 0;
@@ -557,7 +568,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
             children: [
               InkWell(
                   onTap: () {
-                    lengthselected = "0";
+                    globals.lengthselected = "1";
                     setState(() {
                       but7 = 0;
                       but8 = 1;
@@ -568,7 +579,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
                       icon: "images/showerQuick.png", grayout: but7)),
               InkWell(
                   onTap: () {
-                    lengthselected = "1";
+                    globals.lengthselected = "2";
                     setState(() {
                       but7 = 1;
                       but8 = 0;
@@ -580,7 +591,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
               InkWell(
                   onTap: () {
                     setState(() {
-                      lengthselected = "2";
+                      globals.lengthselected = "3";
                       but7 = 1;
                       but8 = 1;
                       but9 = 0;
@@ -598,7 +609,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
             children: [
               InkWell(
                   onTap: () {
-                    warmthselected = "0";
+                    globals.warmthselected = "1";
                     setState(() {
                       but1 = 0;
                       but2 = 1;
@@ -624,7 +635,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
                       */
               InkWell(
                   onTap: () {
-                    warmthselected = "1";
+                    globals.warmthselected = "2";
                     setState(() {
                       but1 = 1;
                       but2 = 1;
@@ -643,7 +654,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
             children: [
               InkWell(
                   onTap: () {
-                    pressselected = "0";
+                    globals.pressselected = "1";
                     setState(() {
                       but4 = 0;
                       but5 = 1;
@@ -654,7 +665,7 @@ class _WheelChairRowState extends State<WheelChairRow> {
                       icon: "images/pressLo.png", grayout: but4)),
               InkWell(
                   onTap: () {
-                    pressselected = "1";
+                    globals.pressselected = "2";
                     setState(() {
                       but4 = 1;
                       but5 = 0;
@@ -670,8 +681,8 @@ class _WheelChairRowState extends State<WheelChairRow> {
           ),
           OKCancelRow(
             selections: [warmthselected, pressselected, lengthselected],
-            destination: const process.ProcessControlPage(
-              application: 'images/wheel.png',
+            destination: process.ProcessControlPage(
+              application: route,
             ),
           )
         ],
@@ -1091,4 +1102,4 @@ class DogBreedButton extends StatelessWidget {
   }
 }
 
-// main ön canır 
+// main ön canır

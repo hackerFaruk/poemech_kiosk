@@ -231,11 +231,18 @@ class _EmergencyControlsState extends State<EmergencyControls> {
   }
 }
 
+bool isStopWatchEverywhere = true;
+
 //stop watch sadece köpek ve engelli mod için o yüzden şöle bişi yapcaz
 // engelli vwe köppekte stopwatch var ve emergenc button var
 // emergenc varsa stopta olsun dedik
+// şimdi yeni bişi yapcaz habire karar değiştiği için sik sik
+// buraya stopwatch olsun mu diyeceğim, olsun derse aççak hep yok derse koşula bağlı yapcak
+// isStopWatchEverywhere diyerek seccen
 bool isStopwatch() {
-  if (globals.isEmergencyButton) {
+  if (isStopWatchEverywhere) {
+    return true;
+  } else if (globals.isEmergencyButton) {
     return true;
   } else {
     return false;
