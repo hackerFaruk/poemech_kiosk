@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 // ignore: unused_import
@@ -313,10 +314,12 @@ class OKCancelRow extends StatelessWidget {
                   for (var i = 0; i < selections.length; i++) {
                     globals.selected = globals.selected + selections[i];
                     globals.selected = '${globals.selected}  ';
-                    if (i == 2) CardScreen.sure = selections[i];
-                    if (i == 0) CardScreen.sicaksoguk = selections[i];
-                    if (i == 1) CardScreen.basinc = selections[i];
                   }
+                  /*
+                  CardScreen.sure = ;
+                  CardScreen.sicaksoguk = ;
+                  CardScreen.basinc = ;
+                  */
                   globals.timeSet();
                   if (globals.isBut1Selected == 1)
                     CardScreen.krem = "1";
@@ -334,7 +337,12 @@ class OKCancelRow extends StatelessWidget {
                   else
                     CardScreen.dus = "0";
                   AudioPlayer player = AudioPlayer();
-                  player.play(AssetSource("Doorsignal.mp3"));
+                  player.play(AssetSource("13-1K.mp3"));
+                  Timer(Duration(seconds: 4), () {
+                    player.stop();
+                    player.play(AssetSource("Doorsignal.mp3"));
+                  });
+                  print("ÇALDIIIIM KAÇ GÜN OLDU");
                   readPort(CardScreen.dus, CardScreen.krem, CardScreen.sure,
                       CardScreen.sicaksoguk, CardScreen.basinc);
                   Navigator.push(context,
