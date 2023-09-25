@@ -271,6 +271,10 @@ class _GrayableRowState extends State<GrayableRow> {
 ///   iconName (String): The name of the icon.
 void selectionMaker(int butNo, int isButNoSelected, String iconName) {
   print(butNo);
+
+  // globals.isbutselected basılan tuşun nceden basılıp basılmadığını gösteriyor
+  // eğer birisis deli maymun gibi tuşa abanaırsa tuşu resetlicek
+  //böylece seçim  oynamalarında resetlencek 10 kere aynı tuşu atama olmaacak
   if (global.isButSelected(butNo) == 1) {
     print("this but was selected before");
     global.revertAll();
