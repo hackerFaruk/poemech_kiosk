@@ -12,6 +12,8 @@ String secondButton = "";
 
 String deviceId = "";
 
+bool renderTrigger = true;
+
 //bu üçlü proces ekranındaki hatayı süzelten mutant app icon için
 // direkt pathlar
 String isDualIconMemo = "";
@@ -102,6 +104,19 @@ void grayAll() {
   but7 = 1;
   but8 = 1;
   but9 = 1;
+}
+
+// ungrays all
+void unGrayAll() {
+  but1 = 0;
+  but2 = 0;
+  but3 = 0;
+  but4 = 0;
+  but5 = 0;
+  but6 = 0;
+  but7 = 0;
+  but8 = 0;
+  but9 = 0;
 }
 
 // i dont know why but it works, it allows you to make a selection after showwe

@@ -22,6 +22,7 @@ class _StopWatchState extends State<StopWatch> {
   int timeRemains = globals.selectedTime;
   int timeTotal = globals.selectedTime;
   double progressBar = 1.0;
+  double butHeight = 100;
   // timers start still so it is false on defaulşt
   bool isTimerActive = false;
   bool isFirstLoop = true;
@@ -59,6 +60,11 @@ class _StopWatchState extends State<StopWatch> {
 
     if (kDebugMode) {
       print(globals.isEmergencyButton);
+    }
+    if (isStartStopActive()) {
+      butHeight = 100;
+    } else {
+      butHeight = 1;
     }
     return Material(
       child: Center(
@@ -101,6 +107,7 @@ class _StopWatchState extends State<StopWatch> {
             const SizedBox(height: 10),
             Text(timeRemains >= 1 ? '$timeRemains  $secSan' : secSan),
             InkWell(
+              // active passivetimer start stop tick cancel red gren buton
               onTap: () async {
                 isTimerActive = !isTimerActive;
                 if (!isTimerActive) {
@@ -136,7 +143,7 @@ class _StopWatchState extends State<StopWatch> {
                 }
               },
               child: SizedBox(
-                height: 100,
+                height: butHeight,
                 width: screenSize * 0.5,
                 child: Image(
                     image: AssetImage(isTimerActive == false
@@ -152,5 +159,16 @@ class _StopWatchState extends State<StopWatch> {
         ),
       ),
     );
+  }
+}
+
+// startstop tiki ise sadece sakat ve köpekte olacak
+// bunlar anı zamanda emergency stop içinde var
+// birileri sürekli fikir değiştirince yeni fonksiyion
+bool isStartStopActive() {
+  if (globals.isEmergencyButton) {
+    return true;
+  } else {
+    return false;
   }
 }

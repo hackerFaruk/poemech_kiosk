@@ -134,7 +134,10 @@ class PageBanner extends StatelessWidget {
 /// A stateless widget that is used to display the process page.
 class ProcessPage extends StatefulWidget {
   final String lang;
-  const ProcessPage({super.key, required this.lang});
+  const ProcessPage({
+    super.key,
+    required this.lang,
+  });
 
   @override
   State<ProcessPage> createState() => _ProcessPageState();
@@ -149,10 +152,16 @@ class _ProcessPageState extends State<ProcessPage> {
         : 'Lütfen İşlem Seçiniz';
 
 // change trigger to trigger re render of child
-    bool trigger = true;
+// use this to create re render on grable selection
+    bool trigger = globals.renderTrigger;
     // seçimden önce false sonra doğru yapcam gerekirse
     globals.isEmergencyButton = false;
     globals.revertAll();
+
+    void reRender() {
+      globals.renderTrigger = globals.renderTrigger == true ? false : true;
+      setState(() {});
+    }
 
     return SizedBox(
         width: screenSize.width,
@@ -166,7 +175,7 @@ class _ProcessPageState extends State<ProcessPage> {
             body: SingleChildScrollView(
               child: Column(
                 children: [
-                  grayable.GrayableRow(renderTrigger: trigger),
+                  grayable.GrayableRow(renderTrigger: globals.renderTrigger),
                   const SizedBox(
                     height: 40,
                   ),
@@ -178,6 +187,8 @@ class _ProcessPageState extends State<ProcessPage> {
                             globals.revertAll();
                             // changin trigger re renders controls
                             trigger = trigger == true ? false : true;
+                            globals.renderTrigger =
+                                globals.renderTrigger == true ? false : true;
                             setState(() {});
                           },
                           child: SizedBox(
@@ -238,14 +249,33 @@ class StartProcessPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
 
-    print(application); // to see path
+    print(application);
+    print("ben start process page"); // to see path
+
+// kusursuz geriler için
+    void _handleButtonPress() {
+      // Add your print statement here
+      print("Back Button pressed! on process page");
+
+      globals.revertAll();
+      globals.unGrayAll();
+      globals.renderTrigger = !globals.renderTrigger;
+      Navigator.pop(context);
+
+      globals.revertAll();
+      globals.unGrayAll();
+
+// render trigger enforces render on grayable selction
+      globals.renderTrigger = !globals.renderTrigger;
+    }
 
     return Scaffold(
       appBar: AppBar(
         title: Text(
             globals.lang == 'en' ? 'Selected Application Is ' : 'Seçili İşlem'),
-        leading: const BackButton(
-          color: Colors.white,
+        leading: BackButton(
+          color: Colors.yellow,
+          onPressed: _handleButtonPress,
         ),
       ),
       body: SingleChildScrollView(

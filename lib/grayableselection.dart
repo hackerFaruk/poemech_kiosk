@@ -90,6 +90,14 @@ class _GrayableRowState extends State<GrayableRow> {
   @override
   Widget build(BuildContext context) {
     double padding = 30;
+
+    void setMe() {
+      // boşa tıklayınca sıfırlama
+      global.selected = "";
+      global.revertAll();
+      setState(() {});
+    }
+
     return InkWell(
       hoverColor: Colors.transparent,
       onTap: () {

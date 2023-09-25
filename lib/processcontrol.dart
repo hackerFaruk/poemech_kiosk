@@ -10,6 +10,7 @@ import 'stopwatch.dart' as stop;
 import 'package:flutter_libserialport/flutter_libserialport.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'mutantAppIcon.dart' as mutant;
+import 'main.dart' as main;
 
 import 'appIcon.dart' as appIcon;
 
@@ -35,13 +36,35 @@ class ProcessControlPage extends StatelessWidget {
       gapsize = 0.0;
     }
 
+    void _handleButtonPress() {
+      // Add your print statement here
+      print("Button pressed!");
+
+      globals.revertAll();
+      globals.unGrayAll();
+      globals.renderTrigger = !globals.renderTrigger;
+
+      Navigator.pop(context);
+      Navigator.pop(context);
+      globals.revertAll();
+      globals.unGrayAll();
+
+// render trigger enforces render on grayable selction
+      globals.renderTrigger = !globals.renderTrigger;
+    }
+
+    print("this is proces control page");
+
     return Material(
       child: Scaffold(
         appBar: AppBar(
           title: Text(
               globals.lang == 'en' ? ' Ongoing Process ' : 'İşlem Sürüyor'),
-          leading: const BackButton(
+          leading: BackButton(
             color: Colors.white,
+            //
+            // ignore: avoid_print
+            onPressed: _handleButtonPress,
           ),
         ),
         body: Column(
