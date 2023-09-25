@@ -26,10 +26,7 @@ class ProcessControlPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    print("444444444444444444444444444444");
-    print("selected is ");
     print(globals.selected);
-    print("444444444444444444444444444444");
 
     WaitPort(context);
 
