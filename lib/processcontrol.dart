@@ -39,6 +39,11 @@ class ProcessControlPage extends StatelessWidget {
     void _handleButtonPress() {
       // Add your print statement here
       print("Button pressed!");
+
+      globals.revertAll();
+      globals.unGrayAll();
+      globals.renderTrigger = !globals.renderTrigger;
+
       Navigator.pop(context);
       Navigator.pop(context);
       globals.revertAll();
@@ -47,6 +52,8 @@ class ProcessControlPage extends StatelessWidget {
 // render trigger enforces render on grayable selction
       globals.renderTrigger = !globals.renderTrigger;
     }
+
+    print("this is proces control page");
 
     return Material(
       child: Scaffold(

@@ -134,7 +134,10 @@ class PageBanner extends StatelessWidget {
 /// A stateless widget that is used to display the process page.
 class ProcessPage extends StatefulWidget {
   final String lang;
-  const ProcessPage({super.key, required this.lang});
+  const ProcessPage({
+    super.key,
+    required this.lang,
+  });
 
   @override
   State<ProcessPage> createState() => _ProcessPageState();
@@ -154,6 +157,11 @@ class _ProcessPageState extends State<ProcessPage> {
     // seçimden önce false sonra doğru yapcam gerekirse
     globals.isEmergencyButton = false;
     globals.revertAll();
+
+    void reRender() {
+      globals.renderTrigger = globals.renderTrigger == true ? false : true;
+      setState(() {});
+    }
 
     return SizedBox(
         width: screenSize.width,
@@ -179,6 +187,8 @@ class _ProcessPageState extends State<ProcessPage> {
                             globals.revertAll();
                             // changin trigger re renders controls
                             trigger = trigger == true ? false : true;
+                            globals.renderTrigger =
+                                globals.renderTrigger == true ? false : true;
                             setState(() {});
                           },
                           child: SizedBox(
@@ -246,6 +256,7 @@ class StartProcessPage extends StatelessWidget {
     void _handleButtonPress() {
       // Add your print statement here
       print("Back Button pressed! on process page");
+
       globals.revertAll();
       globals.unGrayAll();
       globals.renderTrigger = !globals.renderTrigger;
@@ -263,7 +274,7 @@ class StartProcessPage extends StatelessWidget {
         title: Text(
             globals.lang == 'en' ? 'Selected Application Is ' : 'Seçili İşlem'),
         leading: BackButton(
-          color: Colors.white,
+          color: Colors.yellow,
           onPressed: _handleButtonPress,
         ),
       ),
