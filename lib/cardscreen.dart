@@ -76,7 +76,7 @@ class _CardScreen extends State<CardScreen> {
             autofocus: true,
             onSubmitted: (value) async {
               //value is entered text after Enter
-              if (value == "") {
+              if (value != "123456") {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
