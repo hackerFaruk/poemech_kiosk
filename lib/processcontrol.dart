@@ -34,14 +34,24 @@ class ProcessControlPage extends StatelessWidget {
     if (isStopwatch()) {
       gapsize = 0.0;
     }
+    void _handleButtonPress() {
+      // Add your print statement here
+      print("Button pressed!");
+      Navigator.pop(context);
+      Navigator.pop(context);
+      globals.revertAll();
+    }
 
     return Material(
       child: Scaffold(
         appBar: AppBar(
           title: Text(
               globals.lang == 'en' ? ' Ongoing Process ' : 'İşlem Sürüyor'),
-          leading: const BackButton(
+          leading: BackButton(
             color: Colors.white,
+            //
+            // ignore: avoid_print
+            onPressed: _handleButtonPress,
           ),
         ),
         body: Column(
