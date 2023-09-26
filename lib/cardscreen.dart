@@ -18,6 +18,7 @@ class CardScreen extends StatefulWidget {
   static String sicaksoguk = "0";
   static String basinc = "0";
   static String krem = "0";
+  static Timer? timer;
   @override
   State<CardScreen> createState() => _CardScreen();
 }
@@ -76,7 +77,26 @@ class _CardScreen extends State<CardScreen> {
             autofocus: true,
             onSubmitted: (value) async {
               //value is entered text after Enter
-              if (value != "123456") {
+
+              if (value == "SPF30" ||
+                  value == "SPF50" ||
+                  value == "SPF50C" ||
+                  value == "Kopuk" ||
+                  value == "Kopek" ||
+                  value == "Dezenfektan") {
+                _showMyDialog(value, 0);
+                readPort(value);
+                await writePort(3, 0, 0, 0, 18);
+                await writePort(3, 0, 0, 0, 9);
+
+                if (value == "Dezenfektan")
+                  await writePort(3, 0, 0, 0, 80);
+                else
+                  await writePort(3, 0, 0, 0, 78);
+                await writePort(3, 0, 0, 0, 42);
+                CardScreen.timer = Timer.periodic(Duration(seconds: 5),
+                    (Timer t) => writePort(3, 0, 0, 0, 43));
+              } else if (value != "123456") {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -168,5 +188,206 @@ class _CardScreen extends State<CardScreen> {
     }
 
     // bi şekilde boş yaratmak lazım sanırım
+  }
+
+  Uint8List _stringToUint8List(String data) {
+    List<int> codeUnits = data.codeUnits;
+    Uint8List uint8list = Uint8List.fromList(codeUnits);
+    return uint8list;
+  }
+
+  Future<void> writePort(dus, krem, number1, number2, number3) async {
+    CardScreen.number += 1;
+    /*
+    if (CardScreen.number >= 7) {
+      CardScreen.number = 0;
+      await CloseMk();
+    }*/
+    try {
+      if (CardScreen.port1 != null) {
+        if (!CardScreen.port1!.isOpen) {
+          try {
+            await OpenMk();
+          } catch (e) {
+            print("PORT AÇARKEN GİRİYOR HATAYA");
+          }
+        }
+      }
+      print(_stringToUint8List("<" +
+          dus +
+          "," +
+          krem +
+          "," +
+          number1 +
+          "," +
+          number2 +
+          "," +
+          number3 +
+          ">"));
+      if (int.parse(number3) >= 10) {
+        CardScreen.port1?.write(_stringToUint8List("<" +
+            dus +
+            "," +
+            krem +
+            "," +
+            number1 +
+            "," +
+            number2 +
+            "," +
+            number3 +
+            ">"));
+      } else {
+        CardScreen.port1?.write(_stringToUint8List("<" +
+            dus +
+            "," +
+            krem +
+            "," +
+            number1 +
+            "," +
+            number2 +
+            ",0" +
+            number3 +
+            ">"));
+      }
+    } catch (e) {
+      print("burada hata");
+    }
+  }
+
+  Future<void> readPort(value) async {
+    try {
+      SerialPortReader reader = SerialPortReader(CardScreen.port1!);
+      Stream<String> upcomingData = reader.stream.map((data) {
+        return String.fromCharCodes(data);
+      });
+      upcomingData.listen((data) {
+        print("GELEN DATA: ");
+        print(data);
+        if (data.length < 18 && data.length > 4) {
+          if (value == "SPF30" && globals.SPF30 == 0)
+            globals.SPF30 = int.parse(data[1]);
+          else if (value == "SPF50" && globals.SPF50 == 0)
+            globals.SPF50 = int.parse(data[3]);
+          else if (value == "SPF50C" && globals.SPF50C == 0)
+            globals.SPF50C = int.parse(data[5]);
+          else if (value == "Kopuk" && globals.Kopuk == 0)
+            globals.Kopuk = int.parse(data[7]);
+          else if (value == "Kopek" && globals.Kopek == 0)
+            globals.Kopek = int.parse(data[9]);
+          else if (value == "Dezenfektan" && globals.Dezenfektan == 0)
+            globals.Dezenfektan = int.parse(data[11]);
+          //BÜTÜN DEĞERLERİ SIFIRLAMAK LAZIM
+          if (value == "SPF30" && globals.SPF30 != 0) {
+            if (globals.SPF30 >= int.parse(data[1])) {
+              globals.wrongone = 1;
+              Navigator.pop(context);
+              _showMyDialog(value, 2);
+            } else {
+              Navigator.pop(context);
+              _showMyDialog(value, 1);
+            }
+          } else if (value == "SPF50" && globals.SPF50 != 0) {
+            if (globals.SPF50 >= int.parse(data[3])) {
+              globals.wrongone = 2;
+              Navigator.pop(context);
+              _showMyDialog(value, 2);
+            } else {
+              Navigator.pop(context);
+              _showMyDialog(value, 1);
+            }
+          } else if (value == "SPF50C" && globals.SPF50C != 0) {
+            if (globals.SPF50C >= int.parse(data[5])) {
+              globals.wrongone = 3;
+              Navigator.pop(context);
+              _showMyDialog(value, 2);
+            } else {
+              Navigator.pop(context);
+              _showMyDialog(value, 1);
+            }
+          } else if (value == "Kopuk" && globals.Kopuk != 0) {
+            if (globals.Kopuk >= int.parse(data[7])) {
+              globals.wrongone = 4;
+              Navigator.pop(context);
+              _showMyDialog(value, 2);
+            } else {
+              Navigator.pop(context);
+              _showMyDialog(value, 1);
+            }
+          } else if (value == "Kopek" && globals.Kopek != 0) {
+            if (globals.Kopek >= int.parse(data[9])) {
+              globals.wrongone = 9;
+              Navigator.pop(context);
+              _showMyDialog(value, 2);
+            } else {
+              Navigator.pop(context);
+              _showMyDialog(value, 1);
+            }
+          } else if (value == "Dezenfektan" && globals.Dezenfektan != 0) {
+            if (globals.Dezenfektan >= int.parse(data[11])) {
+              globals.wrongone = 11;
+              Navigator.pop(context);
+              _showMyDialog(value, 2);
+            } else {
+              Navigator.pop(context);
+              _showMyDialog(value, 1);
+            }
+          }
+        } else if (data.length > 18) {
+          //KESİN DÜZELT SAYIYI 15 16
+          if (data[15] == "0") {
+            writePort(3, 0, 0, 0, 42);
+          } else if (data[16] == "0") {
+            writePort(3, 0, 0, 0, 42);
+          }
+        }
+      }).onError((error) {
+        print("HATA ALDIM CANIM");
+        print(error);
+        CardScreen.port1!.close();
+        readPort(value);
+      });
+    } catch (e) {
+      print("yazamadım");
+    }
+  }
+
+  Future<void> CloseMk() async {
+    print("close denedim");
+    if (CardScreen.port1!.isOpen) CardScreen.port1!.close();
+  }
+
+  Future<void> OpenMk() async {
+    CardScreen.port1?.openReadWrite();
+  }
+
+  Future<void> _showMyDialog(String cream, int ok) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Bakım Modu'),
+          content: SingleChildScrollView(
+            child: ok == 0
+                ? Text("$cream Dolumu bekleniyor")
+                : ok == 1
+                    ? const Text("İşlem Başarılı")
+                    : Text("$cream Dolumu için yanlış tank kullanıldı."),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: ok == 1 || ok == 2
+                  ? const Text('Onayla')
+                  : const Text('Bekleniyor'),
+              onPressed: () {
+                if (ok == 1 || ok == 2) {
+                  Navigator.of(context).pop();
+                } else {}
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

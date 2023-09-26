@@ -14,6 +14,16 @@ String deviceId = "";
 
 bool renderTrigger = true;
 
+//QR ve dolum işlemleri
+
+int SPF30 = 0;
+int SPF50 = 0;
+int SPF50C = 0;
+int Kopuk = 0;
+int Kopek = 0;
+int Dezenfektan = 0;
+int wrongone = 0;
+
 //bu üçlü proces ekranındaki hatayı süzelten mutant app icon için
 // direkt pathlar
 String isDualIconMemo = "";
