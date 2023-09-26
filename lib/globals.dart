@@ -22,6 +22,8 @@ int SPF50C = 0;
 int Kopuk = 0;
 int Kopek = 0;
 int Dezenfektan = 0;
+
+// bu buton butno ile eşleişiyorsa disable
 int wrongone = 0;
 
 //bu üçlü proces ekranındaki hatayı süzelten mutant app icon için
