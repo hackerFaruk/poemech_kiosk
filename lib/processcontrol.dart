@@ -150,6 +150,8 @@ class ProcessControlPage extends StatelessWidget {
           } else if (data.contains("<5,1>")) {
             player.stop();
             player.play(AssetSource("5-1K.mp3"));
+          } else if (data.contains("<5,3>")) {
+            globals.isTimerActive = true;
           } else if (data.contains("<5,9>")) {
             //Timeout
             player.stop();

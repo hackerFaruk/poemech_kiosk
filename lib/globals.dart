@@ -24,6 +24,9 @@ int Kopek = 0;
 int Dezenfektan = 0;
 int wrongone = 0;
 
+//IStimerActive
+bool isTimerActive = false;
+
 //bu üçlü proces ekranındaki hatayı süzelten mutant app icon için
 // direkt pathlar
 String isDualIconMemo = "";

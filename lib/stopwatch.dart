@@ -24,7 +24,7 @@ class _StopWatchState extends State<StopWatch> {
   double progressBar = 1.0;
   double butHeight = 100;
   // timers start still so it is false on defaulşt
-  bool isTimerActive = false;
+  bool isTimerActive = globals.isTimerActive;
   bool isFirstLoop = true;
   var explanation = globals.lang == 'en' ? 'Time Remaining' : 'Kalan Süre';
   var secSan = globals.lang == 'en' ? 'Seconds Remainins' : 'Saniye Kaldı';
@@ -38,6 +38,7 @@ class _StopWatchState extends State<StopWatch> {
     // defines a timer
     _everySecond = Timer.periodic(const Duration(seconds: 1), (Timer t) {
       setState(() {
+        isTimerActive = globals.isTimerActive;
         if (timeRemains > 0) {
           if (isTimerActive) {
             timeRemains = timeRemains - 1;
