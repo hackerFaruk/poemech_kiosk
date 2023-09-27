@@ -351,13 +351,13 @@ class OKCancelRow extends StatelessWidget {
                     globals.selected = globals.selected + selections[i];
                     globals.selected = '${globals.selected}  ';
                   }
-                  if (CardScreen.sure != 0)
+                  if (CardScreen.sure != "0")
                     CardScreen.sure =
                         (int.parse(globals.lengthselected) - 1).toString();
-                  if (CardScreen.sicaksoguk != 0)
+                  if (CardScreen.sicaksoguk != "0")
                     CardScreen.sicaksoguk =
                         (int.parse(globals.warmthselected) - 1).toString();
-                  if (CardScreen.basinc != 0)
+                  if (CardScreen.basinc != "0")
                     CardScreen.basinc =
                         (int.parse(globals.pressselected) - 1).toString();
 
@@ -429,7 +429,7 @@ class OKCancelRow extends StatelessWidget {
           number1 +
           "," +
           number2 +
-          "," +
+          ",0" +
           number3 +
           ">"));
       if (int.parse(number3) >= 10) {

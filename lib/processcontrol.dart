@@ -22,13 +22,13 @@ class ProcessControlPage extends StatelessWidget {
   static AudioPlayer music = AudioPlayer();
   static AudioCache audioCache = AudioCache();
   static bool impostor = false;
+  static bool ended = false;
   const ProcessControlPage({super.key, required this.application});
 
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     print(globals.selected);
-
     WaitPort(context);
 
     double gapsize = 20.0;
@@ -103,7 +103,7 @@ class ProcessControlPage extends StatelessWidget {
     music.setVolume(0.2);
     music.setReleaseMode(ReleaseMode.loop);
     music.play(AssetSource("wait1.wav"));
-
+    ProcessControlPage.ended = false;
     Timer(Duration(seconds: 10), () {
       if (!impostor) {
         player.stop();
@@ -169,6 +169,9 @@ class ProcessControlPage extends StatelessWidget {
           } else if (data.contains("<5,13>")) {
             player.stop();
             player.play(AssetSource("10-1K.mp3"));
+          } else if (data.contains("<5,14>")) {
+            player.stop();
+            player.play(AssetSource("15-1K.mp3"));
           } else if (data.contains("<5,5>")) {
             player.stop();
             player.play(AssetSource("11-1K.mp3"));
@@ -178,6 +181,7 @@ class ProcessControlPage extends StatelessWidget {
               print("kapattım");
             }
             music.stop();
+            ProcessControlPage.ended = true;
             Navigator.pop(context);
             Navigator.pop(context);
             Navigator.pop(context);
@@ -193,7 +197,7 @@ class ProcessControlPage extends StatelessWidget {
         print("HATA ALDIM CANIM");
         print(error);
         CardScreen.port1!.close();
-        readPort(context);
+        if (ProcessControlPage.ended == false) readPort(context);
       });
     } catch (e) {
       readPort(context);
