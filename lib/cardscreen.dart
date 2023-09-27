@@ -23,6 +23,7 @@ class CardScreen extends StatefulWidget {
   static String krem = "0";
   static Timer? timer;
   static TextEditingController maincontroller = TextEditingController();
+  static bool stopReading = false;
   @override
   State<CardScreen> createState() => _CardScreen();
 }
@@ -89,6 +90,7 @@ class _CardScreen extends State<CardScreen> {
                   value == "Kopuk" ||
                   value == "Kopek" ||
                   value == "Dezenfektan") {
+                CardScreen.stopReading = false;
                 _showMyDialog(value, 0);
                 Timer(Duration(seconds: 2), () {
                   readPort(value);
@@ -375,7 +377,7 @@ class _CardScreen extends State<CardScreen> {
         print("HATA ALDIM CANIM");
         print(error);
         CardScreen.port1!.close();
-        readPort(value);
+        if (CardScreen.stopReading == false) readPort(value);
       });
     } catch (e) {
       print("yazamadım");
@@ -415,9 +417,16 @@ class _CardScreen extends State<CardScreen> {
                   Navigator.of(context).pop();
                   CardScreen.maincontroller.clear();
                   CloseMk();
+                  CardScreen.stopReading = true;
                   if (ok == 2) {
                     wrongTankMail(cream);
                   }
+                  globals.Dezenfektan = 0;
+                  globals.Kopek = 0;
+                  globals.SPF30 = 0;
+                  globals.Kopuk = 0;
+                  globals.SPF50 = 0;
+                  globals.SPF50C = 0;
                 } else {}
               },
             ),
@@ -432,7 +441,7 @@ class _CardScreen extends State<CardScreen> {
 
     var url = Uri.parse("https://poemech.com.tr:3001/api/mail/WrongTank");
     final body = json.encode(
-        {"id": "AB010723/01", "mail": "kacaryucel@gmail.com", "tank": cream});
+        {"id": "AB010723/01", "mail": "info@onarfa.com", "tank": cream});
 
     // ignore: prefer_typing_uninitialized_variables
     var res;
