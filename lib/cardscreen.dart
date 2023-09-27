@@ -1,4 +1,6 @@
 // ignore: file_names
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'main.dart' as mainpage;
@@ -6,6 +8,7 @@ import 'servicePage.dart' as servicePage;
 import 'package:flutter_libserialport/flutter_libserialport.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'globals.dart' as globals;
+import 'package:http/http.dart' as http;
 
 import 'dart:async';
 
@@ -412,6 +415,9 @@ class _CardScreen extends State<CardScreen> {
                   Navigator.of(context).pop();
                   CardScreen.maincontroller.clear();
                   CloseMk();
+                  if (ok == 2) {
+                    wrongTankMail();
+                  }
                 } else {}
               },
             ),
@@ -419,5 +425,31 @@ class _CardScreen extends State<CardScreen> {
         );
       },
     );
+  }
+
+  Future<void> wrongTankMail() async {
+    bool connection = true;
+
+    var url = Uri.parse("https://poemech.com.tr:3001/api/mail/emergencyButton");
+    final body =
+        json.encode({"id": "AB010723/01", "mail": "kacaryucel@gmail.com"});
+
+    // ignore: prefer_typing_uninitialized_variables
+    var res;
+    try {
+      res = await http.post(url,
+          headers: {"Content-Type": "application/json"}, body: body);
+      // ignore: unused_catch_clause
+    } on Exception catch (e) {
+      //print(e.toString());
+      connection = false;
+    }
+    if (connection) {
+      final Map<String, dynamic> data = json.decode(res.body);
+
+      if (data['done'] == 'false') {
+      } else if (data['done'] == 'true') {
+      } else {}
+    }
   }
 }
