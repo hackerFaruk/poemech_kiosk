@@ -24,7 +24,7 @@ int Kopek = 0;
 int Dezenfektan = 0;
 
 // bu buton butno ile eşleişiyorsa disable
-int wrongone = 0;
+int wrongone = 1;
 
 //IStimerActive
 bool isTimerActive = false;
@@ -119,6 +119,27 @@ void grayAll() {
   but7 = 1;
   but8 = 1;
   but9 = 1;
+}
+
+void checkDisabled() {
+  switch (wrongone) {
+    case 1:
+      but1 = 1;
+      break;
+    case 2:
+      but2 = 1;
+      break;
+    case 3:
+      but3 = 1;
+      break;
+    case 4:
+      but4 = 1;
+      break;
+    case 9:
+      but9 = 1;
+      break;
+    default:
+  }
 }
 
 // ungrays all

@@ -386,8 +386,12 @@ class OKCancelRow extends StatelessWidget {
                     player.play(AssetSource("Doorsignal.mp3"));
                   });
                   print("ÇALDIIIIM KAÇ GÜN OLDU");
-                  readPort(CardScreen.dus, CardScreen.krem, CardScreen.sure,
-                      CardScreen.sicaksoguk, CardScreen.basinc);
+                  readPort(
+                      CardScreen.dus,
+                      CardScreen.krem,
+                      CardScreen.sure, // number2, number3, number1
+                      CardScreen.sicaksoguk,
+                      CardScreen.basinc);
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => destination!));
                 }
@@ -434,11 +438,11 @@ class OKCancelRow extends StatelessWidget {
             "," +
             krem +
             "," +
-            number1 +
-            "," +
             number2 +
             "," +
             number3 +
+            "," +
+            number1 +
             ">"));
       } else {
         CardScreen.port1?.write(_stringToUint8List("<" +
@@ -446,11 +450,11 @@ class OKCancelRow extends StatelessWidget {
             "," +
             krem +
             "," +
-            number1 +
-            "," +
             number2 +
-            ",0" +
+            "," +
             number3 +
+            ",0" +
+            number1 +
             ">"));
       }
     } catch (e) {
