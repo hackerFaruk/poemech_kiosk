@@ -416,7 +416,7 @@ class _CardScreen extends State<CardScreen> {
                   CardScreen.maincontroller.clear();
                   CloseMk();
                   if (ok == 2) {
-                    wrongTankMail();
+                    wrongTankMail(cream);
                   }
                 } else {}
               },
@@ -427,12 +427,12 @@ class _CardScreen extends State<CardScreen> {
     );
   }
 
-  Future<void> wrongTankMail() async {
+  Future<void> wrongTankMail(String cream) async {
     bool connection = true;
 
-    var url = Uri.parse("https://poemech.com.tr:3001/api/mail/emergencyButton");
-    final body =
-        json.encode({"id": "AB010723/01", "mail": "kacaryucel@gmail.com"});
+    var url = Uri.parse("https://poemech.com.tr:3001/api/mail/WrongTank");
+    final body = json.encode(
+        {"id": "AB010723/01", "mail": "kacaryucel@gmail.com", "tank": cream});
 
     // ignore: prefer_typing_uninitialized_variables
     var res;
