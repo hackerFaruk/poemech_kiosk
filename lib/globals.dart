@@ -24,7 +24,7 @@ int Kopek = 0;
 int Dezenfektan = 0;
 
 // bu buton butno ile eşleişiyorsa disable
-int wrongone = 1;
+int wrongone = 0;
 
 //IStimerActive
 bool isTimerActive = false;

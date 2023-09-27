@@ -83,6 +83,9 @@ class _CardScreen extends State<CardScreen> {
             controller: CardScreen.maincontroller,
             onSubmitted: (value) async {
               //value is entered text after Enter
+              if (value == "dd") {
+                wrongTankMail("SPF50");
+              }
 
               if (value == "SPF30" ||
                   value == "SPF50" ||

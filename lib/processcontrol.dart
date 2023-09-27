@@ -29,7 +29,7 @@ class ProcessControlPage extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
     print(globals.selected);
 
-    //WaitPort(context);
+    WaitPort(context);
 
     double gapsize = 20.0;
     if (isStopwatch()) {
