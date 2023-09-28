@@ -229,6 +229,7 @@ class _GrayableRowState extends State<GrayableRow> {
                     // setState(() {});
                     global.selected = "wheel:";
                     global.firstButton = 'images/wheel.png';
+                    global.isBut8Selected = 1;
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -248,6 +249,7 @@ class _GrayableRowState extends State<GrayableRow> {
                     //setState(() {});
                     global.selected = "dogbutton:";
                     global.firstButton = 'images/dogbutton.png';
+                    global.isBut9Selected = 1;
                     Navigator.push(
                         context,
                         MaterialPageRoute(

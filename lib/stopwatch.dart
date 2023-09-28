@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'cardscreen.dart';
 import 'globals.dart' as globals;
 import 'dart:async';
 import 'package:http/http.dart' as http;
@@ -110,8 +111,11 @@ class _StopWatchState extends State<StopWatch> {
             InkWell(
               // active passivetimer start stop tick cancel red gren buton
               onTap: () async {
-                isTimerActive = !isTimerActive;
-                if (!isTimerActive) {
+                if (!globals.isTimerActive) globals.isTimerActive = true;
+                print("DELİRDİM");
+                if (globals.isTimerActive) {
+                  writePort(CardScreen.dus, "0", CardScreen.sure,
+                      CardScreen.sicaksoguk, CardScreen.basinc);
                   // malruk kodu
                   /*
                   bool connection = true;
@@ -141,6 +145,8 @@ class _StopWatchState extends State<StopWatch> {
                   }
 */
                   // malruk kodu
+                } else {
+                  //BURASI SİSTEMİ DURDURMAK İÇİN YAZILACAK KOD
                 }
               },
               child: SizedBox(
@@ -161,6 +167,96 @@ class _StopWatchState extends State<StopWatch> {
       ),
     );
   }
+}
+
+Uint8List _stringToUint8List(String data) {
+  List<int> codeUnits = data.codeUnits;
+  Uint8List uint8list = Uint8List.fromList(codeUnits);
+  return uint8list;
+}
+
+Future<void> writePort(dus, krem, number1, number2, number3) async {
+  try {
+    if (CardScreen.port1 != null) {
+      if (!CardScreen.port1!.isOpen) {
+        try {
+          await OpenMk();
+        } catch (e) {
+          print("PORT AÇARKEN GİRİYOR HATAYA");
+        }
+      }
+    }
+    print(_stringToUint8List("<" +
+        dus +
+        "," +
+        krem +
+        "," +
+        number2 +
+        "," +
+        number3 +
+        ",0" +
+        number1 +
+        ">"));
+    print("<" +
+        dus +
+        "," +
+        krem +
+        "," +
+        number2 +
+        "," +
+        number3 +
+        ",0" +
+        number1 +
+        ">");
+    if (int.parse(number3) >= 10) {
+      CardScreen.port1?.write(_stringToUint8List("<" +
+          dus +
+          "," +
+          krem +
+          "," +
+          number2 +
+          "," +
+          number3 +
+          "," +
+          number1 +
+          ">"));
+    } else {
+      CardScreen.port1?.write(_stringToUint8List("<" +
+          dus +
+          "," +
+          krem +
+          "," +
+          number2 +
+          "," +
+          number3 +
+          ",0" +
+          number1 +
+          ">"));
+    }
+    CloseMk();
+  } catch (e) {
+    print(e);
+    /*
+      if (ButtonGrid.count < 3000) {
+        await writePort(number);
+      } else {
+        CardScreen.number = 7;
+        ButtonGrid.count = 0;
+      }*/
+  }
+  //SerialPort serialPort = new SerialPort();
+  //await serialPort.open(mode: mode);
+}
+
+Future<void> CloseMk() async {
+  print("close denedim");
+  if (CardScreen.port1 != null) {
+    if (CardScreen.port1!.isOpen) CardScreen.port1!.close();
+  }
+}
+
+Future<void> OpenMk() async {
+  CardScreen.port1?.openReadWrite();
 }
 
 // startstop tiki ise sadece sakat ve köpekte olacak

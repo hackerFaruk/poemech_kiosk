@@ -351,6 +351,9 @@ class OKCancelRow extends StatelessWidget {
                     globals.selected = globals.selected + selections[i];
                     globals.selected = '${globals.selected}  ';
                   }
+                  CardScreen.sure = globals.lengthselected;
+                  CardScreen.basinc = globals.pressselected;
+                  CardScreen.sicaksoguk = globals.warmthselected;
                   if (CardScreen.sure != "0")
                     CardScreen.sure =
                         (int.parse(globals.lengthselected) - 1).toString();
@@ -374,10 +377,13 @@ class OKCancelRow extends StatelessWidget {
                     CardScreen.krem = "6";
                   else
                     CardScreen.krem = "0";
-                  if (globals.isBut4Selected == 1 ||
-                      globals.isBut8Selected == 1)
+                  if (globals.isBut4Selected == 1)
                     CardScreen.dus = "1";
-                  else
+                  else if (globals.isBut8Selected == 1) {
+                    CardScreen.dus = "7";
+                  } else if (globals.isBut9Selected == 1) {
+                    CardScreen.dus = "2";
+                  } else
                     CardScreen.dus = "0";
                   AudioPlayer player = AudioPlayer();
                   player.play(AssetSource("13-1K.mp3"));
@@ -386,14 +392,16 @@ class OKCancelRow extends StatelessWidget {
                     player.play(AssetSource("Doorsignal.mp3"));
                   });
                   print("ÇALDIIIIM KAÇ GÜN OLDU");
-                  readPort(
-                      CardScreen.dus,
-                      CardScreen.krem,
-                      CardScreen.sure, // number2, number3, number1
-                      CardScreen.sicaksoguk,
-                      CardScreen.basinc);
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => destination!));
+                  if (CardScreen.dus != "2" && CardScreen.dus != "7") {
+                    readPort(
+                        CardScreen.dus,
+                        CardScreen.krem,
+                        CardScreen.sure, // number2, number3, number1
+                        CardScreen.sicaksoguk,
+                        CardScreen.basinc);
+                  } else if (CardScreen.dus == "2")
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => destination!));
                 }
               },
               child: SizedBox(
@@ -426,12 +434,23 @@ class OKCancelRow extends StatelessWidget {
           "," +
           krem +
           "," +
+          number2 +
+          "," +
+          number3 +
+          ",0" +
           number1 +
+          ">"));
+      print("<" +
+          dus +
+          "," +
+          krem +
           "," +
           number2 +
-          ",0" +
+          "," +
           number3 +
-          ">"));
+          ",0" +
+          number1 +
+          ">");
       if (int.parse(number3) >= 10) {
         CardScreen.port1?.write(_stringToUint8List("<" +
             dus +
@@ -538,6 +557,7 @@ class ConditionalControlRow extends StatelessWidget {
       globals.isEmergencyButton = false;
       return const CustomDogWash();
     } else if (application.contains('dog')) {
+      print("ha bu nedu");
       globals.isEmergencyButton = true;
       return const DirtSelection();
     } else {
@@ -777,6 +797,7 @@ class _DirtSelectionState extends State<DirtSelection> {
             children: [
               InkWell(
                   onTap: () {
+                    globals.lengthselected = "1";
                     dirtselected = 'dusty';
                     setState(() {
                       but1 = 0;
@@ -789,6 +810,7 @@ class _DirtSelectionState extends State<DirtSelection> {
               InkWell(
                   onTap: () {
                     dirtselected = 'dirty';
+                    globals.lengthselected = "2";
                     setState(() {
                       but1 = 1;
                       but2 = 0;
@@ -800,6 +822,7 @@ class _DirtSelectionState extends State<DirtSelection> {
               InkWell(
                   onTap: () {
                     dirtselected = 'grimy';
+                    globals.lengthselected = "3";
                     setState(() {
                       but1 = 1;
                       but2 = 1;
@@ -875,6 +898,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
             children: [
               InkWell(
                   onTap: () {
+                    globals.lengthselected = "1";
                     dirtselected = 'dusty';
                     setState(() {
                       but1 = 0;
@@ -886,6 +910,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
                       GreyoutButtons(icon: "images/dusty.png", grayout: but1)),
               InkWell(
                   onTap: () {
+                    globals.lengthselected = "2";
                     dirtselected = 'dirty';
                     setState(() {
                       but1 = 1;
@@ -897,6 +922,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
                       GreyoutButtons(icon: "images/dirty.png", grayout: but2)),
               InkWell(
                   onTap: () {
+                    globals.lengthselected = "3";
                     dirtselected = 'grimy';
                     setState(() {
                       but1 = 1;
@@ -916,6 +942,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
             children: [
               InkWell(
                   onTap: () {
+                    globals.pressselected = "1";
                     furselected = 'furShort';
                     setState(() {
                       but4 = 0;
@@ -928,6 +955,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
                       icon: "images/furShort.png", grayout: but4)),
               InkWell(
                   onTap: () {
+                    globals.pressselected = "2";
                     furselected = 'furMid';
                     setState(() {
                       but4 = 1;
@@ -940,6 +968,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
                       GreyoutButtons(icon: "images/furMid.png", grayout: but5)),
               InkWell(
                   onTap: () {
+                    globals.pressselected = "3";
                     furselected = 'furLong';
                     setState(() {
                       but4 = 1;
@@ -952,6 +981,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
                       icon: "images/furLong.png", grayout: but6)),
               InkWell(
                   onTap: () {
+                    globals.pressselected = "4";
                     furselected = 'furLayered';
                     setState(() {
                       but4 = 1;
