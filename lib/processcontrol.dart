@@ -22,14 +22,14 @@ class ProcessControlPage extends StatelessWidget {
   static AudioPlayer music = AudioPlayer();
   static AudioCache audioCache = AudioCache();
   static bool impostor = false;
+  static bool ended = false;
   const ProcessControlPage({super.key, required this.application});
 
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     print(globals.selected);
-
-    //WaitPort(context);
+    WaitPort(context);
 
     double gapsize = 20.0;
     if (isStopwatch()) {
@@ -103,8 +103,8 @@ class ProcessControlPage extends StatelessWidget {
     music.setVolume(0.2);
     music.setReleaseMode(ReleaseMode.loop);
     music.play(AssetSource("wait1.wav"));
-
-    Timer(Duration(seconds: 10), () {
+    ProcessControlPage.ended = false;
+    Timer(Duration(seconds: 5), () {
       if (!impostor) {
         player.stop();
         player.play(AssetSource("1-1K.mp3"));
@@ -142,14 +142,18 @@ class ProcessControlPage extends StatelessWidget {
             player.stop();
             player.play(AssetSource("17-1K.mp3"));
           } else if (data.contains("<5,0>")) {
+            music.stop();
             player.stop();
             player.play(AssetSource("12-1K.mp3"));
+            music.play(AssetSource("Doorsignal.mp3"));
           } else if (data.contains("<5,8>")) {
             player.stop();
             player.play(AssetSource("20-1K.mp3"));
           } else if (data.contains("<5,1>")) {
             player.stop();
             player.play(AssetSource("5-1K.mp3"));
+          } else if (data.contains("<5,3>")) {
+            globals.isTimerActive = true;
           } else if (data.contains("<5,9>")) {
             //Timeout
             player.stop();
@@ -167,6 +171,9 @@ class ProcessControlPage extends StatelessWidget {
           } else if (data.contains("<5,13>")) {
             player.stop();
             player.play(AssetSource("10-1K.mp3"));
+          } else if (data.contains("<5,14>")) {
+            player.stop();
+            player.play(AssetSource("15-1K.mp3"));
           } else if (data.contains("<5,5>")) {
             player.stop();
             player.play(AssetSource("11-1K.mp3"));
@@ -176,6 +183,7 @@ class ProcessControlPage extends StatelessWidget {
               print("kapattım");
             }
             music.stop();
+            ProcessControlPage.ended = true;
             Navigator.pop(context);
             Navigator.pop(context);
             Navigator.pop(context);
@@ -191,7 +199,7 @@ class ProcessControlPage extends StatelessWidget {
         print("HATA ALDIM CANIM");
         print(error);
         CardScreen.port1!.close();
-        readPort(context);
+        if (ProcessControlPage.ended == false) readPort(context);
       });
     } catch (e) {
       readPort(context);

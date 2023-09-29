@@ -1,4 +1,6 @@
 // ignore: file_names
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'main.dart' as mainpage;
@@ -6,6 +8,7 @@ import 'servicePage.dart' as servicePage;
 import 'package:flutter_libserialport/flutter_libserialport.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'globals.dart' as globals;
+import 'package:http/http.dart' as http;
 
 import 'dart:async';
 
@@ -19,6 +22,8 @@ class CardScreen extends StatefulWidget {
   static String basinc = "0";
   static String krem = "0";
   static Timer? timer;
+  static TextEditingController maincontroller = TextEditingController();
+  static bool stopReading = false;
   @override
   State<CardScreen> createState() => _CardScreen();
 }
@@ -75,8 +80,12 @@ class _CardScreen extends State<CardScreen> {
           // unfocusable cloumn end
           TextField(
             autofocus: true,
+            controller: CardScreen.maincontroller,
             onSubmitted: (value) async {
               //value is entered text after Enter
+              if (value == "dd") {
+                wrongTankMail("SPF50");
+              }
 
               if (value == "SPF30" ||
                   value == "SPF50" ||
@@ -84,28 +93,42 @@ class _CardScreen extends State<CardScreen> {
                   value == "Kopuk" ||
                   value == "Kopek" ||
                   value == "Dezenfektan") {
+                CardScreen.stopReading = false;
                 _showMyDialog(value, 0);
-                readPort(value);
-                await writePort(3, 0, 0, 0, 18);
-                await writePort(3, 0, 0, 0, 9);
+                Timer(Duration(seconds: 2), () {
+                  readPort(value);
+                });
+
+                Timer(Duration(seconds: 5), () {
+                  writePort("3", "0", "0", "0", "8");
+                });
 
                 if (value == "Dezenfektan")
-                  await writePort(3, 0, 0, 0, 80);
+                  Timer(Duration(seconds: 8), () {
+                    writePort("3", "0", "0", "0", "80");
+                  });
                 else
-                  await writePort(3, 0, 0, 0, 78);
-                await writePort(3, 0, 0, 0, 42);
-                CardScreen.timer = Timer.periodic(Duration(seconds: 5),
-                    (Timer t) => writePort(3, 0, 0, 0, 43));
-              } else if (value != "123456") {
+                  Timer(Duration(seconds: 8), () {
+                    writePort("3", "0", "0", "0", "78");
+                  });
+                Timer(Duration(seconds: 12), () {
+                  writePort("3", "0", "0", "0", "42");
+                });
+                Timer(Duration(seconds: 14), () {
+                  CardScreen.timer = Timer.periodic(Duration(seconds: 5),
+                      (Timer t) => writePort("3", "0", "0", "0", "43"));
+                });
+              } else if (value != "0394956103" && value != "123456") {
+                CardScreen.maincontroller.clear();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => const mainpage.MainPage()),
                 );
                 // service page code  servis sayfası girişi
-              } else if (value == "123456") {
+              } else if (value == "0394956103" || value == "123456") {
                 player.play(AssetSource("service.mp3"));
-
+                CardScreen.maincontroller.clear();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -197,7 +220,6 @@ class _CardScreen extends State<CardScreen> {
   }
 
   Future<void> writePort(dus, krem, number1, number2, number3) async {
-    CardScreen.number += 1;
     /*
     if (CardScreen.number >= 7) {
       CardScreen.number = 0;
@@ -250,7 +272,7 @@ class _CardScreen extends State<CardScreen> {
             ">"));
       }
     } catch (e) {
-      print("burada hata");
+      print(e);
     }
   }
 
@@ -262,23 +284,23 @@ class _CardScreen extends State<CardScreen> {
       });
       upcomingData.listen((data) {
         print("GELEN DATA: ");
-        print(data);
+        print(data.codeUnits);
         if (data.length < 18 && data.length > 4) {
           if (value == "SPF30" && globals.SPF30 == 0)
-            globals.SPF30 = int.parse(data[1]);
+            globals.SPF30 = int.parse(data.codeUnitAt(1).toString());
           else if (value == "SPF50" && globals.SPF50 == 0)
-            globals.SPF50 = int.parse(data[3]);
+            globals.SPF50 = int.parse(data.codeUnitAt(3).toString());
           else if (value == "SPF50C" && globals.SPF50C == 0)
-            globals.SPF50C = int.parse(data[5]);
+            globals.SPF50C = int.parse(data.codeUnitAt(5).toString());
           else if (value == "Kopuk" && globals.Kopuk == 0)
-            globals.Kopuk = int.parse(data[7]);
+            globals.Kopuk = int.parse(data.codeUnitAt(7).toString());
           else if (value == "Kopek" && globals.Kopek == 0)
-            globals.Kopek = int.parse(data[9]);
+            globals.Kopek = int.parse(data.codeUnitAt(9).toString());
           else if (value == "Dezenfektan" && globals.Dezenfektan == 0)
-            globals.Dezenfektan = int.parse(data[11]);
+            globals.Dezenfektan = int.parse(data.codeUnitAt(11).toString());
           //BÜTÜN DEĞERLERİ SIFIRLAMAK LAZIM
-          if (value == "SPF30" && globals.SPF30 != 0) {
-            if (globals.SPF30 >= int.parse(data[1])) {
+          else if (value == "SPF30" && globals.SPF30 != 0) {
+            if (globals.SPF30 + 3 >= int.parse(data.codeUnitAt(1).toString())) {
               globals.wrongone = 1;
               Navigator.pop(context);
               _showMyDialog(value, 2);
@@ -287,7 +309,7 @@ class _CardScreen extends State<CardScreen> {
               _showMyDialog(value, 1);
             }
           } else if (value == "SPF50" && globals.SPF50 != 0) {
-            if (globals.SPF50 >= int.parse(data[3])) {
+            if (globals.SPF50 + 3 >= int.parse(data.codeUnitAt(3).toString())) {
               globals.wrongone = 2;
               Navigator.pop(context);
               _showMyDialog(value, 2);
@@ -296,7 +318,8 @@ class _CardScreen extends State<CardScreen> {
               _showMyDialog(value, 1);
             }
           } else if (value == "SPF50C" && globals.SPF50C != 0) {
-            if (globals.SPF50C >= int.parse(data[5])) {
+            if (globals.SPF50C + 3 >=
+                int.parse(data.codeUnitAt(5).toString())) {
               globals.wrongone = 3;
               Navigator.pop(context);
               _showMyDialog(value, 2);
@@ -305,7 +328,7 @@ class _CardScreen extends State<CardScreen> {
               _showMyDialog(value, 1);
             }
           } else if (value == "Kopuk" && globals.Kopuk != 0) {
-            if (globals.Kopuk >= int.parse(data[7])) {
+            if (globals.Kopuk + 3 >= int.parse(data.codeUnitAt(7).toString())) {
               globals.wrongone = 4;
               Navigator.pop(context);
               _showMyDialog(value, 2);
@@ -314,7 +337,7 @@ class _CardScreen extends State<CardScreen> {
               _showMyDialog(value, 1);
             }
           } else if (value == "Kopek" && globals.Kopek != 0) {
-            if (globals.Kopek >= int.parse(data[9])) {
+            if (globals.Kopek + 3 >= int.parse(data.codeUnitAt(9).toString())) {
               globals.wrongone = 9;
               Navigator.pop(context);
               _showMyDialog(value, 2);
@@ -323,7 +346,8 @@ class _CardScreen extends State<CardScreen> {
               _showMyDialog(value, 1);
             }
           } else if (value == "Dezenfektan" && globals.Dezenfektan != 0) {
-            if (globals.Dezenfektan >= int.parse(data[11])) {
+            if (globals.Dezenfektan + 3 >=
+                int.parse(data.codeUnitAt(11).toString())) {
               globals.wrongone = 11;
               Navigator.pop(context);
               _showMyDialog(value, 2);
@@ -334,17 +358,27 @@ class _CardScreen extends State<CardScreen> {
           }
         } else if (data.length > 18) {
           //KESİN DÜZELT SAYIYI 15 16
-          if (data[15] == "0") {
-            writePort(3, 0, 0, 0, 42);
-          } else if (data[16] == "0") {
-            writePort(3, 0, 0, 0, 42);
+          if (int.parse(data.codeUnitAt(15).toString()) == 0) {
+            if (value != "Dezenfektan") {
+              CardScreen.timer!.cancel();
+              Timer(Duration(seconds: 4), () {
+                writePort("3", "0", "0", "0", "42");
+              });
+            }
+          } else if (int.parse(data.codeUnitAt(16).toString()) == 0) {
+            if (value == "Dezenfektan") {
+              CardScreen.timer!.cancel();
+              Timer(Duration(seconds: 4), () {
+                writePort("3", "0", "0", "0", "42");
+              });
+            }
           }
         }
       }).onError((error) {
         print("HATA ALDIM CANIM");
         print(error);
         CardScreen.port1!.close();
-        readPort(value);
+        if (CardScreen.stopReading == false) readPort(value);
       });
     } catch (e) {
       print("yazamadım");
@@ -382,6 +416,20 @@ class _CardScreen extends State<CardScreen> {
               onPressed: () {
                 if (ok == 1 || ok == 2) {
                   Navigator.of(context).pop();
+                  CardScreen.maincontroller.clear();
+
+                  CardScreen.stopReading = true;
+                  writePort("3", "0", "0", "0", "9");
+                  CloseMk();
+                  if (ok == 2) {
+                    wrongTankMail(cream);
+                  }
+                  globals.Dezenfektan = 0;
+                  globals.Kopek = 0;
+                  globals.SPF30 = 0;
+                  globals.Kopuk = 0;
+                  globals.SPF50 = 0;
+                  globals.SPF50C = 0;
                 } else {}
               },
             ),
@@ -389,5 +437,31 @@ class _CardScreen extends State<CardScreen> {
         );
       },
     );
+  }
+
+  Future<void> wrongTankMail(String cream) async {
+    bool connection = true;
+
+    var url = Uri.parse("https://poemech.com.tr:3001/api/mail/WrongTank");
+    final body = json.encode(
+        {"id": "AB010723/01", "mail": "kacaryucel@gmail.com", "tank": cream});
+
+    // ignore: prefer_typing_uninitialized_variables
+    var res;
+    try {
+      res = await http.post(url,
+          headers: {"Content-Type": "application/json"}, body: body);
+      // ignore: unused_catch_clause
+    } on Exception catch (e) {
+      //print(e.toString());
+      connection = false;
+    }
+    if (connection) {
+      final Map<String, dynamic> data = json.decode(res.body);
+
+      if (data['done'] == 'false') {
+      } else if (data['done'] == 'true') {
+      } else {}
+    }
   }
 }
