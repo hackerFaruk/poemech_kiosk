@@ -99,12 +99,8 @@ class _CardScreen extends State<CardScreen> {
                   readPort(value);
                 });
 
-                Timer(Duration(seconds: 4), () {
-                  writePort("3", "0", "0", "0", "18");
-                });
-
-                Timer(Duration(seconds: 6), () {
-                  writePort("3", "0", "0", "0", "9");
+                Timer(Duration(seconds: 5), () {
+                  writePort("3", "0", "0", "0", "8");
                 });
 
                 if (value == "Dezenfektan")
@@ -122,16 +118,17 @@ class _CardScreen extends State<CardScreen> {
                   CardScreen.timer = Timer.periodic(Duration(seconds: 5),
                       (Timer t) => writePort("3", "0", "0", "0", "43"));
                 });
-              } else if (value != "123456") {
+              } else if (value != "0394956103" && value != "123456") {
+                CardScreen.maincontroller.clear();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => const mainpage.MainPage()),
                 );
                 // service page code  servis sayfası girişi
-              } else if (value == "123456") {
+              } else if (value == "0394956103" || value == "123456") {
                 player.play(AssetSource("service.mp3"));
-
+                CardScreen.maincontroller.clear();
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -303,7 +300,7 @@ class _CardScreen extends State<CardScreen> {
             globals.Dezenfektan = int.parse(data.codeUnitAt(11).toString());
           //BÜTÜN DEĞERLERİ SIFIRLAMAK LAZIM
           else if (value == "SPF30" && globals.SPF30 != 0) {
-            if (globals.SPF30 >= int.parse(data.codeUnitAt(1).toString())) {
+            if (globals.SPF30 + 3 >= int.parse(data.codeUnitAt(1).toString())) {
               globals.wrongone = 1;
               Navigator.pop(context);
               _showMyDialog(value, 2);
@@ -312,7 +309,7 @@ class _CardScreen extends State<CardScreen> {
               _showMyDialog(value, 1);
             }
           } else if (value == "SPF50" && globals.SPF50 != 0) {
-            if (globals.SPF50 >= int.parse(data.codeUnitAt(3).toString())) {
+            if (globals.SPF50 + 3 >= int.parse(data.codeUnitAt(3).toString())) {
               globals.wrongone = 2;
               Navigator.pop(context);
               _showMyDialog(value, 2);
@@ -321,7 +318,8 @@ class _CardScreen extends State<CardScreen> {
               _showMyDialog(value, 1);
             }
           } else if (value == "SPF50C" && globals.SPF50C != 0) {
-            if (globals.SPF50C >= int.parse(data.codeUnitAt(5).toString())) {
+            if (globals.SPF50C + 3 >=
+                int.parse(data.codeUnitAt(5).toString())) {
               globals.wrongone = 3;
               Navigator.pop(context);
               _showMyDialog(value, 2);
@@ -330,7 +328,7 @@ class _CardScreen extends State<CardScreen> {
               _showMyDialog(value, 1);
             }
           } else if (value == "Kopuk" && globals.Kopuk != 0) {
-            if (globals.Kopuk >= int.parse(data.codeUnitAt(7).toString())) {
+            if (globals.Kopuk + 3 >= int.parse(data.codeUnitAt(7).toString())) {
               globals.wrongone = 4;
               Navigator.pop(context);
               _showMyDialog(value, 2);
@@ -339,7 +337,7 @@ class _CardScreen extends State<CardScreen> {
               _showMyDialog(value, 1);
             }
           } else if (value == "Kopek" && globals.Kopek != 0) {
-            if (globals.Kopek >= int.parse(data.codeUnitAt(9).toString())) {
+            if (globals.Kopek + 3 >= int.parse(data.codeUnitAt(9).toString())) {
               globals.wrongone = 9;
               Navigator.pop(context);
               _showMyDialog(value, 2);
@@ -348,7 +346,7 @@ class _CardScreen extends State<CardScreen> {
               _showMyDialog(value, 1);
             }
           } else if (value == "Dezenfektan" && globals.Dezenfektan != 0) {
-            if (globals.Dezenfektan >=
+            if (globals.Dezenfektan + 3 >=
                 int.parse(data.codeUnitAt(11).toString())) {
               globals.wrongone = 11;
               Navigator.pop(context);
@@ -419,8 +417,10 @@ class _CardScreen extends State<CardScreen> {
                 if (ok == 1 || ok == 2) {
                   Navigator.of(context).pop();
                   CardScreen.maincontroller.clear();
-                  CloseMk();
+
                   CardScreen.stopReading = true;
+                  writePort("3", "0", "0", "0", "9");
+                  CloseMk();
                   if (ok == 2) {
                     wrongTankMail(cream);
                   }
@@ -444,7 +444,7 @@ class _CardScreen extends State<CardScreen> {
 
     var url = Uri.parse("https://poemech.com.tr:3001/api/mail/WrongTank");
     final body = json.encode(
-        {"id": "AB010723/01", "mail": "info@onarfa.com", "tank": cream});
+        {"id": "AB010723/01", "mail": "kacaryucel@gmail.com", "tank": cream});
 
     // ignore: prefer_typing_uninitialized_variables
     var res;

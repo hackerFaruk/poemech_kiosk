@@ -387,10 +387,8 @@ class OKCancelRow extends StatelessWidget {
                     CardScreen.dus = "0";
                   AudioPlayer player = AudioPlayer();
                   player.play(AssetSource("13-1K.mp3"));
-                  Timer(Duration(seconds: 4), () {
-                    player.stop();
-                    player.play(AssetSource("Doorsignal.mp3"));
-                  });
+                  player.play(AssetSource("Doorsignal.mp3"));
+
                   print("ÇALDIIIIM KAÇ GÜN OLDU");
                   if (CardScreen.dus != "2" && CardScreen.dus != "7") {
                     readPort(
@@ -399,9 +397,16 @@ class OKCancelRow extends StatelessWidget {
                         CardScreen.sure, // number2, number3, number1
                         CardScreen.sicaksoguk,
                         CardScreen.basinc);
-                  } else if (CardScreen.dus == "2")
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => destination!));
+                  } else if (CardScreen.dus == "2") {
+                    writePort(
+                        "3",
+                        "0",
+                        "12", // number2, number3, number1
+                        "0",
+                        "0");
+                  }
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => destination!));
                 }
               },
               child: SizedBox(
@@ -451,7 +456,7 @@ class OKCancelRow extends StatelessWidget {
           ",0" +
           number1 +
           ">");
-      if (int.parse(number3) >= 10) {
+      if (int.parse(number1) >= 10) {
         CardScreen.port1?.write(_stringToUint8List("<" +
             dus +
             "," +

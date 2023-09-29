@@ -29,7 +29,7 @@ class ProcessControlPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
     print(globals.selected);
-    //WaitPort(context);
+    WaitPort(context);
 
     double gapsize = 20.0;
     if (isStopwatch()) {
@@ -104,7 +104,7 @@ class ProcessControlPage extends StatelessWidget {
     music.setReleaseMode(ReleaseMode.loop);
     music.play(AssetSource("wait1.wav"));
     ProcessControlPage.ended = false;
-    Timer(Duration(seconds: 10), () {
+    Timer(Duration(seconds: 5), () {
       if (!impostor) {
         player.stop();
         player.play(AssetSource("1-1K.mp3"));
@@ -142,8 +142,10 @@ class ProcessControlPage extends StatelessWidget {
             player.stop();
             player.play(AssetSource("17-1K.mp3"));
           } else if (data.contains("<5,0>")) {
+            music.stop();
             player.stop();
             player.play(AssetSource("12-1K.mp3"));
+            music.play(AssetSource("Doorsignal.mp3"));
           } else if (data.contains("<5,8>")) {
             player.stop();
             player.play(AssetSource("20-1K.mp3"));
