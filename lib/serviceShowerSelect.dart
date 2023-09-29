@@ -2,16 +2,18 @@ import 'package:flutter/material.dart';
 import 'servicePage.dart' as servicePage;
 import 'main.dart' as mainPage;
 
-class serviceShowerelect extends StatefulWidget {
-  const serviceShowerelect({super.key});
+class serviceShowerSelect extends StatefulWidget {
+  const serviceShowerSelect({super.key});
 
   @override
-  State<serviceShowerelect> createState() => _serviceShowerelectState();
+  State<serviceShowerSelect> createState() => _serviceShowerSelectState();
 }
 
-class _serviceShowerelectState extends State<serviceShowerelect> {
+class _serviceShowerSelectState extends State<serviceShowerSelect> {
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -23,30 +25,50 @@ class _serviceShowerelectState extends State<serviceShowerelect> {
         body: Center(
             child: Column(
           children: [
-            const SizedBox(
-              height: 20,
+            SizedBox(
+              height: screenSize.width * 0.1,
+              width: screenSize.width,
             ),
-            Row(
-              children: [
-                InkWell(
-                  onTap: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const servicePage.servicePage()),
-                  ),
-                  child: const Image(
-                      image: AssetImage("images/serviceSelect.png")),
-                ),
-                const SizedBox(width: 10),
-                InkWell(
+            Center(
+              child: Row(
+                children: [
+                  SizedBox(width: screenSize.width * 0.1),
+                  InkWell(
                     onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const mainPage.MainPage()),
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const servicePage.servicePage()),
+                    ),
+                    child: SizedBox(
+                      width: screenSize.width * 0.3,
+                      child: Column(
+                        children: const [
+                          Image(image: AssetImage("images/serviceSelect.png")),
+                          Text("Service Mode", style: TextStyle(fontSize: 26))
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: screenSize.width * 0.2),
+                  InkWell(
+                      onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const mainPage.MainPage()),
+                          ),
+                      child: SizedBox(
+                        width: screenSize.width * 0.3,
+                        child: Column(
+                          children: const [
+                            Image(image: AssetImage("images/showerSelect.png")),
+                            Text("Shower Menu", style: TextStyle(fontSize: 26)),
+                          ],
                         ),
-                    child: const Image(
-                        image: AssetImage("images/serviceShower.png")))
-              ],
+                      ))
+                ],
+              ),
             )
           ],
         )),
