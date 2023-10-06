@@ -24,6 +24,8 @@ class CardScreen extends StatefulWidget {
   static Timer? timer;
   static TextEditingController maincontroller = TextEditingController();
   static bool stopReading = false;
+  static bool opened = false;
+  static int failcount = 0;
   @override
   State<CardScreen> createState() => _CardScreen();
 }
@@ -82,6 +84,7 @@ class _CardScreen extends State<CardScreen> {
             autofocus: true,
             controller: CardScreen.maincontroller,
             onSubmitted: (value) async {
+              print(value);
               //value is entered text after Enter
               if (value == "dd") {
                 wrongTankMail("SPF50");
@@ -358,20 +361,33 @@ class _CardScreen extends State<CardScreen> {
           }
         } else if (data.length > 18) {
           //KESİN DÜZELT SAYIYI 15 16
-          if (int.parse(data.codeUnitAt(15).toString()) == 0) {
+          if (int.parse(data.codeUnitAt(15).toString()) == 0 &&
+              CardScreen.opened == true) {
             if (value != "Dezenfektan") {
+              CardScreen.failcount = 0;
               CardScreen.timer!.cancel();
               Timer(Duration(seconds: 4), () {
                 writePort("3", "0", "0", "0", "42");
               });
             }
-          } else if (int.parse(data.codeUnitAt(16).toString()) == 0) {
+          } else if (int.parse(data.codeUnitAt(15).toString()) == 1) {
+            CardScreen.opened = true;
+          } else if (int.parse(data.codeUnitAt(16).toString()) == 0 &&
+              CardScreen.opened == true) {
             if (value == "Dezenfektan") {
+              CardScreen.failcount = 0;
               CardScreen.timer!.cancel();
               Timer(Duration(seconds: 4), () {
                 writePort("3", "0", "0", "0", "42");
               });
             }
+          } else if (int.parse(data.codeUnitAt(16).toString()) == 1) {
+            CardScreen.opened = true;
+          } else if (CardScreen.failcount > 4) {
+            _showMyDialog(value, 3);
+          } else if (int.parse(data.codeUnitAt(16).toString()) == 0 &&
+              int.parse(data.codeUnitAt(15).toString()) == 0) {
+            CardScreen.failcount++;
           }
         }
       }).onError((error) {
@@ -406,7 +422,9 @@ class _CardScreen extends State<CardScreen> {
                 ? Text("$cream Dolumu bekleniyor")
                 : ok == 1
                     ? const Text("İşlem Başarılı")
-                    : Text("$cream Dolumu için yanlış tank kullanıldı."),
+                    : ok == 2
+                        ? Text("$cream Dolumu için yanlış tank kullanıldı.")
+                        : Text("İşlem zaman aşımına uğradı."),
           ),
           actions: <Widget>[
             TextButton(
@@ -420,6 +438,7 @@ class _CardScreen extends State<CardScreen> {
 
                   CardScreen.stopReading = true;
                   writePort("3", "0", "0", "0", "9");
+                  writePort("3", "0", "0", "0", "77");
                   CloseMk();
                   if (ok == 2) {
                     wrongTankMail(cream);
