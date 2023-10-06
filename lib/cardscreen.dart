@@ -9,7 +9,7 @@ import 'package:flutter_libserialport/flutter_libserialport.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'globals.dart' as globals;
 import 'package:http/http.dart' as http;
-
+import 'serviceShowerSelect.dart' as serviceShower;
 import 'dart:async';
 
 class CardScreen extends StatefulWidget {
@@ -135,7 +135,8 @@ class _CardScreen extends State<CardScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const servicePage.servicePage()),
+                      builder: (context) =>
+                          const serviceShower.serviceShowerSelect()),
                 );
               } else {
                 // works only at debug
