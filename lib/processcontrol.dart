@@ -100,7 +100,7 @@ class ProcessControlPage extends StatelessWidget {
   }
 
   Future<void> WaitPort(BuildContext context) async {
-    music.setVolume(0.2);
+    music.setVolume(0.1);
     music.setReleaseMode(ReleaseMode.loop);
     music.play(AssetSource("wait1.wav"));
     ProcessControlPage.ended = false;
@@ -150,7 +150,6 @@ class ProcessControlPage extends StatelessWidget {
             player.stop();
             player.play(AssetSource("20-1K.mp3"));
           } else if (data.contains("<5,1>")) {
-            player.stop();
             player.play(AssetSource("5-1K.mp3"));
           } else if (data.contains("<5,3>")) {
             globals.isTimerActive = true;
