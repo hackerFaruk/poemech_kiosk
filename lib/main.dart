@@ -913,13 +913,19 @@ class CustomDogWash extends StatefulWidget {
 }
 
 class _CustomDogWashState extends State<CustomDogWash> {
+  // kir seçimi
   int but1 = 0;
   int but2 = 0;
   int but3 = 0;
+// tüy seçimi
   int but4 = 0;
   int but5 = 0;
   int but6 = 0;
   int but7 = 0;
+  // sıcaklık seçimi
+  int but8 = 0;
+  int but9 = 0;
+
   String dirtselected = '';
   String furselected = '';
 
@@ -928,6 +934,8 @@ class _CustomDogWashState extends State<CustomDogWash> {
     return InkWell(
       hoverColor: Colors.transparent,
       onTap: () {
+        // her şeyi sıfıtlarma
+        globals.warmthselected = "";
         globals.selected = '';
         dirtselected = '';
         furselected = '';
@@ -939,6 +947,8 @@ class _CustomDogWashState extends State<CustomDogWash> {
           but5 = 0;
           but6 = 0;
           but7 = 0;
+          but8 = 0;
+          but9 = 0;
         });
       },
       child: Column(
@@ -946,6 +956,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
           Container(
             height: 50,
           ),
+          // kir seçimi rowu
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -990,6 +1001,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
           const SizedBox(
             height: 20,
           ),
+          // tüy seçim rowu
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
