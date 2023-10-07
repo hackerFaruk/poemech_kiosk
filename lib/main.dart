@@ -777,9 +777,14 @@ class DirtSelection extends StatefulWidget {
 }
 
 class _DirtSelectionState extends State<DirtSelection> {
+  // bu kir seçimi için
   int but1 = 0;
   int but2 = 0;
   int but3 = 0;
+  // burayada sıcaklık seçimi eklicez
+  int but4 = 0;
+  int but5 = 0;
+
   String dirtselected = '';
 
   @override
@@ -787,58 +792,101 @@ class _DirtSelectionState extends State<DirtSelection> {
     return Column(
       children: [
         Container(height: 75),
+        // bu inkwel boşa tıklayınca ful reset kafası
         InkWell(
           onTap: () {
+            // on tapta her şeyi resetliyoz
             globals.selected = '';
+            globals.warmthselected = "";
             dirtselected = '';
             setState(() {
               but1 = 0;
-              but2 = 1;
-              but3 = 1;
+              but2 = 0;
+              but3 = 0;
+              but4 = 0;
+              but5 = 0;
             });
           },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+          child: Column(
             children: [
-              InkWell(
-                  onTap: () {
-                    globals.lengthselected = "1";
-                    dirtselected = 'dusty';
-                    setState(() {
-                      but1 = 0;
-                      but2 = 1;
-                      but3 = 1;
-                    });
-                  },
-                  child:
-                      GreyoutButtons(icon: "images/dusty.png", grayout: but1)),
-              InkWell(
-                  onTap: () {
-                    dirtselected = 'dirty';
-                    globals.lengthselected = "2";
-                    setState(() {
-                      but1 = 1;
-                      but2 = 0;
-                      but3 = 1;
-                    });
-                  },
-                  child:
-                      GreyoutButtons(icon: "images/dirty.png", grayout: but2)),
-              InkWell(
-                  onTap: () {
-                    dirtselected = 'grimy';
-                    globals.lengthselected = "3";
-                    setState(() {
-                      but1 = 1;
-                      but2 = 1;
-                      but3 = 0;
-                    });
-                  },
-                  child:
-                      GreyoutButtons(icon: "images/grimy.png", grayout: but3)),
+              // first row for dirt selection
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  InkWell(
+                      onTap: () {
+                        globals.lengthselected = "1";
+                        dirtselected = 'dusty';
+                        setState(() {
+                          but1 = 0;
+                          but2 = 1;
+                          but3 = 1;
+                        });
+                      },
+                      child: GreyoutButtons(
+                          icon: "images/dusty.png", grayout: but1)),
+                  InkWell(
+                      onTap: () {
+                        dirtselected = 'dirty';
+                        globals.lengthselected = "2";
+                        setState(() {
+                          but1 = 1;
+                          but2 = 0;
+                          but3 = 1;
+                        });
+                      },
+                      child: GreyoutButtons(
+                          icon: "images/dirty.png", grayout: but2)),
+                  InkWell(
+                      onTap: () {
+                        dirtselected = 'grimy';
+                        globals.lengthselected = "3";
+                        setState(() {
+                          but1 = 1;
+                          but2 = 1;
+                          but3 = 0;
+                        });
+                      },
+                      child: GreyoutButtons(
+                          icon: "images/grimy.png", grayout: but3)),
+                ],
+              ),
+              // ilk seçim rovu burda bitiyor
+              // rowlar arası boşluk için bi sizedbox
+              const SizedBox(
+                height: 10.0,
+              ),
+              // ikinci row sıcaklık seçimi
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  InkWell(
+                      onTap: () {
+                        globals.warmthselected = "1";
+                        // zero is active 1 is passive
+                        setState(() {
+                          but4 = 0;
+                          but5 = 1;
+                        });
+                      },
+                      child: GreyoutButtons(
+                          icon: "images/coldwater.png", grayout: but4)),
+                  InkWell(
+                      onTap: () {
+                        globals.warmthselected = "2";
+                        setState(() {
+                          but4 = 1;
+                          but5 = 0;
+                        });
+                      },
+                      child: GreyoutButtons(
+                          icon: "images/hotwater.png", grayout: but5)),
+                ],
+              ),
             ],
           ),
         ),
+
         Container(
           height: 75,
         ),
@@ -1151,6 +1199,7 @@ class DogBreeds extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
+            const DogBreedButton(icon: 'images/bronz.png')
           ],
         ),
       ),
