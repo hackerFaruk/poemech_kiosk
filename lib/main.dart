@@ -954,7 +954,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
       child: Column(
         children: [
           Container(
-            height: 50,
+            height: 20,
           ),
           // kir seçimi rowu
           Row(
@@ -1060,8 +1060,41 @@ class _CustomDogWashState extends State<CustomDogWash> {
             ],
           ),
           Container(
-            height: 50,
+            height: 20,
           ),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              InkWell(
+                  onTap: () {
+                    globals.warmthselected = "1";
+
+                    setState(() {
+                      but8 = 0;
+                      but9 = 1;
+                    });
+                  },
+                  child: GreyoutButtons(
+                      icon: "images/coldwater.png", grayout: but1)),
+              InkWell(
+                  onTap: () {
+                    globals.warmthselected = "2";
+
+                    setState(() {
+                      but8 = 1;
+                      but9 = 0;
+                    });
+                  },
+                  child: GreyoutButtons(
+                      icon: "images/hotwater.png", grayout: but2)),
+            ],
+          ),
+
+          Container(
+            height: 20,
+          ),
+
           OKCancelRow(
             selections: [furselected, dirtselected],
             destination: process.ProcessControlPage(
