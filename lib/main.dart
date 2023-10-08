@@ -1244,7 +1244,7 @@ class DogBreeds extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const DogBreedButton(icon: 'images/bronz.png')
+            const DogBreedButton(icon: 'images/dogcream.png')
           ],
         ),
       ),
