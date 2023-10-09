@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_libserialport/flutter_libserialport.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'mutantAppIcon.dart' as mutant;
 import 'main.dart' as main;
+import 'package:http/http.dart' as http;
 
 import 'appIcon.dart' as appIcon;
 
@@ -137,7 +139,7 @@ class ProcessControlPage extends StatelessWidget {
         print("okumaktayım");
         print("GELEN DATA: ");
         print(data);
-        if (data.length > 0) {
+        if (data.length > 0 && data.length < 8) {
           if (data.contains("<5,6>")) {
             player.stop();
             player.play(AssetSource("17-1K.mp3"));
@@ -179,11 +181,7 @@ class ProcessControlPage extends StatelessWidget {
           } else if (data.contains("<5,5>")) {
             player.stop();
             player.play(AssetSource("11-1K.mp3"));
-            try {
-              CardScreen.port1!.close();
-            } catch (e) {
-              print("kapattım");
-            }
+            writePort("3", "0", "0", "0", "42");
             music.stop();
             ProcessControlPage.ended = true;
             Navigator.pop(context);
@@ -195,6 +193,20 @@ class ProcessControlPage extends StatelessWidget {
           }
           if (!reader.stream.isBroadcast) {
             print("broadcast biddi");
+          }
+        } else {
+          int dezenfektan = int.parse(data[1].toString());
+          int f15 = int.parse(data[3].toString());
+          int f50 = int.parse(data[5].toString());
+          int duskopugu = int.parse(data[7].toString());
+          int kopeksampuan = int.parse(data[9].toString());
+          int kopekkrem = int.parse(data[11].toString());
+          UpdateInfo(f15, 999, f50, 50, 999, 999, dezenfektan, duskopugu,
+              kopekkrem, kopeksampuan, 1);
+          try {
+            CardScreen.port1!.close();
+          } catch (e) {
+            print("kapattım");
           }
         }
       }).onError((error) {
@@ -222,6 +234,113 @@ class ProcessControlPage extends StatelessWidget {
   Future<void> CloseMk() async {
     print("close denedim");
     if (CardScreen.port1!.isOpen) CardScreen.port1!.close();
+  }
+
+  Future<void> writePort(dus, krem, number1, number2, number3) async {
+    CardScreen.number += 1;
+    /*
+    if (CardScreen.number >= 7) {
+      CardScreen.number = 0;
+      await CloseMk();
+    }*/
+    try {
+      if (CardScreen.port1 != null) {
+        if (!CardScreen.port1!.isOpen) {
+          try {
+            await OpenMk();
+          } catch (e) {
+            print("PORT AÇARKEN GİRİYOR HATAYA");
+          }
+        }
+      }
+      print(_stringToUint8List("<" +
+          dus +
+          "," +
+          krem +
+          "," +
+          number1 +
+          "," +
+          number2 +
+          "," +
+          number3 +
+          ">"));
+      if (int.parse(number3) >= 10) {
+        CardScreen.port1?.write(_stringToUint8List("<" +
+            dus +
+            "," +
+            krem +
+            "," +
+            number1 +
+            "," +
+            number2 +
+            "," +
+            number3 +
+            ">"));
+      } else {
+        CardScreen.port1?.write(_stringToUint8List("<" +
+            dus +
+            "," +
+            krem +
+            "," +
+            number1 +
+            "," +
+            number2 +
+            ",0" +
+            number3 +
+            ">"));
+      }
+    } catch (e) {
+      print("burada hata");
+    }
+  }
+
+  Future<void> UpdateInfo(
+      int f15,
+      int f30,
+      int f50,
+      int su,
+      int nemlendirici,
+      int bronzlastirici,
+      int dezenfektan,
+      int duskopugu,
+      int kopekkrem,
+      int kopeksampuan,
+      int onoff) async {
+    bool connection = true;
+
+    var url = Uri.parse("https://poemech.com.tr:3001/api/UpdateInformation");
+    final body = json.encode({
+      "id": "1",
+      "f15": f15,
+      "f30": f30,
+      "f50": f50,
+      "su": su,
+      "nemlendirici": nemlendirici,
+      "bronzlastirici": bronzlastirici,
+      "dezenfektan": dezenfektan,
+      "duskopugu": duskopugu,
+      "kopekkrem": kopekkrem,
+      "kopeksampuan": kopeksampuan,
+      "onoff": onoff
+    });
+
+    // ignore: prefer_typing_uninitialized_variables
+    var res;
+    try {
+      res = await http.post(url,
+          headers: {"Content-Type": "application/json"}, body: body);
+      // ignore: unused_catch_clause
+    } on Exception catch (e) {
+      //print(e.toString());
+      connection = false;
+    }
+    if (connection) {
+      final Map<String, dynamic> data = json.decode(res.body);
+
+      if (data['done'] == 'false') {
+      } else if (data['done'] == 'true') {
+      } else {}
+    }
   }
 }
 
