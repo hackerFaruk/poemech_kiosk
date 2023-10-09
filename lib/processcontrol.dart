@@ -182,14 +182,6 @@ class ProcessControlPage extends StatelessWidget {
             player.stop();
             player.play(AssetSource("11-1K.mp3"));
             writePort("3", "0", "0", "0", "42");
-            music.stop();
-            ProcessControlPage.ended = true;
-            Navigator.pop(context);
-            Navigator.pop(context);
-            Navigator.pop(context);
-            Navigator.pop(context);
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => CardScreen()));
           }
           if (!reader.stream.isBroadcast) {
             print("broadcast biddi");
@@ -203,6 +195,14 @@ class ProcessControlPage extends StatelessWidget {
           int kopekkrem = int.parse(data.codeUnitAt(11).toString());
           UpdateInfo(f15, 999, f50, 50, 999, 999, dezenfektan, duskopugu,
               kopekkrem, kopeksampuan, 1);
+          music.stop();
+          ProcessControlPage.ended = true;
+          Navigator.pop(context);
+          Navigator.pop(context);
+          Navigator.pop(context);
+          Navigator.pop(context);
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => CardScreen()));
           try {
             CardScreen.port1!.close();
           } catch (e) {
