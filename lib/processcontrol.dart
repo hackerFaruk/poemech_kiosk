@@ -195,12 +195,12 @@ class ProcessControlPage extends StatelessWidget {
             print("broadcast biddi");
           }
         } else {
-          int dezenfektan = int.parse(data[1].toString());
-          int f15 = int.parse(data[3].toString());
-          int f50 = int.parse(data[5].toString());
-          int duskopugu = int.parse(data[7].toString());
-          int kopeksampuan = int.parse(data[9].toString());
-          int kopekkrem = int.parse(data[11].toString());
+          int dezenfektan = int.parse(data.codeUnitAt(1).toString());
+          int f15 = int.parse(data.codeUnitAt(3).toString());
+          int f50 = int.parse(data.codeUnitAt(5).toString());
+          int duskopugu = int.parse(data.codeUnitAt(7).toString());
+          int kopeksampuan = int.parse(data.codeUnitAt(9).toString());
+          int kopekkrem = int.parse(data.codeUnitAt(11).toString());
           UpdateInfo(f15, 999, f50, 50, 999, 999, dezenfektan, duskopugu,
               kopekkrem, kopeksampuan, 1);
           try {
