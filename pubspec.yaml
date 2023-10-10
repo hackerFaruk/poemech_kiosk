@@ -39,6 +39,7 @@ dependencies:
   flutter_libserialport: ^0.3.0
   flutter_screenutil: ^5.7.0
   audioplayers: ^4.1.0
+  rpi_gpio: ^0.8.1
 
 
 dev_dependencies:
