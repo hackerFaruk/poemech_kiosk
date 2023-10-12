@@ -106,12 +106,6 @@ class ProcessControlPage extends StatelessWidget {
     music.setReleaseMode(ReleaseMode.loop);
     music.play(AssetSource("wait1.wav"));
     ProcessControlPage.ended = false;
-    Timer(Duration(seconds: 5), () {
-      if (!impostor) {
-        player.stop();
-        player.play(AssetSource("1-1K.mp3"));
-      }
-    });
     readPort(context);
     //player.play(AssetSource("service.mp3"));
   }
@@ -178,6 +172,12 @@ class ProcessControlPage extends StatelessWidget {
           } else if (data.contains("<5,19>")) {
             player.stop();
             player.play(AssetSource("19-1K.mp3"));
+          } else if (data.contains("<5,20>")) {
+            player.stop();
+            player.play(AssetSource("Doorsignal.mp3"));
+          } else if (data.contains("<5,21>")) {
+            player.stop();
+            player.play(AssetSource("1-1K.mp3"));
           } else if (data.contains("<5,5>")) {
             player.stop();
             player.play(AssetSource("11-1K.mp3"));
