@@ -387,7 +387,6 @@ class OKCancelRow extends StatelessWidget {
                     CardScreen.dus = "0";
                   AudioPlayer player = AudioPlayer();
                   player.play(AssetSource("13-1K.mp3"));
-                  player.play(AssetSource("Doorsignal.mp3"));
 
                   print("ÇALDIIIIM KAÇ GÜN OLDU");
                   if (CardScreen.dus != "2" && CardScreen.dus != "7") {
