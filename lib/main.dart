@@ -950,6 +950,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
 
   @override
   Widget build(BuildContext context) {
+    globals.isEmergencyButton = true;
     return InkWell(
       hoverColor: Colors.transparent,
       onTap: () {
