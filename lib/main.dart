@@ -104,6 +104,24 @@ class _SelectionButtonsState extends State<SelectionButtons> {
             ],
           ),
         ),
+        const SizedBox(
+          height: 40,
+        ),
+        InkWell(
+            onTap: () {
+              globals.revertAll();
+              // changin trigger re renders controls
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const CardScreen()),
+              );
+            },
+            child: SizedBox(
+              height: 60,
+              width: screenSize.width * 0.4,
+              child: const Image(image: AssetImage('images/cancel.png')),
+            )),
       ],
     );
   }
