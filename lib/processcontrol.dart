@@ -25,6 +25,7 @@ class ProcessControlPage extends StatelessWidget {
   static AudioCache audioCache = AudioCache();
   static bool impostor = false;
   static bool ended = false;
+  static bool trywrite = false;
   const ProcessControlPage({super.key, required this.application});
 
   @override
@@ -111,6 +112,7 @@ class ProcessControlPage extends StatelessWidget {
   }
 
   Future<void> readPort(BuildContext context) async {
+    if (trywrite) await writePort("3", "0", "0", "0", "42");
     try {
       if (CardScreen.port1 != null) {
         if (!CardScreen.port1!.isOpen) {
@@ -149,7 +151,7 @@ class ProcessControlPage extends StatelessWidget {
             player.play(AssetSource("5-1K.mp3"));
           } else if (data.contains("<5,3>")) {
             globals.isTimerActive = true;
-          } else if (data.contains("<5,9>")) {
+          } else if (data.contains("<5,12>")) {
             //Timeout
             player.stop();
             player.play(AssetSource("2-1K.mp3"));
@@ -160,7 +162,7 @@ class ProcessControlPage extends StatelessWidget {
           } else if (data.contains("<5,11>")) {
             player.stop();
             player.play(AssetSource("4-1K.mp3"));
-          } else if (data.contains("<5,12>")) {
+          } else if (data.contains("<5,9>")) {
             player.stop();
             player.play(AssetSource("9-1K.mp3"));
           } else if (data.contains("<5,13>")) {
@@ -181,12 +183,15 @@ class ProcessControlPage extends StatelessWidget {
           } else if (data.contains("<5,5>")) {
             player.stop();
             player.play(AssetSource("11-1K.mp3"));
+          } else if (data.contains("<5,22>")) {
             writePort("3", "0", "0", "0", "42");
+            trywrite = true;
           }
           if (!reader.stream.isBroadcast) {
             print("broadcast biddi");
           }
         } else {
+          trywrite = false;
           int dezenfektan = int.parse(data.codeUnitAt(1).toString());
           int f15 = int.parse(data.codeUnitAt(3).toString());
           int f50 = int.parse(data.codeUnitAt(5).toString());
@@ -196,6 +201,7 @@ class ProcessControlPage extends StatelessWidget {
           UpdateInfo(f15, 999, f50, 50, 999, 999, dezenfektan, duskopugu,
               kopekkrem, kopeksampuan, 1);
           music.stop();
+          CloseMk();
           ProcessControlPage.ended = true;
           Navigator.pop(context);
           Navigator.pop(context);

@@ -383,6 +383,8 @@ class OKCancelRow extends StatelessWidget {
                     CardScreen.dus = "7";
                   } else if (globals.isBut9Selected == 1) {
                     CardScreen.dus = "2";
+                  } else if (globals.isBut3Selected == 1) {
+                    CardScreen.dus = "8";
                   } else
                     CardScreen.dus = "0";
                   AudioPlayer player = AudioPlayer();
