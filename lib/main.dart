@@ -578,7 +578,7 @@ class ConditionalControlRow extends StatelessWidget {
       globals.isEmergencyButton = false;
       return const WheelChairRow();
     } else if (application == 'images/custom.png') {
-      globals.isEmergencyButton = false;
+      globals.isEmergencyButton = true;
       return const CustomDogWash();
     } else if (application.contains('dog')) {
       print("ha bu nedu");

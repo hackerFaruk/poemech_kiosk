@@ -106,6 +106,7 @@ void revertAll() {
   pressselected = "0";
 
   isWheelChairBeingSelected = false;
+  isEmergencyButton = false;
 }
 
 /// This function sets all the buttons to gray.
