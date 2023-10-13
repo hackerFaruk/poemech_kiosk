@@ -369,6 +369,7 @@ class OKCancelRow extends StatelessWidget {
                     globals.selected = globals.selected + selections[i];
                     globals.selected = '${globals.selected}  ';
                   }
+                  print("buradayım 1");
                   CardScreen.sure = globals.lengthselected;
                   CardScreen.basinc = globals.pressselected;
                   CardScreen.sicaksoguk = globals.warmthselected;
@@ -381,14 +382,12 @@ class OKCancelRow extends StatelessWidget {
                   if (CardScreen.basinc != "0")
                     CardScreen.basinc =
                         (int.parse(globals.pressselected) - 1).toString();
-
+                  print("buradayım 2");
                   globals.timeSet();
                   if (globals.isBut1Selected == 1)
                     CardScreen.krem = "1";
                   else if (globals.isBut2Selected == 1)
                     CardScreen.krem = "2";
-                  else if (globals.isBut3Selected == 1)
-                    CardScreen.krem = "3";
                   else if (globals.isBut5Selected == 1)
                     CardScreen.krem = "5";
                   else if (globals.isBut6Selected == 1)
@@ -405,9 +404,10 @@ class OKCancelRow extends StatelessWidget {
                     CardScreen.dus = "8";
                   } else
                     CardScreen.dus = "0";
+                  print("buradayım 3");
                   AudioPlayer player = AudioPlayer();
                   player.play(AssetSource("13-1K.mp3"));
-
+                  print("buradayım 4");
                   print("ÇALDIIIIM KAÇ GÜN OLDU");
                   if (CardScreen.dus != "2" && CardScreen.dus != "7") {
                     readPort(

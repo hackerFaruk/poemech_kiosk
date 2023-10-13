@@ -111,9 +111,8 @@ class _StopWatchState extends State<StopWatch> {
             InkWell(
               // active passivetimer start stop tick cancel red gren buton
               onTap: () async {
-                if (!globals.isTimerActive) globals.isTimerActive = true;
-                print("DELİRDİM");
-                if (globals.isTimerActive) {
+                if (!globals.isTimerActive) {
+                  globals.isTimerActive = true;
                   writePort(CardScreen.dus, "0", CardScreen.sure,
                       CardScreen.sicaksoguk, CardScreen.basinc);
                   // malruk kodu
