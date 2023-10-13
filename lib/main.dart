@@ -35,15 +35,24 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-        appBar: AppBar(
-          backgroundColor: Colors.blue,
-          title: const Text('Language Selection'),
+    return GestureDetector(
+      onTap: () {
+        behavior:
+        HitTestBehavior.translucent;
+        // Handle tap gesture
+        // it was for counting the time ater last touch but it is hard
+        print("Tap detected! on screenn");
+      },
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+          appBar: AppBar(
+            backgroundColor: Colors.blue,
+            title: const Text('Language Selection'),
+          ),
+          body: const Center(child: SelectionButtons()),
         ),
-        body: const Center(child: SelectionButtons()),
       ),
     );
   }
@@ -111,6 +120,7 @@ class _SelectionButtonsState extends State<SelectionButtons> {
             onTap: () {
               globals.revertAll();
               // changin trigger re renders controls
+              globals.revertAll();
               Navigator.pop(context);
               Navigator.push(
                 context,
@@ -581,7 +591,7 @@ class ConditionalControlRow extends StatelessWidget {
       globals.isEmergencyButton = false;
       return const WheelChairRow();
     } else if (application == 'images/custom.png') {
-      globals.isEmergencyButton = false;
+      globals.isEmergencyButton = true;
       return const CustomDogWash();
     } else if (application.contains('dog')) {
       print("ha bu nedu");
@@ -953,6 +963,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
 
   @override
   Widget build(BuildContext context) {
+    globals.isEmergencyButton = true;
     return InkWell(
       hoverColor: Colors.transparent,
       onTap: () {
