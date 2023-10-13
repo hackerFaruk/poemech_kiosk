@@ -1093,7 +1093,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
                     });
                   },
                   child: GreyoutButtons(
-                      icon: "images/coldwater.png", grayout: but1)),
+                      icon: "images/coldwater.png", grayout: but8)),
               InkWell(
                   onTap: () {
                     globals.warmthselected = "2";
@@ -1104,7 +1104,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
                     });
                   },
                   child: GreyoutButtons(
-                      icon: "images/hotwater.png", grayout: but2)),
+                      icon: "images/hotwater.png", grayout: but9)),
             ],
           ),
 
