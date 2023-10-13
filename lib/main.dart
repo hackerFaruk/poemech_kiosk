@@ -35,15 +35,24 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-        appBar: AppBar(
-          backgroundColor: Colors.blue,
-          title: const Text('Language Selection'),
+    return GestureDetector(
+      onTap: () {
+        behavior:
+        HitTestBehavior.translucent;
+        // Handle tap gesture
+        // it was for counting the time ater last touch but it is hard
+        print("Tap detected! on screenn");
+      },
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: Scaffold(
+          backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+          appBar: AppBar(
+            backgroundColor: Colors.blue,
+            title: const Text('Language Selection'),
+          ),
+          body: const Center(child: SelectionButtons()),
         ),
-        body: const Center(child: SelectionButtons()),
       ),
     );
   }

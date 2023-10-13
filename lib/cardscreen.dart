@@ -33,6 +33,10 @@ class CardScreen extends StatefulWidget {
 class _CardScreen extends State<CardScreen> {
   @override
   Widget build(BuildContext context) {
+    // eğer kart ekranında isek demekki kşmse girmemiş daha
+    // bunu sadece burda değiştircez eğer servis yada normal giriş varsa
+    globals.isLoggedIn = false;
+
     AudioPlayer player = AudioPlayer();
     //const alarmAudioPath = "assets/service.mp3";
 
@@ -122,6 +126,8 @@ class _CardScreen extends State<CardScreen> {
                       (Timer t) => writePort("3", "0", "0", "0", "43"));
                 });
               } else if (value != "0394956103" && value != "123456") {
+                // birine login verince true yaptık
+                globals.isLoggedIn = true;
                 CardScreen.maincontroller.clear();
                 Navigator.push(
                   context,
@@ -130,6 +136,8 @@ class _CardScreen extends State<CardScreen> {
                 );
                 // service page code  servis sayfası girişi
               } else if (value == "0394956103" || value == "123456") {
+                // birine login verince true yaptık
+                globals.isLoggedIn = true;
                 player.play(AssetSource("service.mp3"));
                 CardScreen.maincontroller.clear();
                 Navigator.push(

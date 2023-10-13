@@ -29,6 +29,10 @@ int wrongone = 0;
 //IStimerActive
 bool isTimerActive = false;
 
+//  logged in mi değil mi onu anlamak lazım bunun içnde süper bir bool var
+
+bool isLoggedIn = false;
+
 //bu üçlü proces ekranındaki hatayı süzelten mutant app icon için
 // direkt pathlar
 String isDualIconMemo = "";
