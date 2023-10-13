@@ -111,6 +111,7 @@ class _SelectionButtonsState extends State<SelectionButtons> {
             onTap: () {
               globals.revertAll();
               // changin trigger re renders controls
+              globals.revertAll();
               Navigator.pop(context);
               Navigator.push(
                 context,
