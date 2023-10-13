@@ -369,7 +369,6 @@ class OKCancelRow extends StatelessWidget {
                     globals.selected = globals.selected + selections[i];
                     globals.selected = '${globals.selected}  ';
                   }
-                  print("buradayım 1");
                   CardScreen.sure = globals.lengthselected;
                   CardScreen.basinc = globals.pressselected;
                   CardScreen.sicaksoguk = globals.warmthselected;
@@ -382,7 +381,6 @@ class OKCancelRow extends StatelessWidget {
                   if (CardScreen.basinc != "0")
                     CardScreen.basinc =
                         (int.parse(globals.pressselected) - 1).toString();
-                  print("buradayım 2");
                   globals.timeSet();
                   if (globals.isBut1Selected == 1)
                     CardScreen.krem = "1";
@@ -404,12 +402,11 @@ class OKCancelRow extends StatelessWidget {
                     CardScreen.dus = "8";
                   } else
                     CardScreen.dus = "0";
-                  print("buradayım 3");
                   AudioPlayer player = AudioPlayer();
                   player.play(AssetSource("13-1K.mp3"));
-                  print("buradayım 4");
                   print("ÇALDIIIIM KAÇ GÜN OLDU");
                   if (CardScreen.dus != "2" && CardScreen.dus != "7") {
+                    print("buradayım 1");
                     readPort(
                         CardScreen.dus,
                         CardScreen.krem,
@@ -447,7 +444,9 @@ class OKCancelRow extends StatelessWidget {
       if (CardScreen.port1 != null) {
         if (!CardScreen.port1!.isOpen) {
           try {
+            print("buradayım 4");
             await OpenMk();
+            print("buradayım 5");
           } catch (e) {
             print("PORT AÇARKEN GİRİYOR HATAYA");
           }
@@ -488,6 +487,7 @@ class OKCancelRow extends StatelessWidget {
             number1 +
             ">"));
       } else {
+        print("buradayım 6");
         CardScreen.port1?.write(_stringToUint8List("<" +
             dus +
             "," +
@@ -499,6 +499,7 @@ class OKCancelRow extends StatelessWidget {
             ",0" +
             number1 +
             ">"));
+        print("buradayım 7");
       }
     } catch (e) {
       print(e);
@@ -515,8 +516,10 @@ class OKCancelRow extends StatelessWidget {
   }
 
   Future<void> readPort(dus, krem, number1, number2, number3) async {
+    print("buradayım 2");
     ButtonGrid.count = 0;
     await writePort(dus, krem, number1, number2, number3);
+    print("buradayım 3");
     if (int.parse(number3) != 42 &&
         int.parse(number3) != 43 &&
         int.parse(number3) != 40) CloseMk();
