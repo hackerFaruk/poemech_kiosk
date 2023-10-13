@@ -373,6 +373,7 @@ class _CardScreen extends State<CardScreen> {
             }
           } else if (int.parse(data.codeUnitAt(15).toString()) == 1) {
             CardScreen.opened = true;
+            writePort("3", "0", "0", "0", "79");
           } else if (int.parse(data.codeUnitAt(16).toString()) == 0 &&
               CardScreen.opened == true) {
             if (value == "Dezenfektan") {
@@ -384,6 +385,7 @@ class _CardScreen extends State<CardScreen> {
             }
           } else if (int.parse(data.codeUnitAt(16).toString()) == 1) {
             CardScreen.opened = true;
+            writePort("3", "0", "0", "0", "81");
           } else if (CardScreen.failcount > 4) {
             _showMyDialog(value, 3);
           } else if (int.parse(data.codeUnitAt(16).toString()) == 0 &&

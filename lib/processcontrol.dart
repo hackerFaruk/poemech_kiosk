@@ -143,7 +143,7 @@ class ProcessControlPage extends StatelessWidget {
             music.stop();
             player.stop();
             player.play(AssetSource("12-1K.mp3"));
-            music.play(AssetSource("Doorsignal.mp3"));
+            music.play(AssetSource("alarm.mp3"));
           } else if (data.contains("<5,8>")) {
             player.stop();
             player.play(AssetSource("20-1K.mp3"));
