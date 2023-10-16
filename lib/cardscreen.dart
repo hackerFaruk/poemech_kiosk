@@ -90,10 +90,6 @@ class _CardScreen extends State<CardScreen> {
             onSubmitted: (value) async {
               print(value);
               //value is entered text after Enter
-              if (value == "dd") {
-                wrongTankMail("SPF50");
-              }
-
               if (value == "SPF30" ||
                   value == "SPF50" ||
                   value == "SPF50C" ||
@@ -471,7 +467,15 @@ class _CardScreen extends State<CardScreen> {
 
   Future<void> wrongTankMail(String cream) async {
     bool connection = true;
-
+    if (cream == "SPF30")
+      cream = "Dezenfektan";
+    else if (cream == "SPF50C")
+      cream = "SPF50 Çocuk";
+    else if (cream == "Kopuk")
+      cream = "Duş Köpüğü";
+    else if (cream == "Dezenfektan")
+      cream = "Köpek İlacı";
+    else if (cream == "Kopek") cream = "Köpek Şampuanı";
     var url = Uri.parse("https://poemech.com.tr:3001/api/mail/WrongTank");
     final body = json.encode(
         {"id": "AB010723/01", "mail": "kacaryucel@gmail.com", "tank": cream});

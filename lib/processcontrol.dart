@@ -200,6 +200,36 @@ class ProcessControlPage extends StatelessWidget {
           int kopekkrem = int.parse(data.codeUnitAt(11).toString());
           UpdateInfo(f15, 999, f50, 50, 999, 999, dezenfektan, duskopugu,
               kopekkrem, kopeksampuan, 1);
+          if (dezenfektan < 5) {
+            DisabledTankMail("Dezenfektan");
+          } else if (dezenfektan < 25) {
+            LowTankMail("Dezenfektan");
+          }
+          if (f15 < 5) {
+            DisabledTankMail("SPF50");
+          } else if (f15 < 25) {
+            LowTankMail("SPF50");
+          }
+          if (f50 < 5) {
+            DisabledTankMail("SPF50 Çocuk");
+          } else if (f50 < 25) {
+            LowTankMail("SPF50 Çocuk");
+          }
+          if (duskopugu < 5) {
+            DisabledTankMail("Duş Köpüğü");
+          } else if (duskopugu < 25) {
+            LowTankMail("Duş Köpüğü");
+          }
+          if (kopeksampuan < 5) {
+            DisabledTankMail("Köpek Şampuan");
+          } else if (kopeksampuan < 25) {
+            LowTankMail("Köpek Şampuan");
+          }
+          if (kopekkrem < 5) {
+            DisabledTankMail("Köpek İlacı");
+          } else if (kopekkrem < 25) {
+            LowTankMail("Köpek İlacı");
+          }
           music.stop();
           CloseMk();
           ProcessControlPage.ended = true;
@@ -329,6 +359,58 @@ class ProcessControlPage extends StatelessWidget {
       "kopeksampuan": kopeksampuan,
       "onoff": onoff
     });
+
+    // ignore: prefer_typing_uninitialized_variables
+    var res;
+    try {
+      res = await http.post(url,
+          headers: {"Content-Type": "application/json"}, body: body);
+      // ignore: unused_catch_clause
+    } on Exception catch (e) {
+      //print(e.toString());
+      connection = false;
+    }
+    if (connection) {
+      final Map<String, dynamic> data = json.decode(res.body);
+
+      if (data['done'] == 'false') {
+      } else if (data['done'] == 'true') {
+      } else {}
+    }
+  }
+
+  Future<void> LowTankMail(String cream) async {
+    bool connection = true;
+
+    var url = Uri.parse("https://poemech.com.tr:3001/api/mail/LowTank");
+    final body = json.encode(
+        {"id": "AB010723/01", "mail": "info@onarfa.com", "tank": cream});
+
+    // ignore: prefer_typing_uninitialized_variables
+    var res;
+    try {
+      res = await http.post(url,
+          headers: {"Content-Type": "application/json"}, body: body);
+      // ignore: unused_catch_clause
+    } on Exception catch (e) {
+      //print(e.toString());
+      connection = false;
+    }
+    if (connection) {
+      final Map<String, dynamic> data = json.decode(res.body);
+
+      if (data['done'] == 'false') {
+      } else if (data['done'] == 'true') {
+      } else {}
+    }
+  }
+
+  Future<void> DisabledTankMail(String cream) async {
+    bool connection = true;
+
+    var url = Uri.parse("https://poemech.com.tr:3001/api/mail/DisabledTank");
+    final body = json.encode(
+        {"id": "AB010723/01", "mail": "info@onarfa.com", "tank": cream});
 
     // ignore: prefer_typing_uninitialized_variables
     var res;
