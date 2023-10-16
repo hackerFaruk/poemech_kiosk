@@ -207,26 +207,31 @@ class ProcessControlPage extends StatelessWidget {
           }
           if (f15 < 5) {
             DisabledTankMail("SPF50");
+            globals.wrongone.add(2);
           } else if (f15 < 25) {
             LowTankMail("SPF50");
           }
           if (f50 < 5) {
             DisabledTankMail("SPF50 Çocuk");
+            globals.wrongone.add(3);
           } else if (f50 < 25) {
             LowTankMail("SPF50 Çocuk");
           }
           if (duskopugu < 5) {
             DisabledTankMail("Duş Köpüğü");
+            globals.wrongone.add(4);
           } else if (duskopugu < 25) {
             LowTankMail("Duş Köpüğü");
           }
           if (kopeksampuan < 5) {
             DisabledTankMail("Köpek Şampuan");
+            globals.wrongone.add(9);
           } else if (kopeksampuan < 25) {
             LowTankMail("Köpek Şampuan");
           }
           if (kopekkrem < 5) {
             DisabledTankMail("Köpek İlacı");
+            globals.wrongone.add(9);
           } else if (kopekkrem < 25) {
             LowTankMail("Köpek İlacı");
           }

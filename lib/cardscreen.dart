@@ -39,6 +39,7 @@ class _CardScreen extends State<CardScreen> {
 
     AudioPlayer player = AudioPlayer();
     //const alarmAudioPath = "assets/service.mp3";
+    player.play(AssetSource("service.mp3"));
 
     final screenSize = MediaQuery.of(context).size;
     findPort();
@@ -309,7 +310,7 @@ class _CardScreen extends State<CardScreen> {
           //BÜTÜN DEĞERLERİ SIFIRLAMAK LAZIM
           else if (value == "SPF30" && globals.SPF30 != 0) {
             if (globals.SPF30 + 3 >= int.parse(data.codeUnitAt(1).toString())) {
-              globals.wrongone = 1;
+              globals.wrongone.add(1);
               Navigator.pop(context);
               _showMyDialog(value, 2);
             } else {
@@ -318,7 +319,7 @@ class _CardScreen extends State<CardScreen> {
             }
           } else if (value == "SPF50" && globals.SPF50 != 0) {
             if (globals.SPF50 + 3 >= int.parse(data.codeUnitAt(3).toString())) {
-              globals.wrongone = 2;
+              globals.wrongone.add(2);
               Navigator.pop(context);
               _showMyDialog(value, 2);
             } else {
@@ -328,7 +329,7 @@ class _CardScreen extends State<CardScreen> {
           } else if (value == "SPF50C" && globals.SPF50C != 0) {
             if (globals.SPF50C + 3 >=
                 int.parse(data.codeUnitAt(5).toString())) {
-              globals.wrongone = 3;
+              globals.wrongone.add(3);
               Navigator.pop(context);
               _showMyDialog(value, 2);
             } else {
@@ -337,7 +338,7 @@ class _CardScreen extends State<CardScreen> {
             }
           } else if (value == "Kopuk" && globals.Kopuk != 0) {
             if (globals.Kopuk + 3 >= int.parse(data.codeUnitAt(7).toString())) {
-              globals.wrongone = 4;
+              globals.wrongone.add(4);
               Navigator.pop(context);
               _showMyDialog(value, 2);
             } else {
@@ -346,7 +347,7 @@ class _CardScreen extends State<CardScreen> {
             }
           } else if (value == "Kopek" && globals.Kopek != 0) {
             if (globals.Kopek + 3 >= int.parse(data.codeUnitAt(9).toString())) {
-              globals.wrongone = 9;
+              globals.wrongone.add(9);
               Navigator.pop(context);
               _showMyDialog(value, 2);
             } else {
@@ -356,7 +357,7 @@ class _CardScreen extends State<CardScreen> {
           } else if (value == "Dezenfektan" && globals.Dezenfektan != 0) {
             if (globals.Dezenfektan + 3 >=
                 int.parse(data.codeUnitAt(11).toString())) {
-              globals.wrongone = 11;
+              globals.wrongone.add(11);
               Navigator.pop(context);
               _showMyDialog(value, 2);
             } else {
