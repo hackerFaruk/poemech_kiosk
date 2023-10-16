@@ -115,6 +115,9 @@ class _CardScreen extends State<CardScreen> {
                   Timer(Duration(seconds: 8), () {
                     writePort("3", "0", "0", "0", "78");
                   });
+                Timer(Duration(seconds: 17), () {
+                  writePort("3", "0", "0", "0", "79");
+                });
                 Timer(Duration(seconds: 12), () {
                   writePort("3", "0", "0", "0", "42");
                 });
@@ -438,16 +441,22 @@ class _CardScreen extends State<CardScreen> {
             TextButton(
               child: ok == 1 || ok == 2
                   ? const Text('Onayla')
-                  : const Text('Bekleniyor'),
+                  : const Text('İptal Et'),
               onPressed: () {
                 if (ok == 1 || ok == 2) {
                   Navigator.of(context).pop();
                   CardScreen.maincontroller.clear();
 
                   CardScreen.stopReading = true;
-                  writePort("3", "0", "0", "0", "9");
-                  writePort("3", "0", "0", "0", "77");
-                  CloseMk();
+                  Timer(Duration(seconds: 3), () {
+                    writePort("3", "0", "0", "0", "9");
+                  });
+                  Timer(Duration(seconds: 5), () {
+                    writePort("3", "0", "0", "0", "77");
+                  });
+                  Timer(Duration(seconds: 7), () {
+                    CloseMk();
+                  });
                   if (ok == 2) {
                     wrongTankMail(cream);
                   }
@@ -457,7 +466,28 @@ class _CardScreen extends State<CardScreen> {
                   globals.Kopuk = 0;
                   globals.SPF50 = 0;
                   globals.SPF50C = 0;
-                } else {}
+                } else {
+                  Navigator.of(context).pop();
+                  CardScreen.maincontroller.clear();
+
+                  CardScreen.stopReading = true;
+                  Timer(Duration(seconds: 3), () {
+                    writePort("3", "0", "0", "0", "9");
+                  });
+                  Timer(Duration(seconds: 5), () {
+                    writePort("3", "0", "0", "0", "77");
+                  });
+                  Timer(Duration(seconds: 7), () {
+                    CloseMk();
+                  });
+
+                  globals.Dezenfektan = 0;
+                  globals.Kopek = 0;
+                  globals.SPF30 = 0;
+                  globals.Kopuk = 0;
+                  globals.SPF50 = 0;
+                  globals.SPF50C = 0;
+                }
               },
             ),
           ],

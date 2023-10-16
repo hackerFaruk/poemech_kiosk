@@ -417,6 +417,7 @@ class OKCancelRow extends StatelessWidget {
                   print("ÇALDIIIIM KAÇ GÜN OLDU");
                   if (CardScreen.dus != "2" && CardScreen.dus != "7") {
                     print("buradayım 1");
+
                     readPort(
                         CardScreen.dus,
                         CardScreen.krem,
