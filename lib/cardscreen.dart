@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'main.dart' as mainpage;
 import 'servicePage.dart' as servicePage;
 import 'package:flutter_libserialport/flutter_libserialport.dart';
@@ -91,6 +92,11 @@ class _CardScreen extends State<CardScreen> {
             onSubmitted: (value) async {
               print(value);
               globals.Card_id = value;
+              if (value == "dd") {
+                String date = DateFormat("yyyy-MM-dd hh:mm:ss")
+                    .format(DateTime.now().add(const Duration(hours: 12)));
+                print(date);
+              }
               //value is entered text after Enter
               if (value == "SPF30" ||
                   value == "SPF50" ||
@@ -510,7 +516,7 @@ class _CardScreen extends State<CardScreen> {
     else if (cream == "Kopek") cream = "Köpek Şampuanı";
     var url = Uri.parse("https://poemech.com.tr:3001/api/mail/WrongTank");
     final body = json.encode(
-        {"id": "AB010723/01", "mail": "kacaryucel@gmail.com", "tank": cream});
+        {"id": "AB010723/01", "mail": "info@onarfa.com", "tank": cream});
 
     // ignore: prefer_typing_uninitialized_variables
     var res;

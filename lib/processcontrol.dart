@@ -246,7 +246,7 @@ class ProcessControlPage extends StatelessWidget {
           if (globals.isBut5Selected == 1) Operation += "Nemlendirici ";
           if (globals.isBut6Selected == 1) Operation += "Bronzlaştırıcı ";
           if (globals.isBut8Selected == 1) Operation += "Engelli Duşu ";
-          if (globals.isBut9Selected == 2) Operation += "Köpek Duşu ";
+          if (globals.isBut9Selected == 1) Operation += "Köpek Duşu ";
           AddOperation(globals.Card_id, date, Operation);
           CloseMk();
           ProcessControlPage.ended = true;
