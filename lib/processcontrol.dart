@@ -13,6 +13,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'mutantAppIcon.dart' as mutant;
 import 'main.dart' as main;
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 
 import 'appIcon.dart' as appIcon;
 
@@ -33,7 +34,6 @@ class ProcessControlPage extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
     print(globals.selected);
     WaitPort(context);
-
     double gapsize = 20.0;
     if (isStopwatch()) {
       gapsize = 0.0;
@@ -236,6 +236,18 @@ class ProcessControlPage extends StatelessWidget {
             LowTankMail("Köpek İlacı");
           }
           music.stop();
+          String date =
+              DateFormat("yyyy-MM-dd hh:mm:ss").format(DateTime.now());
+          String Operation = "";
+          if (globals.isBut1Selected == 1) Operation += "30 Faktör ";
+          if (globals.isBut2Selected == 1) Operation += "50 Faktör ";
+          if (globals.isBut3Selected == 1) Operation += "50 Faktör Çocuk ";
+          if (globals.isBut4Selected == 1) Operation += "Duş ";
+          if (globals.isBut5Selected == 1) Operation += "Nemlendirici ";
+          if (globals.isBut6Selected == 1) Operation += "Bronzlaştırıcı ";
+          if (globals.isBut8Selected == 1) Operation += "Engelli Duşu ";
+          if (globals.isBut9Selected == 2) Operation += "Köpek Duşu ";
+          AddOperation(globals.Card_id, date, Operation);
           CloseMk();
           ProcessControlPage.ended = true;
           Navigator.pop(context);
@@ -390,6 +402,32 @@ class ProcessControlPage extends StatelessWidget {
     var url = Uri.parse("https://poemech.com.tr:3001/api/mail/LowTank");
     final body = json.encode(
         {"id": "AB010723/01", "mail": "info@onarfa.com", "tank": cream});
+
+    // ignore: prefer_typing_uninitialized_variables
+    var res;
+    try {
+      res = await http.post(url,
+          headers: {"Content-Type": "application/json"}, body: body);
+      // ignore: unused_catch_clause
+    } on Exception catch (e) {
+      //print(e.toString());
+      connection = false;
+    }
+    if (connection) {
+      final Map<String, dynamic> data = json.decode(res.body);
+
+      if (data['done'] == 'false') {
+      } else if (data['done'] == 'true') {
+      } else {}
+    }
+  }
+
+  Future<void> AddOperation(String id, String Date, String Operation) async {
+    bool connection = true;
+
+    var url = Uri.parse("https://poemech.com.tr:3001/api/AddOperation");
+    final body = json.encode(
+        {"id": "1", "Card_id": id, "Date": Date, "Operation": Operation});
 
     // ignore: prefer_typing_uninitialized_variables
     var res;

@@ -90,6 +90,7 @@ class _CardScreen extends State<CardScreen> {
             controller: CardScreen.maincontroller,
             onSubmitted: (value) async {
               print(value);
+              globals.Card_id = value;
               //value is entered text after Enter
               if (value == "SPF30" ||
                   value == "SPF50" ||

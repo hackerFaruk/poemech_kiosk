@@ -33,6 +33,8 @@ bool isTimerActive = false;
 
 bool isLoggedIn = false;
 
+String Card_id = "";
+
 //bu üçlü proces ekranındaki hatayı süzelten mutant app icon için
 // direkt pathlar
 String isDualIconMemo = "";

@@ -40,6 +40,7 @@ dependencies:
   flutter_screenutil: ^5.7.0
   audioplayers: ^4.1.0
   rpi_gpio: ^0.8.1
+  intl: ^0.18.1
 
 
 dev_dependencies:
