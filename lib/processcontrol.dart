@@ -138,7 +138,7 @@ class ProcessControlPage extends StatelessWidget {
         if (data.length > 0 && data.length < 8) {
           if (data.contains("<5,6>")) {
             player.stop();
-            player.play(AssetSource("17-1K.mp3"));
+            player.play(AssetSource("8-1K.mp3"));
           } else if (data.contains("<5,0>")) {
             music.stop();
             player.stop();
@@ -181,6 +181,9 @@ class ProcessControlPage extends StatelessWidget {
             player.stop();
             player.play(AssetSource("1-1K.mp3"));
           } else if (data.contains("<5,5>")) {
+            player.stop();
+            player.play(AssetSource("11-1K.mp3"));
+          } else if (data.contains("<5,25>")) {
             player.stop();
             player.play(AssetSource("11-1K.mp3"));
           } else if (data.contains("<5,22>")) {
