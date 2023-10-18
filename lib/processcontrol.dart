@@ -34,14 +34,48 @@ class ProcessControlPage extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
     print(globals.selected);
     WaitPort(context);
-    if (globals.isBut9Selected == 1)
+    if (globals.isBut9Selected == 1) {
       Timer(Duration(seconds: 3), () {
         DoorSoundK();
       });
-    if (globals.isBut8Selected == 1)
+      Timer(Duration(seconds: 60), () {
+        if (!globals.isTimerActive) {
+          if (globals.lang == 'en')
+            player.play(AssetSource("keiu2.mp3"));
+          else
+            player.play(AssetSource("ketu2.mp3"));
+        }
+      });
+      Timer(Duration(seconds: 75), () {
+        if (!globals.isTimerActive) {
+          if (globals.lang == 'en')
+            player.play(AssetSource("keiu2.mp3"));
+          else
+            player.play(AssetSource("ketu2.mp3"));
+        }
+      });
+    }
+    if (globals.isBut8Selected == 1) {
       Timer(Duration(seconds: 3), () {
         DoorSoundE();
       });
+      Timer(Duration(seconds: 60), () {
+        if (!globals.isTimerActive) {
+          if (globals.lang == 'en')
+            player.play(AssetSource("keiu2.mp3"));
+          else
+            player.play(AssetSource("ketu2.mp3"));
+        }
+      });
+      Timer(Duration(seconds: 75), () {
+        if (!globals.isTimerActive) {
+          if (globals.lang == 'en')
+            player.play(AssetSource("keiu2.mp3"));
+          else
+            player.play(AssetSource("ketu2.mp3"));
+        }
+      });
+    }
     double gapsize = 20.0;
     if (isStopwatch()) {
       gapsize = 0.0;

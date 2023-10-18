@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'emergencyPage.dart' as emergency;
 import 'package:http/http.dart' as http;
 import 'processcontrol.dart' as process;
+import 'pinControls.dart' as pins;
 
 // write  staefulW for stateful widget and rename
 
@@ -24,6 +25,7 @@ class _emergencyStopState extends State<emergencyStop> {
       child: Center(
         child: InkWell(
             onTap: () {
+              pins.deactivate();
               process.ProcessControlPage.music.stop();
               process.ProcessControlPage.music.play(AssetSource("alarm.mp3"));
               emergencyMail();

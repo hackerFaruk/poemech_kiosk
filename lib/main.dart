@@ -16,8 +16,10 @@ import 'package:poemech_kiosk/cardscreen.dart';
 import 'package:flutter_libserialport/flutter_libserialport.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'appIcon.dart' as appIcon;
+import 'pinControls.dart' as pins;
 
 void main() {
+  pins.activate();
   runApp(MaterialApp(
       theme: ThemeData(fontFamily: 'Gilroy'),
       home: const CardScreen(),
