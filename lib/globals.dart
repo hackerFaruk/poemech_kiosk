@@ -24,7 +24,7 @@ int Kopek = 0;
 int Dezenfektan = 0;
 
 // bu buton butno ile eşleişiyorsa disable
-int wrongone = 0;
+List<int> wrongone = [];
 
 //IStimerActive
 bool isTimerActive = false;
@@ -32,6 +32,8 @@ bool isTimerActive = false;
 //  logged in mi değil mi onu anlamak lazım bunun içnde süper bir bool var
 
 bool isLoggedIn = false;
+
+String Card_id = "";
 
 //bu üçlü proces ekranındaki hatayı süzelten mutant app icon için
 // direkt pathlar
@@ -127,23 +129,25 @@ void grayAll() {
 }
 
 void checkDisabled() {
-  switch (wrongone) {
-    case 1:
-      but1 = 1;
-      break;
-    case 2:
-      but2 = 1;
-      break;
-    case 3:
-      but3 = 1;
-      break;
-    case 4:
-      but4 = 1;
-      break;
-    case 9:
-      but9 = 1;
-      break;
-    default:
+  for (var x in wrongone) {
+    switch (x) {
+      case 1:
+        but1 = 1;
+        break;
+      case 2:
+        but2 = 1;
+        break;
+      case 3:
+        but3 = 1;
+        break;
+      case 4:
+        but4 = 1;
+        break;
+      case 9:
+        but9 = 1;
+        break;
+      default:
+    }
   }
 }
 

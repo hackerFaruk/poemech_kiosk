@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'main.dart' as mainpage;
 import 'servicePage.dart' as servicePage;
 import 'package:flutter_libserialport/flutter_libserialport.dart';
@@ -39,6 +40,7 @@ class _CardScreen extends State<CardScreen> {
 
     AudioPlayer player = AudioPlayer();
     //const alarmAudioPath = "assets/service.mp3";
+    player.play(AssetSource("service.mp3"));
 
     final screenSize = MediaQuery.of(context).size;
     findPort();
@@ -89,11 +91,13 @@ class _CardScreen extends State<CardScreen> {
             controller: CardScreen.maincontroller,
             onSubmitted: (value) async {
               print(value);
-              //value is entered text after Enter
+              globals.Card_id = value;
               if (value == "dd") {
-                wrongTankMail("SPF50");
+                String date = DateFormat("yyyy-MM-dd hh:mm:ss")
+                    .format(DateTime.now().add(const Duration(hours: 12)));
+                print(date);
               }
-
+              //value is entered text after Enter
               if (value == "SPF30" ||
                   value == "SPF50" ||
                   value == "SPF50C" ||
@@ -118,6 +122,9 @@ class _CardScreen extends State<CardScreen> {
                   Timer(Duration(seconds: 8), () {
                     writePort("3", "0", "0", "0", "78");
                   });
+                Timer(Duration(seconds: 17), () {
+                  writePort("3", "0", "0", "0", "79");
+                });
                 Timer(Duration(seconds: 12), () {
                   writePort("3", "0", "0", "0", "42");
                 });
@@ -313,7 +320,7 @@ class _CardScreen extends State<CardScreen> {
           //BÜTÜN DEĞERLERİ SIFIRLAMAK LAZIM
           else if (value == "SPF30" && globals.SPF30 != 0) {
             if (globals.SPF30 + 3 >= int.parse(data.codeUnitAt(1).toString())) {
-              globals.wrongone = 1;
+              globals.wrongone.add(1);
               Navigator.pop(context);
               _showMyDialog(value, 2);
             } else {
@@ -322,7 +329,7 @@ class _CardScreen extends State<CardScreen> {
             }
           } else if (value == "SPF50" && globals.SPF50 != 0) {
             if (globals.SPF50 + 3 >= int.parse(data.codeUnitAt(3).toString())) {
-              globals.wrongone = 2;
+              globals.wrongone.add(2);
               Navigator.pop(context);
               _showMyDialog(value, 2);
             } else {
@@ -332,7 +339,7 @@ class _CardScreen extends State<CardScreen> {
           } else if (value == "SPF50C" && globals.SPF50C != 0) {
             if (globals.SPF50C + 3 >=
                 int.parse(data.codeUnitAt(5).toString())) {
-              globals.wrongone = 3;
+              globals.wrongone.add(3);
               Navigator.pop(context);
               _showMyDialog(value, 2);
             } else {
@@ -341,7 +348,7 @@ class _CardScreen extends State<CardScreen> {
             }
           } else if (value == "Kopuk" && globals.Kopuk != 0) {
             if (globals.Kopuk + 3 >= int.parse(data.codeUnitAt(7).toString())) {
-              globals.wrongone = 4;
+              globals.wrongone.add(4);
               Navigator.pop(context);
               _showMyDialog(value, 2);
             } else {
@@ -350,7 +357,7 @@ class _CardScreen extends State<CardScreen> {
             }
           } else if (value == "Kopek" && globals.Kopek != 0) {
             if (globals.Kopek + 3 >= int.parse(data.codeUnitAt(9).toString())) {
-              globals.wrongone = 9;
+              globals.wrongone.add(9);
               Navigator.pop(context);
               _showMyDialog(value, 2);
             } else {
@@ -360,7 +367,7 @@ class _CardScreen extends State<CardScreen> {
           } else if (value == "Dezenfektan" && globals.Dezenfektan != 0) {
             if (globals.Dezenfektan + 3 >=
                 int.parse(data.codeUnitAt(11).toString())) {
-              globals.wrongone = 11;
+              globals.wrongone.add(11);
               Navigator.pop(context);
               _showMyDialog(value, 2);
             } else {
@@ -441,16 +448,22 @@ class _CardScreen extends State<CardScreen> {
             TextButton(
               child: ok == 1 || ok == 2
                   ? const Text('Onayla')
-                  : const Text('Bekleniyor'),
+                  : const Text('İptal Et'),
               onPressed: () {
                 if (ok == 1 || ok == 2) {
                   Navigator.of(context).pop();
                   CardScreen.maincontroller.clear();
 
                   CardScreen.stopReading = true;
-                  writePort("3", "0", "0", "0", "9");
-                  writePort("3", "0", "0", "0", "77");
-                  CloseMk();
+                  Timer(Duration(seconds: 3), () {
+                    writePort("3", "0", "0", "0", "9");
+                  });
+                  Timer(Duration(seconds: 5), () {
+                    writePort("3", "0", "0", "0", "77");
+                  });
+                  Timer(Duration(seconds: 7), () {
+                    CloseMk();
+                  });
                   if (ok == 2) {
                     wrongTankMail(cream);
                   }
@@ -460,7 +473,28 @@ class _CardScreen extends State<CardScreen> {
                   globals.Kopuk = 0;
                   globals.SPF50 = 0;
                   globals.SPF50C = 0;
-                } else {}
+                } else {
+                  Navigator.of(context).pop();
+                  CardScreen.maincontroller.clear();
+
+                  CardScreen.stopReading = true;
+                  Timer(Duration(seconds: 3), () {
+                    writePort("3", "0", "0", "0", "9");
+                  });
+                  Timer(Duration(seconds: 5), () {
+                    writePort("3", "0", "0", "0", "77");
+                  });
+                  Timer(Duration(seconds: 7), () {
+                    CloseMk();
+                  });
+
+                  globals.Dezenfektan = 0;
+                  globals.Kopek = 0;
+                  globals.SPF30 = 0;
+                  globals.Kopuk = 0;
+                  globals.SPF50 = 0;
+                  globals.SPF50C = 0;
+                }
               },
             ),
           ],
@@ -471,10 +505,18 @@ class _CardScreen extends State<CardScreen> {
 
   Future<void> wrongTankMail(String cream) async {
     bool connection = true;
-
+    if (cream == "SPF30")
+      cream = "Dezenfektan";
+    else if (cream == "SPF50C")
+      cream = "SPF50 Çocuk";
+    else if (cream == "Kopuk")
+      cream = "Duş Köpüğü";
+    else if (cream == "Dezenfektan")
+      cream = "Köpek İlacı";
+    else if (cream == "Kopek") cream = "Köpek Şampuanı";
     var url = Uri.parse("https://poemech.com.tr:3001/api/mail/WrongTank");
     final body = json.encode(
-        {"id": "AB010723/01", "mail": "kacaryucel@gmail.com", "tank": cream});
+        {"id": "AB010723/01", "mail": "info@onarfa.com", "tank": cream});
 
     // ignore: prefer_typing_uninitialized_variables
     var res;
