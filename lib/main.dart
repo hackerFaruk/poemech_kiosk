@@ -959,6 +959,9 @@ class _CustomDogWashState extends State<CustomDogWash> {
   int but8 = 0;
   int but9 = 0;
 
+// krem
+  int but10 = 0;
+
   String dirtselected = '';
   String furselected = '';
 
@@ -983,6 +986,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
           but7 = 0;
           but8 = 0;
           but9 = 0;
+          but10 = 0;
         });
       },
       child: Column(
@@ -1093,6 +1097,7 @@ class _CustomDogWashState extends State<CustomDogWash> {
                       icon: "images/furLayered.png", grayout: but7)),
             ],
           ),
+
           Container(
             height: 20,
           ),

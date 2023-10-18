@@ -23,6 +23,8 @@ int Kopuk = 0;
 int Kopek = 0;
 int Dezenfektan = 0;
 
+bool isCream = false;
+
 // bu buton butno ile eşleişiyorsa disable
 List<int> wrongone = [];
 
@@ -113,6 +115,7 @@ void revertAll() {
 
   isWheelChairBeingSelected = false;
   isEmergencyButton = false;
+  isCream = false;
 }
 
 /// This function sets all the buttons to gray.
