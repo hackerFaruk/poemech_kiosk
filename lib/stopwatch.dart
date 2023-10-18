@@ -37,6 +37,8 @@ class _StopWatchState extends State<StopWatch> {
     super.initState();
 
     // defines a timer
+    // timerda durdurulmayı kaldırcaz
+
     _everySecond = Timer.periodic(const Duration(seconds: 1), (Timer t) {
       setState(() {
         isTimerActive = globals.isTimerActive;
@@ -111,38 +113,14 @@ class _StopWatchState extends State<StopWatch> {
             InkWell(
               // active passivetimer start stop tick cancel red gren buton
               onTap: () async {
-                if (!globals.isTimerActive) {
+                // eğer timer false ise tureya alcaz
+                if (!isTimerActive) {
                   globals.isTimerActive = true;
+                  isTimerActive = true;
+
                   writePort(CardScreen.dus, "0", CardScreen.sure,
                       CardScreen.sicaksoguk, CardScreen.basinc);
-                  // malruk kodu
-                  /*
-                  bool connection = true;
 
-                  var url = Uri.parse(
-                      "https://poemech.com.tr:3001/api/mail/emergencyButton");
-                  final body = json
-                      .encode({"id": "ABY00005", "mail": "info@onarfa.com"});
-
-                  // ignore: prefer_typing_uninitialized_variables
-                  var res;
-                  try {
-                    res = await http.post(url,
-                        headers: {"Content-Type": "application/json"},
-                        body: body);
-                    // ignore: unused_catch_clause
-                  } on Exception catch (e) {
-                    //print(e.toString());
-                    connection = false;
-                  }
-                  if (connection) {
-                    final Map<String, dynamic> data = json.decode(res.body);
-
-                    if (data['done'] == 'false') {
-                    } else if (data['done'] == 'true') {
-                    } else {}
-                  }
-*/
                   // malruk kodu
                 } else {
                   //BURASI SİSTEMİ DURDURMAK İÇİN YAZILACAK KOD
@@ -153,8 +131,8 @@ class _StopWatchState extends State<StopWatch> {
                 width: screenSize * 0.5,
                 child: Image(
                     image: AssetImage(isTimerActive == false
-                        ? 'images/ok.png'
-                        : 'images/cancel.png')),
+                        ? 'images/start.jpeg'
+                        : 'images/hidden.jpeg')),
               ),
             ),
             SizedBox(
