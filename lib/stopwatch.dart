@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'cardscreen.dart';
@@ -6,6 +7,7 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'emergencyStop.dart' as emergencyStop;
+import 'processcontrol.dart' as process;
 
 // ignore: unused_import
 import 'dart:io';
@@ -61,6 +63,23 @@ class _StopWatchState extends State<StopWatch> {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size.width;
+    Timer(Duration(seconds: 30), () {
+      if (globals.isTimerActive) {
+        if (globals.lang == 'en')
+          process.ProcessControlPage.player.play(AssetSource("keiu2.mp3"));
+        else
+          process.ProcessControlPage.player.play(AssetSource("ketu2.mp3"));
+      }
+    });
+
+    Timer(Duration(seconds: 45), () {
+      if (globals.isTimerActive) {
+        if (globals.lang == 'en')
+          process.ProcessControlPage.player.play(AssetSource("keiu2.mp3"));
+        else
+          process.ProcessControlPage.player.play(AssetSource("ketu2.mp3"));
+      }
+    });
 
     if (kDebugMode) {
       print(globals.isEmergencyButton);

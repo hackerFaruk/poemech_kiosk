@@ -93,7 +93,7 @@ class _CardScreen extends State<CardScreen> {
               print(value);
               globals.Card_id = value;
               if (value == "dd") {
-                String date = DateFormat("yyyy-MM-dd hh:mm:ss")
+                String date = DateFormat("yyyy-MM-dd HH:mm:ss")
                     .format(DateTime.now().add(const Duration(hours: 12)));
                 print(date);
               }
