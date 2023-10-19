@@ -64,15 +64,6 @@ class _StopWatchState extends State<StopWatch> {
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size.width;
 
-    Timer(Duration(seconds: 45), () {
-      if (!globals.isTimerActive) {
-        if (globals.lang == 'en')
-          process.ProcessControlPage.player.play(AssetSource("keiu2.mp3"));
-        else
-          process.ProcessControlPage.player.play(AssetSource("ketu2.mp3"));
-      }
-    });
-
     if (kDebugMode) {
       print(globals.isEmergencyButton);
     }

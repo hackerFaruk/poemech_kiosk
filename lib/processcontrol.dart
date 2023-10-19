@@ -194,6 +194,7 @@ class ProcessControlPage extends StatelessWidget {
           } else if (data.contains("<5,0>")) {
             music.stop();
             player.stop();
+            emergencyMail();
             if (globals.lang == 'en')
               player.play(AssetSource("12-2E.mp3"));
             else
@@ -496,6 +497,31 @@ class ProcessControlPage extends StatelessWidget {
       "kopeksampuan": kopeksampuan,
       "onoff": onoff
     });
+
+    // ignore: prefer_typing_uninitialized_variables
+    var res;
+    try {
+      res = await http.post(url,
+          headers: {"Content-Type": "application/json"}, body: body);
+      // ignore: unused_catch_clause
+    } on Exception catch (e) {
+      //print(e.toString());
+      connection = false;
+    }
+    if (connection) {
+      final Map<String, dynamic> data = json.decode(res.body);
+
+      if (data['done'] == 'false') {
+      } else if (data['done'] == 'true') {
+      } else {}
+    }
+  }
+
+  void emergencyMail() async {
+    bool connection = true;
+
+    var url = Uri.parse("https://poemech.com.tr:3001/api/mail/emergencyButton");
+    final body = json.encode({"id": "AB010723/01", "mail": "info@onarfa.com"});
 
     // ignore: prefer_typing_uninitialized_variables
     var res;

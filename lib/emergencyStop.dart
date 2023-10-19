@@ -25,7 +25,7 @@ class _emergencyStopState extends State<emergencyStop> {
       child: Center(
         child: InkWell(
             onTap: () {
-              pins.deactivate();
+              pins.activate();
               process.ProcessControlPage.music.stop();
               process.ProcessControlPage.music.play(AssetSource("alarm.mp3"));
               emergencyMail();
