@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'cardscreen.dart';
@@ -6,6 +7,7 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'emergencyStop.dart' as emergencyStop;
+import 'processcontrol.dart' as process;
 
 // ignore: unused_import
 import 'dart:io';

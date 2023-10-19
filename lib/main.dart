@@ -16,8 +16,10 @@ import 'package:poemech_kiosk/cardscreen.dart';
 import 'package:flutter_libserialport/flutter_libserialport.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'appIcon.dart' as appIcon;
+import 'pinControls.dart' as pins;
 
 void main() {
+  pins.deactivate();
   runApp(MaterialApp(
       theme: ThemeData(fontFamily: 'Gilroy'),
       home: const CardScreen(),
@@ -413,7 +415,8 @@ class OKCancelRow extends StatelessWidget {
                   } else
                     CardScreen.dus = "0";
                   AudioPlayer player = AudioPlayer();
-                  player.play(AssetSource("13-1K.mp3"));
+                  if (CardScreen.dus != 7)
+                    player.play(AssetSource("13-1K.mp3"));
                   print("ÇALDIIIIM KAÇ GÜN OLDU");
                   if (CardScreen.dus != "2" && CardScreen.dus != "7") {
                     print("buradayım 1");

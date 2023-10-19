@@ -34,6 +34,48 @@ class ProcessControlPage extends StatelessWidget {
     final screenSize = MediaQuery.of(context).size;
     print(globals.selected);
     WaitPort(context);
+    if (globals.isBut9Selected == 1) {
+      Timer(Duration(seconds: 3), () {
+        DoorSoundK();
+      });
+      Timer(Duration(seconds: 60), () {
+        if (!globals.isTimerActive) {
+          if (globals.lang == 'en')
+            player.play(AssetSource("keiu2.mp3"));
+          else
+            player.play(AssetSource("ketu2.mp3"));
+        }
+      });
+      Timer(Duration(seconds: 75), () {
+        if (!globals.isTimerActive) {
+          if (globals.lang == 'en')
+            player.play(AssetSource("keiu2.mp3"));
+          else
+            player.play(AssetSource("ketu2.mp3"));
+        }
+      });
+    }
+    if (globals.isBut8Selected == 1) {
+      Timer(Duration(seconds: 3), () {
+        DoorSoundE();
+      });
+      Timer(Duration(seconds: 60), () {
+        if (!globals.isTimerActive) {
+          if (globals.lang == 'en')
+            player.play(AssetSource("keiu2.mp3"));
+          else
+            player.play(AssetSource("ketu2.mp3"));
+        }
+      });
+      Timer(Duration(seconds: 75), () {
+        if (!globals.isTimerActive) {
+          if (globals.lang == 'en')
+            player.play(AssetSource("keiu2.mp3"));
+          else
+            player.play(AssetSource("ketu2.mp3"));
+        }
+      });
+    }
     double gapsize = 20.0;
     if (isStopwatch()) {
       gapsize = 0.0;
@@ -138,54 +180,116 @@ class ProcessControlPage extends StatelessWidget {
         if (data.length > 0 && data.length < 8) {
           if (data.contains("<5,6>")) {
             player.stop();
-            player.play(AssetSource("8-1K.mp3"));
+            if (globals.lang == 'en') {
+              player.play(AssetSource("8-2E.mp3"));
+              Timer(Duration(seconds: 11), () {
+                player.play(AssetSource("EkstraDusE.mp3"));
+              });
+            } else {
+              player.play(AssetSource("8-1K.mp3"));
+              Timer(Duration(seconds: 11), () {
+                player.play(AssetSource("EkstraDusT.mp3"));
+              });
+            }
           } else if (data.contains("<5,0>")) {
             music.stop();
             player.stop();
-            player.play(AssetSource("12-1K.mp3"));
+            emergencyMail();
+            if (globals.lang == 'en')
+              player.play(AssetSource("12-2E.mp3"));
+            else
+              player.play(AssetSource("12-1K.mp3"));
             music.play(AssetSource("alarm.mp3"));
           } else if (data.contains("<5,8>")) {
             player.stop();
-            player.play(AssetSource("20-1K.mp3"));
+            if (globals.lang == 'en')
+              player.play(AssetSource("20-2E.mp3"));
+            else
+              player.play(AssetSource("20-1K.mp3"));
           } else if (data.contains("<5,1>")) {
-            player.play(AssetSource("5-1K.mp3"));
+            if (globals.lang == 'en')
+              player.play(AssetSource("5-2E.mp3"));
+            else
+              player.play(AssetSource("5-1K.mp3"));
           } else if (data.contains("<5,3>")) {
             globals.isTimerActive = true;
           } else if (data.contains("<5,12>")) {
             //Timeout
             player.stop();
-            player.play(AssetSource("2-1K.mp3"));
+            if (globals.lang == 'en')
+              player.play(AssetSource("2-2E.mp3"));
+            else
+              player.play(AssetSource("2-1K.mp3"));
           } else if (data.contains("<5,10>")) {
             impostor = true;
             player.stop();
-            player.play(AssetSource("3-1K.mp3"));
+            if (globals.lang == 'en')
+              player.play(AssetSource("3-2E.mp3"));
+            else
+              player.play(AssetSource("3-1K.mp3"));
           } else if (data.contains("<5,11>")) {
             player.stop();
-            player.play(AssetSource("4-1K.mp3"));
+            if (globals.lang == 'en')
+              player.play(AssetSource("4-2E.mp3"));
+            else
+              player.play(AssetSource("4-1K.mp3"));
           } else if (data.contains("<5,9>")) {
             player.stop();
-            player.play(AssetSource("9-1K.mp3"));
+            if (globals.lang == 'en')
+              player.play(AssetSource("9-2E.mp3"));
+            else
+              player.play(AssetSource("9-1K.mp3"));
           } else if (data.contains("<5,13>")) {
             player.stop();
-            player.play(AssetSource("10-1K.mp3"));
+            if (globals.lang == 'en')
+              player.play(AssetSource("10-2E.mp3"));
+            else
+              player.play(AssetSource("10-1K.mp3"));
           } else if (data.contains("<5,14>")) {
             player.stop();
-            player.play(AssetSource("15-1K.mp3"));
+            if (globals.lang == 'en')
+              player.play(AssetSource("15-2E.mp3"));
+            else
+              player.play(AssetSource("15-1K.mp3"));
           } else if (data.contains("<5,19>")) {
             player.stop();
-            player.play(AssetSource("19-1K.mp3"));
+            if (globals.lang == 'en')
+              player.play(AssetSource("19-2E.mp3"));
+            else
+              player.play(AssetSource("19-1K.mp3"));
           } else if (data.contains("<5,20>")) {
             player.stop();
             player.play(AssetSource("Doorsignal.mp3"));
           } else if (data.contains("<5,21>")) {
             player.stop();
-            player.play(AssetSource("1-1K.mp3"));
+            if (globals.lang == 'en')
+              player.play(AssetSource("1-2E.mp3"));
+            else
+              player.play(AssetSource("1-1K.mp3"));
           } else if (data.contains("<5,5>")) {
             player.stop();
-            player.play(AssetSource("11-1K.mp3"));
+            if (globals.lang == 'en')
+              player.play(AssetSource("11-2E.mp3"));
+            else
+              player.play(AssetSource("11-1K.mp3"));
           } else if (data.contains("<5,25>")) {
             player.stop();
-            player.play(AssetSource("11-1K.mp3"));
+            if (globals.lang == 'en')
+              player.play(AssetSource("kiu3.mp3"));
+            else
+              player.play(AssetSource("ktu3.mp3"));
+          } else if (data.contains("<5,26>")) {
+            player.stop();
+            if (globals.lang == 'en')
+              player.play(AssetSource("eiu3.mp3"));
+            else
+              player.play(AssetSource("etu3.mp3"));
+          } else if (data.contains("<5,27>")) {
+            player.stop();
+            if (globals.lang == 'en')
+              player.play(AssetSource("6-2E.mp3"));
+            else
+              player.play(AssetSource("6-1K.mp3"));
           } else if (data.contains("<5,22>")) {
             writePort("3", "0", "0", "0", "42");
             trywrite = true;
@@ -292,6 +396,20 @@ class ProcessControlPage extends StatelessWidget {
     if (CardScreen.port1!.isOpen) CardScreen.port1!.close();
   }
 
+  Future<void> DoorSoundE() async {
+    if (globals.lang == 'en')
+      player.play(AssetSource("eiu1.mp3"));
+    else
+      player.play(AssetSource("etu1.mp3"));
+  }
+
+  Future<void> DoorSoundK() async {
+    if (globals.lang == 'en')
+      player.play(AssetSource("kiu1.mp3"));
+    else
+      player.play(AssetSource("ktu1.mp3"));
+  }
+
   Future<void> writePort(dus, krem, number1, number2, number3) async {
     CardScreen.number += 1;
     /*
@@ -379,6 +497,31 @@ class ProcessControlPage extends StatelessWidget {
       "kopeksampuan": kopeksampuan,
       "onoff": onoff
     });
+
+    // ignore: prefer_typing_uninitialized_variables
+    var res;
+    try {
+      res = await http.post(url,
+          headers: {"Content-Type": "application/json"}, body: body);
+      // ignore: unused_catch_clause
+    } on Exception catch (e) {
+      //print(e.toString());
+      connection = false;
+    }
+    if (connection) {
+      final Map<String, dynamic> data = json.decode(res.body);
+
+      if (data['done'] == 'false') {
+      } else if (data['done'] == 'true') {
+      } else {}
+    }
+  }
+
+  void emergencyMail() async {
+    bool connection = true;
+
+    var url = Uri.parse("https://poemech.com.tr:3001/api/mail/emergencyButton");
+    final body = json.encode({"id": "AB010723/01", "mail": "info@onarfa.com"});
 
     // ignore: prefer_typing_uninitialized_variables
     var res;
