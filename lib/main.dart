@@ -20,7 +20,9 @@ import 'pinControls.dart' as pins;
 
 void main() {
   runApp(MaterialApp(
-      theme: ThemeData(fontFamily: 'Gilroy'),
+      theme: ThemeData(
+        fontFamily: 'Gilroy',
+      ),
       home: const CardScreen(),
       debugShowCheckedModeBanner: false));
 }
