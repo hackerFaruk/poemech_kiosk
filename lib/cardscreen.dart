@@ -38,7 +38,7 @@ class _CardScreen extends State<CardScreen> {
     // eğer kart ekranında isek demekki kşmse girmemiş daha
     // bunu sadece burda değiştircez eğer servis yada normal giriş varsa
     globals.isLoggedIn = false;
-
+    globals.isTimerActive = false;
     AudioPlayer player = AudioPlayer();
     //const alarmAudioPath = "assets/service.mp3";
     player.play(AssetSource("service.mp3"));
@@ -99,9 +99,12 @@ class _CardScreen extends State<CardScreen> {
                   value == "SPF50C" ||
                   value == "Kopuk" ||
                   value == "Kopek" ||
-                  value == "Dezenfektan") {
+                  value == "httpsŞ..wwwçfarmasoçcom") {
                 CardScreen.stopReading = false;
-                _showMyDialog(value, 0);
+                if (value == "httpsŞ..wwwçfarmasoçcom")
+                  _showMyDialog("Dezenfektan", 0);
+                else
+                  _showMyDialog(value, 0);
                 Timer(Duration(seconds: 2), () {
                   readPort(value);
                 });
@@ -110,7 +113,7 @@ class _CardScreen extends State<CardScreen> {
                   writePort("3", "0", "0", "0", "8");
                 });
 
-                if (value == "Dezenfektan")
+                if (value == "SPF30")
                   Timer(Duration(seconds: 8), () {
                     writePort("3", "0", "0", "0", "80");
                   });
@@ -302,7 +305,7 @@ class _CardScreen extends State<CardScreen> {
         print(data.codeUnits);
         if (data.length < 18 && data.length > 4) {
           if (value == "SPF30" && globals.SPF30 == 0)
-            globals.SPF30 = int.parse(data.codeUnitAt(1).toString());
+            globals.SPF30 = int.parse(data.codeUnitAt(11).toString());
           else if (value == "SPF50" && globals.SPF50 == 0)
             globals.SPF50 = int.parse(data.codeUnitAt(3).toString());
           else if (value == "SPF50C" && globals.SPF50C == 0)
@@ -311,11 +314,13 @@ class _CardScreen extends State<CardScreen> {
             globals.Kopuk = int.parse(data.codeUnitAt(7).toString());
           else if (value == "Kopek" && globals.Kopek == 0)
             globals.Kopek = int.parse(data.codeUnitAt(9).toString());
-          else if (value == "Dezenfektan" && globals.Dezenfektan == 0)
-            globals.Dezenfektan = int.parse(data.codeUnitAt(11).toString());
+          else if (value == "httpsŞ..wwwçfarmasoçcom" &&
+              globals.Dezenfektan == 0)
+            globals.Dezenfektan = int.parse(data.codeUnitAt(1).toString());
           //BÜTÜN DEĞERLERİ SIFIRLAMAK LAZIM
           else if (value == "SPF30" && globals.SPF30 != 0) {
-            if (globals.SPF30 + 3 >= int.parse(data.codeUnitAt(1).toString())) {
+            if (globals.SPF30 + 3 >=
+                int.parse(data.codeUnitAt(11).toString())) {
               globals.wrongone.add(1);
               Navigator.pop(context);
               _showMyDialog(value, 2);
@@ -346,36 +351,37 @@ class _CardScreen extends State<CardScreen> {
             if (globals.Kopuk + 3 >= int.parse(data.codeUnitAt(7).toString())) {
               globals.wrongone.add(4);
               Navigator.pop(context);
-              _showMyDialog(value, 2);
+              _showMyDialog("Duş Köpüğü", 2);
             } else {
               Navigator.pop(context);
-              _showMyDialog(value, 1);
+              _showMyDialog("Duş Köpüğü", 1);
             }
           } else if (value == "Kopek" && globals.Kopek != 0) {
             if (globals.Kopek + 3 >= int.parse(data.codeUnitAt(9).toString())) {
               globals.wrongone.add(9);
               Navigator.pop(context);
-              _showMyDialog(value, 2);
+              _showMyDialog("Köpek Tankı", 2);
             } else {
               Navigator.pop(context);
-              _showMyDialog(value, 1);
+              _showMyDialog("Köpek Tankı", 1);
             }
-          } else if (value == "Dezenfektan" && globals.Dezenfektan != 0) {
+          } else if (value == "httpsŞ..wwwçfarmasoçcom" &&
+              globals.Dezenfektan != 0) {
             if (globals.Dezenfektan + 3 >=
-                int.parse(data.codeUnitAt(11).toString())) {
+                int.parse(data.codeUnitAt(1).toString())) {
               globals.wrongone.add(11);
               Navigator.pop(context);
-              _showMyDialog(value, 2);
+              _showMyDialog("Dezenfektan", 2);
             } else {
               Navigator.pop(context);
-              _showMyDialog(value, 1);
+              _showMyDialog("Dezenfektan", 1);
             }
           }
         } else if (data.length > 18) {
           //KESİN DÜZELT SAYIYI 15 16
           if (int.parse(data.codeUnitAt(15).toString()) == 0 &&
               CardScreen.opened == true) {
-            if (value != "Dezenfektan") {
+            if (value != "SPF30") {
               CardScreen.failcount = 0;
               CardScreen.timer!.cancel();
               Timer(Duration(seconds: 4), () {
@@ -387,7 +393,7 @@ class _CardScreen extends State<CardScreen> {
             writePort("3", "0", "0", "0", "79");
           } else if (int.parse(data.codeUnitAt(16).toString()) == 0 &&
               CardScreen.opened == true) {
-            if (value == "Dezenfektan") {
+            if (value == "SPF30") {
               CardScreen.failcount = 0;
               CardScreen.timer!.cancel();
               Timer(Duration(seconds: 4), () {

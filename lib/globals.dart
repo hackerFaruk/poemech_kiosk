@@ -419,38 +419,36 @@ bool isSecondSelection() {
 int selectedTime = 100;
 
 void timeSet() {
-  selectedTime = 10;
-  if (selected.contains('spf')) {
-    selectedTime = selectedTime + 5;
-  } else if (selected.contains('showerLong')) {
-    selectedTime = 500;
-  } else if (selected.contains('showerNormal')) {
-    selectedTime = 120;
-  } else if (selected.contains('ShowerQuick')) {
-    selectedTime = 45;
+  selectedTime = 0;
+  if (lengthselected == "3") {
+    selectedTime = 375;
+  } else if (lengthselected == "2") {
+    selectedTime = 275;
+  } else if (lengthselected == "1") {
+    selectedTime = 160;
   } else if (selected.contains('dog')) {
-    selectedTime = 100;
-  } else if (selected.contains('bronz')) {
-    selectedTime = 30;
-  } else if (selected.contains('moist')) {
-    selectedTime = 20;
+    selectedTime = 250;
+  }
+
+  if (selected.contains('spf')) {
+    selectedTime = selectedTime + 60;
   }
 
   if (selected.contains('dusty')) {
-    selectedTime = selectedTime + 20;
+    selectedTime = selectedTime + 50;
   } else if (selected.contains('dirty')) {
-    selectedTime = selectedTime + 30;
+    selectedTime = selectedTime + 245;
   } else if (selected.contains('grimy')) {
-    selectedTime = selectedTime + 40;
+    selectedTime = selectedTime + 320;
   }
   if (selected.contains('furShort')) {
     selectedTime = selectedTime + 20;
   } else if (selected.contains('furMid')) {
-    selectedTime = selectedTime + 40;
+    selectedTime = selectedTime + 140;
   } else if (selected.contains('furLong')) {
-    selectedTime = selectedTime + 80;
+    selectedTime = selectedTime + 260;
   } else if (selected.contains('furLayered')) {
-    selectedTime = selectedTime + 160;
+    selectedTime = selectedTime + 380;
   }
 }
 

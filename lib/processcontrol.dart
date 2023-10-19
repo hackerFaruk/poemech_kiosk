@@ -180,16 +180,21 @@ class ProcessControlPage extends StatelessWidget {
         if (data.length > 0 && data.length < 8) {
           if (data.contains("<5,6>")) {
             player.stop();
+            globals.isTimerActive = false;
             if (globals.lang == 'en') {
               player.play(AssetSource("8-2E.mp3"));
-              Timer(Duration(seconds: 11), () {
-                player.play(AssetSource("EkstraDusE.mp3"));
-              });
+              if (CardScreen.krem == 0 && CardScreen.dus == 1) {
+                Timer(Duration(seconds: 11), () {
+                  player.play(AssetSource("EkstraDusE.mp3"));
+                });
+              }
             } else {
               player.play(AssetSource("8-1K.mp3"));
-              Timer(Duration(seconds: 11), () {
-                player.play(AssetSource("EkstraDusT.mp3"));
-              });
+              if (CardScreen.krem == 0 && CardScreen.dus == 1) {
+                Timer(Duration(seconds: 11), () {
+                  player.play(AssetSource("EkstraDusT.mp3"));
+                });
+              }
             }
           } else if (data.contains("<5,0>")) {
             music.stop();
@@ -217,9 +222,9 @@ class ProcessControlPage extends StatelessWidget {
             //Timeout
             player.stop();
             if (globals.lang == 'en')
-              player.play(AssetSource("2-2E.mp3"));
+              player.play(AssetSource("9-2E.mp3"));
             else
-              player.play(AssetSource("2-1K.mp3"));
+              player.play(AssetSource("9-1K.mp3"));
           } else if (data.contains("<5,10>")) {
             impostor = true;
             player.stop();
