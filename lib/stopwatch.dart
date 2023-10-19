@@ -127,12 +127,12 @@ class _StopWatchState extends State<StopWatch> {
                 }
               },
               child: SizedBox(
-                height: butHeight,
+                height: butHeight * 2.5,
                 width: screenSize * 0.5,
                 child: Image(
                     image: AssetImage(isTimerActive == false
-                        ? 'images/start.jpeg'
-                        : 'images/hidden.jpeg')),
+                        ? 'images/start.png'
+                        : 'images/hidden.png')),
               ),
             ),
             SizedBox(
