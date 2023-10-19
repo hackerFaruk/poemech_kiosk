@@ -42,7 +42,6 @@ class _CardScreen extends State<CardScreen> {
     AudioPlayer player = AudioPlayer();
     //const alarmAudioPath = "assets/service.mp3";
     player.play(AssetSource("service.mp3"));
-    pins.activate();
     final screenSize = MediaQuery.of(context).size;
     findPort();
     globals.revertAll();
