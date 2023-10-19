@@ -113,6 +113,7 @@ class _StopWatchState extends State<StopWatch> {
             const SizedBox(height: 10),
             Text(timeRemains >= 1 ? '$timeRemains  $secSan' : secSan),
             InkWell(
+              hoverColor: Colors.transparent,
               // active passivetimer start stop tick cancel red gren buton
               onTap: () async {
                 // eğer timer false ise tureya alcaz

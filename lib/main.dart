@@ -21,7 +21,9 @@ import 'pinControls.dart' as pins;
 void main() {
   pins.deactivate();
   runApp(MaterialApp(
-      theme: ThemeData(fontFamily: 'Gilroy'),
+      theme: ThemeData(
+        fontFamily: 'Gilroy',
+      ),
       home: const CardScreen(),
       debugShowCheckedModeBanner: false));
 }
